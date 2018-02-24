@@ -1,12 +1,15 @@
 $(function() {
 	$("#take_user").on("click", function(event) {
 		event.preventDefault();
-		const username = $("#enter_name").val().trim();
-
+		const name = $("#enter_name").val().trim();
+		const username = $("#enter_username").val().trim();
 		if (username)
 		{
+			//Need to check if username has already been taken
+
 			var newUser = {
-				username: username
+				username: username,
+				name: name
 			}
 			$.ajax("/api/users", {
 				type: "POST",
@@ -24,4 +27,6 @@ $(function() {
 			alert("please enter a username");
 		}
 	});
-})
+
+
+});
