@@ -8,12 +8,12 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    res.sendFile(path.join(__dirname, "../public/htmlTest/index.html"));
   });
 
   // cms route loads cms.html
   app.get("/thankyou", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/thankyou.html"));
+    res.sendFile(path.join(__dirname, "../public/htmlTest/thankyou.html"));
   });
 
 };
