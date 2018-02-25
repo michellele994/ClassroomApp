@@ -3,13 +3,13 @@ $(function() {
 		event.preventDefault();
 		const username = $("#enter_username").val().trim();
 		const password = $("#enter_password").val().trim();
-		if (username)
+		if (username && password)
 		{
 			
 		}
 		else
 		{
-			alert("please enter a username");
+			alert("please enter a username and password");
 		}
 	});
 	
