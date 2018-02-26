@@ -8,7 +8,18 @@ $(function() {
 		//make sure that both required fields have been entered before login in
 		if (username && name)
 		{
-			alert("you've logged in");
+			$.get("/api/users/"+username+"/"+name,{}).then(function(response){
+				if(response){
+					console.log(response);
+					//change window location without goback 
+					//window.location.replace("/classes/"+username+"/"+name);
+					//allows go back
+					window.location="/classes/"+username+"/"+name;
+				}
+				else{
+					console.log("Incorrect login");
+				}
+			});
 		}
 		else
 		{
@@ -34,8 +45,8 @@ $(function() {
 		//make sure that both required fields have been entered before creating an account
 		if (username && name)
 		{
-			//before sending post request we must make sure that users dont exist
-			$.ajax("api/users/",{
+			/*//before sending post request we must make sure that users dont exist
+			$.ajax("/api/users/",{
 				//type:"GET"
 		
 			}).then(function(response){
@@ -52,6 +63,7 @@ $(function() {
 				//if both username and name are take userExists already
 				if(userExists===true){
 					alert("This user already exists!");
+					
 				}
 				else{
 					//if username is taken
@@ -71,7 +83,7 @@ $(function() {
 						});
 					}
 				}
-			});
+			});*/
 		}
 		else
 		{
