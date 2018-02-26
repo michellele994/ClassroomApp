@@ -1,11 +1,14 @@
 $(function() {
+	//login
 	$("#take_user").on("click", function(event) {
 		event.preventDefault();
+		//getting information from the form inputs
 		const username = $("#enter_username").val().trim();
 		const name = $("#enter_name").val().trim();
+		//make sure that both required fields have been entered before login in
 		if (username && name)
 		{
-			
+			alert("you've logged in");
 		}
 		else
 		{
@@ -13,13 +16,17 @@ $(function() {
 		}
 	});
 
+	//signup button will take information from form to create data
 	$("#signup").on("click", function(event) {
 		event.preventDefault();
+
+		//getting information from the form inputs
 		const username = $("#enter_username").val().trim();
 		const name = $("#enter_name").val().trim();
 		var userExists=false;
 		var userNameexists=false;
 
+		//new user to make the post request
 		var newUser = {
 			username: username,
 			name: name
@@ -33,6 +40,7 @@ $(function() {
 		
 			}).then(function(response){
 				//console.log(response[1].name);
+				//go through the api and check if the username and name are taken
 				for(var i=0;i<response.length;i++){
 					if(response[i].name===name&&response[i].username===username){
 						userExists=true;
@@ -41,22 +49,27 @@ $(function() {
 						userNameexists=true;
 					}
 				}
+				//if both username and name are take userExists already
 				if(userExists===true){
 					alert("This user already exists!");
 				}
-				if(userNameexists===true){
-					alert("Username is taken");
-				}
-				if(userExists===false&&userNameexists===false){
-					//Create a new user
-					$.ajax("/api/users", {
-						type: "POST",
-						data: newUser
-					}).then(
-					function() {
-						alert("congrats you have created an account.Enter your inforamtion again to log in");
-						location.reload();
-					});
+				else{
+					//if username is taken
+					if(userNameexists===true){
+						alert("Username is taken");
+					}
+					else{
+						//(userExists===false&&userNameexists===false){
+						//Create a new user
+						$.ajax("/api/users", {
+							type: "POST",
+							data: newUser
+						}).then(
+						function() {
+							alert("congrats you have created an account.Enter your inforamtion again to log in");
+							location.reload();
+						});
+					}
 				}
 			});
 		}
@@ -64,34 +77,6 @@ $(function() {
 		{
 			alert("please enter a username and password");
 		}	
-			
-			
 	});
-	
-
 });
-	
-	//we will have username and pass created for user
-	/*//Need to check if username has already been taken
-
-			var newUser = {
-				username: username,
-				name: password
-			}
-			$.ajax("/api/users", {
-				type: "POST",
-				data: newUser
-			}).then(
-			function() {
-				console.log("user has been created");
-				location.reload();
-			})
-			$("#enter_username").val("");
-			window.location.href = "/thankyou";
-		}
-		else
-		{
-			alert("please enter a username");
-		}
-	});*/
 
