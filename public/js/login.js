@@ -17,7 +17,7 @@ $(function() {
 					window.location="/classes/"+username+"/"+name;
 				}
 				else{
-					console.log("Incorrect login");
+					alert("Incorrect login");
 				}
 			});
 		}
