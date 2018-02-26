@@ -6,7 +6,7 @@ $(function() {
 		const username = $("#enter_username").val().trim();
 		const name = $("#enter_name").val().trim();
 		//make sure that both required fields have been entered before login in
-		if (username && name)
+		if (username && name !="")
 		{
 			$.get("/api/users/"+username+"/"+name,{}).then(function(response){
 				if(response){
@@ -62,7 +62,7 @@ $(function() {
 				}
 				//if both username and name are take userExists already
 				if(userExists===true){
-					alert("This user already exists!");
+					alert("This name already exists!");
 				}
 				else{
 					//if username is taken
@@ -77,7 +77,7 @@ $(function() {
 							data: newUser
 						}).then(
 						function() {
-							alert("congrats you have created an account.Enter your inforamtion again to log in");
+							alert("congrats you have created an account. Enter your information again to log in");
 							location.reload();
 						});
 					}
