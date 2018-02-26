@@ -1,9 +1,9 @@
 $(function() {
 	$("#take_user").on("click", function(event) {
 		event.preventDefault();
-		const name = $("#enter_name").val().trim();
 		const username = $("#enter_username").val().trim();
-		if (username)
+		const name = $("#enter_name").val().trim();
+		if (username&&name)
 		{
 			//Need to check if username has already been taken
 
@@ -19,7 +19,7 @@ $(function() {
 				console.log("user has been created");
 				location.reload();
 			})
-			$("#enter_name").val("");
+			$("#enter_username").val("");
 			window.location.href = "/thankyou";
 		}
 		else
