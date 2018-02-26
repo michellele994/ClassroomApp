@@ -3,7 +3,7 @@ $(function() {
 		event.preventDefault();
 		const username = $("#enter_username").val().trim();
 		const name = $("#enter_name").val().trim();
-		if (username&&name)
+		if (username && name)
 		{
 			
 		}
@@ -12,6 +12,34 @@ $(function() {
 			alert("please enter a username and password");
 		}
 	});
+
+	$("#signup").on("click", function(event) {
+		event.preventDefault();
+		const username = $("#enter_username").val().trim();
+		const name = $("#enter_name").val().trim();
+		var newUser = {
+			username: username,
+			name: name
+		}
+
+		if (username && name)
+		{
+			$.ajax("/api/users", {
+				type: "POST",
+				data: newUser
+			}).then(
+			function() {
+				alert("congrats you have created an account.Enter your inforamtion again to log in");
+				location.reload();
+			});
+		}
+		else
+		{
+			alert("please enter a username and password");
+		}
+	});
+	
+
 });
 	
 	//we will have username and pass created for user
