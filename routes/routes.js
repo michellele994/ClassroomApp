@@ -7,7 +7,7 @@ var router = express.Router();
 
 //creating the home route
 router.get("/",function(req,res){
-    res.render("layouts/login");
+    res.render("login");
 });
 //creating the api router
 router.get("/api/users", function(req, res) {
