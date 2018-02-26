@@ -5,11 +5,21 @@ $(function() {
 		const name = $("#enter_name").val().trim();
 		if (username&&name)
 		{
-			//Need to check if username has already been taken
+			
+		}
+		else
+		{
+			alert("please enter a username and password");
+		}
+	});
+});
+	
+	//we will have username and pass created for user
+	/*//Need to check if username has already been taken
 
 			var newUser = {
 				username: username,
-				name: name
+				name: password
 			}
 			$.ajax("/api/users", {
 				type: "POST",
@@ -26,7 +36,5 @@ $(function() {
 		{
 			alert("please enter a username");
 		}
-	});
+	});*/
 
-
-});

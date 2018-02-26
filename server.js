@@ -18,17 +18,15 @@ app.use(bodyParser.json());
 // Static directory
 app.use(express.static("public"));
 
-// Static directory
-app.use(express.static("public"));
-
 //set handlebars
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 // Routes
 var routes=require("./routes/html-routes.js");
+app.use(routes);
 // =============================================================
-/*require("./routes/html-routes.js")(app);
+//require("./routes/html-routes.js")(app);
 //require("./routes/user-api-routes.js")(app);
 // require("./routes/post-api-routes.js")(app);
 
