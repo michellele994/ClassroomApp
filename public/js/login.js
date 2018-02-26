@@ -45,8 +45,8 @@ $(function() {
 		//make sure that both required fields have been entered before creating an account
 		if (username && name)
 		{
-			/*//before sending post request we must make sure that users dont exist
-			$.ajax("/api/users/",{
+			//before sending post request we must make sure that users dont exist
+			$.get("/api/users/",{
 				//type:"GET"
 		
 			}).then(function(response){
@@ -63,7 +63,6 @@ $(function() {
 				//if both username and name are take userExists already
 				if(userExists===true){
 					alert("This user already exists!");
-					
 				}
 				else{
 					//if username is taken
@@ -83,7 +82,7 @@ $(function() {
 						});
 					}
 				}
-			});*/
+			})
 		}
 		else
 		{

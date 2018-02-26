@@ -25,7 +25,7 @@ router.post("/api/users", function(req, res) {
   });
 });
 
-//Does user exist
+//checks to see if user exists
 router.get("/api/users/:username/:name",function(req,res){
   db.userTable.findOne({
     where:{
@@ -36,5 +36,8 @@ router.get("/api/users/:username/:name",function(req,res){
     res.json(dbuser);
   });
 });
-
+//ading a route to the classes pag
+router.get("/classes/:username/:name",function(req,res){
+  res.render("classes");
+});
 module.exports=router;
