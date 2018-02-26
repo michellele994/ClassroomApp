@@ -4,10 +4,12 @@ CREATE DATABASE classapp_db;
 USE classapp_db;
 
 DROP TABLE IF EXISTS users;
+
 CREATE TABLE users (
 id INT NOT NULL AUTO_INCREMENT,
 username VARCHAR(20) NOT NULL,
 name VARCHAR(40) NOT NULL,
+password VARCHAR(40) NOT NULL
 PRIMARY KEY (id)
 );
 
