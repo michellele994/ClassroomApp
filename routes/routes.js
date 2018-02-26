@@ -38,6 +38,15 @@ router.get("/api/users/:username/:name",function(req,res){
 });
 //ading a route to the classes pag
 router.get("/classes/:username/:name",function(req,res){
-  res.render("classes");
+  db.userTable.findOne({
+    where:{
+      name:req.params.name,
+      username:req.params.username
+    }
+  }).then(function(dbuser){
+    
+    res.render("classes",{loggedinuser:dbuser});
+  });
+  
 });
 module.exports=router;
