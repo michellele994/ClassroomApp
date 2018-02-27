@@ -1,23 +1,33 @@
 
 <div class="container-fluid">
-    <div id="loginContainer"class="jumbotron">
+    <div id="loginContainer" class="jumbotron">
         <h1 class="display-4 text-center"><i class="fas fa-graduation-cap"></i> Sch00led App</h1>
         <p class="lead text-center">Our class app will make you want to ditch BCS!</p>
         <hr class="my-1">
         <div class="containerForm text-center">
-            <div class="form-group">
+            <div id="formGroup" class="form-group">
+
                 <label for="enter_username">Username:</label>
-                <input type="text" id="enter_username" name="username" maxlength="15">
-                 <br>
-                <label for="enter_name">Name:</label>
-                <input type="text" id="enter_name" name="username" maxlength="15">
+
+                <input class="col-sm-6" type="text" id="enter_username" name="username" maxlength="15">
+
                 <br>
-                <label for="enter_name">Password</label>
-                <input type="text" id="enter_password" name="password" maxlength="15">
+
+                <label for="enter_name">Name:</label>
+
+                <input class="col-sm-6" type="text" id="enter_name" name="username" maxlength="15">
+
+                <br>
+
+                <label for="enter_name">Password:</label>
+
+                <input class="col-sm-6" type="password" id="enter_password" name="password" maxlength="15">
+
                 </br>
-                <button class="btn btn-outline-primary" type="submit" id="take_user">Log In<i class="far fa-check-circle"></i></button>
+
+                <button class="btn btn-outline-primary" type="submit" id="take_user">Log In <i class="far fa-check-circle"></i></button>
                 <!--ALLOWS ME TO ADD DUMMY DATA FOR NOW-->
-                <button class="btn btn-outline-primary"  id="signup">New Account<i class="far fa-check-circle"></i></button>
+                <button class="btn btn-outline-primary" id="signup">New Account <i class="far fa-check-circle"></i></button>
             </div>
         </div>
     </div>

@@ -1,5 +1,28 @@
-#loginContainer{
+#loginContainer {
     background-image: url("../../imgs/blackboard.jpg");
-    background-size: 100%;
-   color:#ffff;
+    background-color: gray;
+    /*background-size: 100%;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+
+input {
+    float: right;
+    position: relative;
+    width: 120px;
+}
+
+#formGroup {
+    width: 300px;
+    margin: 20px auto;
+}
+
+.btn-outline-primary {
+    margin-top: 20px;
+    width: 135px;
+}
+
+#signup {
+    margin-left: 25px;
 }
