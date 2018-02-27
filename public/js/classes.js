@@ -1,6 +1,6 @@
 $(function() {
 
-	$("#add-class").on("click", function(event)
+	$(".classPg").on("click", function(event)
 	{
 		$('#new-class').modal('show');
 		console.log("this has been clicked");
