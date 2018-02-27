@@ -1,4 +1,3 @@
-
 // Routes
 // =============================================================
 var db = require("../models");
@@ -55,19 +54,13 @@ router.get("/classes/:username/",function(req,res){
   db.userTable.findOne({
     where:{
       username:req.params.username
-    }
+    },
+    include: [db.classTable]
   }).then(function(dbuser){
-    var test={
-      userInfo:{
-        name:"perla",
-        classTables:dbuser.classTables
-      }
-    }
-    var userLoggedin={
-      userInfo:dbuser
-    }
-    
-    res.render("classes",dbuser);
+  var userLoggedin={
+    userInfo:dbuser
+  }
+    res.render("classes",userLoggedin);
   });
   
 });
