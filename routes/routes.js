@@ -18,7 +18,7 @@ router.get("/api/users", function(req, res) {
       res.json(dbusers);
     });
 });
-router.get("/api/classes", function(req, res) {
+/*router.get("/api/classes", function(req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
@@ -30,7 +30,7 @@ router.post("/api/classes", function(req, res) {
   db.classTable.create(req.body).then(function(dbclasses) {
     res.json(dbclasses);
   });
-});
+});*/
 //posting a new user into the api/users
 router.post("/api/users", function(req, res) {
   db.userTable.create(req.body).then(function(dbusers) {
