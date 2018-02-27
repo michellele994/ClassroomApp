@@ -1,11 +1,4 @@
 $(function() {
-<<<<<<< HEAD
-	//got to classpage
-	$(".classPg").on("click", function(event) {
-        event.preventDefault();
-        
-    });
-=======
 
 	$(".classPg").on("click", function(event)
 	{
@@ -51,5 +44,4 @@ $(function() {
 	// $('#new-class').on('hidden.bs.modal', function (e) {
 	// 	$('.modal-body').empty();
 	// });
->>>>>>> 53d8ebf0628a7efdaaae4b589398f4d361d773c6
 });

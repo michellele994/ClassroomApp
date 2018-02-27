@@ -1,4 +1,4 @@
-/*module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
 	var classTable = sequelize.define("classTable", {
 		classname: {
 			type: DataTypes.STRING,
@@ -24,4 +24,4 @@
 		});
 	};
 		return classTable;
-}*/
+}
