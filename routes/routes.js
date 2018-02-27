@@ -14,9 +14,22 @@ router.get("/api/users", function(req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
-    db.userTable.findAll({}).then(function(dbusers) {
+    db.userTable.findAll({include: [db.classTable]}).then(function(dbusers) {
       res.json(dbusers);
     });
+});
+router.get("/api/classes", function(req, res) {
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Post
+    db.classTable.findAll({include: [db.userTable]}).then(function(dbclass) {
+      res.json(dbclass);
+    });
+});
+router.post("/api/classes", function(req, res) {
+  db.classTable.create(req.body).then(function(dbclasses) {
+    res.json(dbclasses);
+  });
 });
 //posting a new user into the api/users
 router.post("/api/users", function(req, res) {
@@ -26,21 +39,20 @@ router.post("/api/users", function(req, res) {
 });
 
 //checks to see if user exists
-router.get("/api/users/:username/:name",function(req,res){
+router.get("/api/users/:username/",function(req,res){
   db.userTable.findOne({
     where:{
-      name:req.params.name,
       username:req.params.username
-    }
+    },
+    include: [db.classTable]
   }).then(function(dbuser){
     res.json(dbuser);
   });
 });
 //ading a route to the classes pag
-router.get("/classes/:username/:name",function(req,res){
+router.get("/classes/:username/",function(req,res){
   db.userTable.findOne({
     where:{
-      name:req.params.name,
       username:req.params.username
     }
   }).then(function(dbuser){

@@ -8,13 +8,13 @@ $(function() {
 		//make sure that both required fields have been entered before login in
 		if (username && name !="")
 		{
-			$.get("/api/users/"+username+"/"+name,{}).then(function(response){
+			$.get("/api/users/"+username+"/").then(function(response){
 				if(response){
 					console.log(response);
 					//change window location without goback 
 					//window.location.replace("/classes/"+username+"/"+name);
 					//allows go back
-					window.location="/classes/"+username+"/"+name;
+					window.location="/classes/"+username+"/";
 				}
 				else{
 					alert("Incorrect login");

@@ -3,6 +3,10 @@
     "username": "root",
     "password": null,
     "database": "classapp_db",
+<<<<<<< HEAD
+=======
+    "port": "3306",
+>>>>>>> 53d8ebf0628a7efdaaae4b589398f4d361d773c6
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
