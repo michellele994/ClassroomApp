@@ -10,7 +10,7 @@ $(function() {
 		{
 			$.get("/api/users/"+username+"/").then(function(response){
 				if(response){
-					//console.log(response);
+					console.log(response);
 					//change window location without goback 
 					//window.location.replace("/classes/"+username+"/"+name);
 					//allows go back
@@ -90,4 +90,3 @@ $(function() {
 		}	
 	});
 });
-

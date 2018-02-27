@@ -1,6 +1,13 @@
 
- {{name}}
- <!---->
+1passing dbuser</br>
+{{name}}
+passing loggeginuser</br>
+{{userInfo.name}}</br>
+{{userInfo.classTables.[0].classname}}<br>
+passing test</br>
+{{userInfo.name}}</br>
+{{userInfo.classTables.[0].classname}}<br>
+
 <div class="modal fade" id="new-class" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -32,18 +39,18 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <h1 id="mainHeading">Welcome {{username}}</h1>
+            <h1 id="mainHeading">Welcome {{userInfo.name}}</h1>
         </div>
     </div>
     <div class="row">
         <div id="classesEnrolled"class="col-lg-12">
-            <h3>Your Classes </h3>
+            <h3>Your Classes</h3>
             <ul>
-                <!--{{#each class}}
-                BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT 
-                <li>{{classname}}</li>
-                <button class="classPg" id={{classid}} +"button">Class Page</button>
-                {{/each}}-->
+                {{#each userInfo.classTables}}
+                <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
+                <li>{{this.classname}}</li>
+                <button class="classPg"  +"button">Class Page</button>
+                {{/each}}
             </ul>
             <h3>Enrroll</h3>
             <button>See Available Classes</button>
