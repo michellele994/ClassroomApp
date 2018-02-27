@@ -9,6 +9,7 @@ $(function() {
 		if (username && name)
 		{
 			alert("you've logged in");
+			window.location.href = "/welcome";
 		}
 		else
 		{
