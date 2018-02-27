@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
 			validate: {
 				len: [1]
 			}
-		},
+		}
 
 	});
 	classTable.associate = function(models) {
