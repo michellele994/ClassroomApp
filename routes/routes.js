@@ -49,7 +49,7 @@ router.get("/api/users/:username/",function(req,res){
     res.json(dbuser);
   });
 });
-//ading a route to the classes pag
+//adding a route to the classes page
 router.get("/classes/:username/",function(req,res){
   db.userTable.findOne({
     where:{
