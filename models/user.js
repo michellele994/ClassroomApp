@@ -15,5 +15,10 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	});
+	userTable.associate = function(models) {
+    userTable.hasMany(models.classTable, {
+      onDelete: "cascade"
+    });
+  };
 	return userTable;
 }

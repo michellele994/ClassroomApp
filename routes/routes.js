@@ -9,6 +9,9 @@ var router = express.Router();
 router.get("/",function(req,res){
   res.render("login");
 });
+router.get("/welcome",function(req,res){
+    res.render("classes");
+});
 //creating the user/api route
 router.get("/api/users", function(req, res) {
     // Here we add an "include" property to our options in our findAll query
