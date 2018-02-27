@@ -39,10 +39,11 @@
                 {{#each userInfo.classTables}}
                 <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
                 <li>{{this.classname}}</li>
-                <button class="classPg"  +"button">Class Page</button>
+				<!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
+                <button class="classPg" data-user="{{userInfo.username}}"data-ClassTeacherusername="perla23">Class Page</button>
                 {{/each}}
             </ul>
-            <h3>Enrroll</h3>
+            <h3>Enroll</h3>
             <button>See Available Classes</button>
         </div>
         <div class="row">

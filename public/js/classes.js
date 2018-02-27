@@ -1,9 +1,25 @@
 $(function() {
-
 	$(".classPg").on("click", function(event)
 	{
-		$('#new-class').modal('show');
-		console.log("this has been clicked");
+		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
+		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
+		var userName = userInfo.substr(0, userInfo.indexOf("/"));
+		var classTeacher=$(this).attr("data-classTeacherusername");
+		//console.log(userName);
+		//console.log(classTeacher);
+		if (userName===classTeacher){
+			//change window location without goback 
+					//window.location.replace("/classes/"+username+"/"+name);
+					//allows go back
+					window.location="/classTeacherview/"+userName+"/";
+		}
+		else{
+			//change window location without goback 
+					//window.location.replace("/classes/"+username+"/"+name);
+					//allows go back
+					window.location="/classStudentview/"+userName+"/";
+		}
+		
 	})
 
 	$("#create-new-class").on("click", function(even)
@@ -19,6 +35,8 @@ $(function() {
 			if(response){
 				userID = response.id;
 				var newClass = {
+			//need add a teacher name and username?
+			//classTeacher:userName,
 			classname: className,
 			classdesc: classDesc,
 			userTableId: userID
