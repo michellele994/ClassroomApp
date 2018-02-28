@@ -9,9 +9,11 @@ body {
 }
 
 #loginContainer {
-    /*background-size: 100%;*/
     color: #fff;
-    height: 100%;
+}
+
+h1 {
+    color: white;
 }
 
 input {
@@ -36,5 +38,5 @@ input {
 
 #classesEnrolled {
     width: 300px;
-    color: red;
+    color: #fff;
 }
