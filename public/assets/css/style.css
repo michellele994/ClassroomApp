@@ -18,17 +18,13 @@ input {
     margin: 20px auto;
 }
 
-.btn-outline-primary {
+.btn-outline-danger {
     margin-top: 20px;
     width: 135px;
 }
 
 #signup {
     margin-left: 25px;
-}
-
-h1 {
-    color: pink;
 }
 
 #classesEnrolled {
