@@ -16,14 +16,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Static directory
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 //set handlebars
 var exphbs = require("express-handlebars");
-app.engine("handlebars", exphbs({defaultLayout:'layout'}));
+app.engine("handlebars", exphbs({ defaultLayout: 'layout' }));
 app.set("view engine", "handlebars");
 // Routes
-var routes=require("./routes/routes.js");
+var routes = require("./routes/routes.js");
 app.use(routes);
 // =============================================================
 //require("./routes/html-routes.js")(app);
@@ -33,7 +33,7 @@ app.use(routes);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+    app.listen(PORT, function() {
+        console.log("App listening on PORT " + PORT);
+    });
 });
