@@ -14,13 +14,11 @@ module.exports = function(sequelize, DataTypes) {
 				len: [1]
 			}
 		}
-
 	});
-
 	classTable.associate = function(models) {
-		classTable.hasMany(models.studentTable, {
+		/*classTable.hasMany(models.studentTable, {
 			onDelete: "cascade"
-	    });
+	    });*/
 		classTable.belongsTo(models.userTable, {
 			foreignKey: {
 				allowNull: false
