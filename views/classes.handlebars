@@ -29,18 +29,19 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <h1 id="mainHeading">Welcome {{name}}</h1>
+            <h1 id="mainHeading">Welcome {{userInfo.name}}</h1>
         </div>
     </div>
     <div class="row">
         <div id="classesEnrolled"class="col-lg-12">
             <h3>Your Classes</h3>
             <ul>
-                <!--{{#each class}}
-                BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT 
-                <li>{{classname}}</li>
-                <button class="classPg" id={{classid}} +"button">Class Page</button>
-                {{/each}}-->
+                {{#each userInfo.classTables}}
+                <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
+                <li>{{this.classname}}</li>
+				<!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
+                <button class="classPg" data-user="{{userInfo.username}}"data-ClassTeacherusername="perla23">Class Page</button>
+                {{/each}}
             </ul>
             <h3>Enroll</h3>
 
@@ -49,7 +50,6 @@
 		<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
 	
 </div>
-       
        
             <div id="classesEnrolled"class="col-lg-12">
                 <button class = "btn btn-primary" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
