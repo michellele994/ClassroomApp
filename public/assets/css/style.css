@@ -1,10 +1,17 @@
-#loginContainer {
+body {
     background-image: url("../../imgs/blackboard.jpg");
-    background-color: gray;
-    /*background-size: 100%;*/
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.jumbotron {
+    border: none;
+}
+
+#loginContainer {
+    /*background-size: 100%;*/
     color: #fff;
+    height: 100%;
 }
 
 input {
