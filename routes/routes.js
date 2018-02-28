@@ -49,7 +49,8 @@ router.get("/api/users/:username/", function(req, res) {
         res.json(dbuser);
     });
 });
-//ading a route to the classes page
+
+//sending teachers with classes they teach
 router.get("/classes/:username/",function(req,res){
   db.userTable.findOne({
     where:{
@@ -63,19 +64,20 @@ router.get("/classes/:username/",function(req,res){
     res.render("classes",userLoggedin);
   });
 });
-/*//sending the classes obj
+//sending all classes that teacher doesn't teach
 router.get("/classes/:username/",function(req,res){
   db.classTable.findAll({
-    where:{
-      username:req.params.username
+    where: {
+      [Op.ne]: [{usertable:{username:req.params.username}}]
     },
     include: [db.userTable]
-  }).then(function(dbuser){
-  var classesT={
-    userInfo:dbuser
+  }).then(function(dbclasses){
+  var classesAvail={
+    classInfo:dbclasses
   }
-    res.render("classes",userLoggedin);
+    res.render("classes",classesAvail);
   });
-});*/
+  });
+
 
 module.exports=router;
