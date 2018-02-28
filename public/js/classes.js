@@ -1,3 +1,9 @@
+var Handlebars=require("handlebars");
+handlebars.registerHelper("ifEqual",function(var1,var2){
+	if (var1===var2){
+		return "we are equal";
+	}
+});
 $(function() {
 	$("#availableClasses").on("click",function(event){
 		//change window location without goback 

@@ -1,6 +1,8 @@
 // Routes
 // =============================================================
 var db = require("../models");
+var Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 var express = require("express");
 var router = express.Router();
@@ -50,6 +52,8 @@ router.get("/api/users/:username/", function(req, res) {
     });
 });
 
+/*//DO NOT WORK TOGETHER SEPARATE
+//THIS IS WORKING BY ITSELF
 //sending teachers with classes they teach
 router.get("/classes/:username/",function(req,res){
   db.userTable.findOne({
@@ -64,20 +68,61 @@ router.get("/classes/:username/",function(req,res){
     res.render("classes",userLoggedin);
   });
 });
+
+//  WORKS BY ITSELF
 //sending all classes that teacher doesn't teach
 router.get("/classes/:username/",function(req,res){
   db.classTable.findAll({
-    where: {
-      [Op.ne]: [{usertable:{username:req.params.username}}]
-    },
-    include: [db.userTable]
-  }).then(function(dbclasses){
+     include: [db.userTable]
+}).then(function(dbclasses){
   var classesAvail={
     classInfo:dbclasses
   }
     res.render("classes",classesAvail);
   });
+});*/
+
+/*//WORKS BY AS IS BUT REQUIRES FOR ME TO WRITE A HANDLEBARS HELPER FUNCTION TO ACCESS WHERE TEACHER IS NOT EQUAL TO USER
+//getting the users class information
+router.get("/classes/:username/",function(req,res){
+  db.userTable.findOne({
+    where:{
+      username:req.params.username
+    },
+    include: [db.classTable]
+  }).then(function(dbuser){
+    db.classTable.findAll({
+      include: [db.userTable]
+    }).then(function(dbclasses){
+      var userLoggedin={
+        userInfo:dbuser,
+        classInfo:dbclasses
+      }
+      res.render("classes",userLoggedin);
+    });
   });
+});*/
+
+//WORKS BY AS IS BUT REQUIRES FOR ME TO WRITE A HANDLEBARS HELPER FUNCTION TO ACCESS WHERE TEACHER IS NOT EQUAL TO USER
+//getting the users class information
+router.get("/classes/:username/",function(req,res){
+  db.userTable.findOne({
+    where:{
+      username:req.params.username
+    },
+    include: [db.classTable]
+  }).then(function(dbuser){
+    db.classTable.findAll({
+    }).then(function(dbclasses){
+      //this might be able to be replaced so far only way without having to use hbrhelperfunctions and where not equal
+      var userLoggedin={
+        userInfo:dbuser,
+        classInfo:classesAvail(dbcclasses,dbuser.username)
+      }
+      res.render("classes",userLoggedin);
+    });
+  });
+});
 
 
 module.exports=router;
