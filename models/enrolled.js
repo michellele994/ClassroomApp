@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	var classTable = sequelize.define("classTable", {
+	var enrolledTable = sequelize.define("enrolledTable", {
 		classname: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -14,18 +14,14 @@ module.exports = function(sequelize, DataTypes) {
 				len: [1]
 			}
 		}
-
 	});
 
-	classTable.associate = function(models) {
-		classTable.hasMany(models.studentTable, {
-			onDelete: "cascade"
-	    });
-		classTable.belongsTo(models.userTable, {
+	enrolledTable.associate = function(models) {
+		enrolledTable.belongsTo(models.studentTable, {
 			foreignKey: {
 				allowNull: false
 			}
 		});
 	};
-	return classTable;
+	return enrolledTable;
 }

@@ -16,7 +16,12 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	});
 	studentTable.associate = function(models) {
-		studentTable.belongsTo(models.userTable, {
+		studentTable.belongsTo(models.classTable, {
+		  foreignKey: {
+		    allowNull: false
+		  }
+		});
+		studentTable.hasMany(models.enrolledTable, {
 		  foreignKey: {
 		    allowNull: false
 		  }
