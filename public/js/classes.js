@@ -1,4 +1,10 @@
 $(function() {
+	$("#availableClasses").on("click",function(event){
+		//change window location without goback 
+					//window.location.replace("/classes/"+username+"/"+name);
+					//allows go back
+					window.location="/classesAvailable/"+userName+"/";
+	})
 	$(".classPg").on("click", function(event)
 	{
 		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
