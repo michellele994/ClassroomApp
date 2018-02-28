@@ -42,4 +42,14 @@ input {
 
 #mainHeading {
     color: white;
+    margin: 30px;
+}
+
+.card {
+    width: auto;
+}
+
+.badge-pill {
+    width: 25%;
+    height: 25%;
 }
