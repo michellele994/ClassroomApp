@@ -5,7 +5,8 @@ body {
 }
 
 .jumbotron {
-    border: none;
+    border: 3px;
+    border-color: white;
 }
 
 #loginContainer {
@@ -34,7 +35,21 @@ input {
     margin-left: 25px;
 }
 
-#classesEnrolled {
+.classes {
     width: 300px;
-    color: red;
+    color: white;
+}
+
+#mainHeading {
+    color: white;
+    margin: 30px;
+}
+
+.card {
+    width: auto;
+}
+
+.badge-pill {
+    width: 25%;
+    height: 25%;
 }
