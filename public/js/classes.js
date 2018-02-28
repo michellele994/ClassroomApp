@@ -1,3 +1,4 @@
+
 $(function() {
 	$("#availableClasses").on("click",function(event){
 		//change window location without goback 
@@ -41,11 +42,9 @@ $(function() {
 			if(response){
 				userID = response.id;
 				var newClass = {
-			//need add a teacher name and username?
-			//classTeacher:userName,
-			classname: className,
-			classdesc: classDesc,
-			userTableId: userID
+				classname: className,
+				classdesc: classDesc,
+				userTableId: userID
 		}
 		if(className && classDesc)
 		{
