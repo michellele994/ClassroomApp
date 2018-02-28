@@ -14,3 +14,5 @@ PRIMARY KEY (id)
 );
 
 SELECT * FROM users;
+
+
