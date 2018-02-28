@@ -33,28 +33,38 @@
         </div>
     </div>
     <div class="row">
-        <div id="classesEnrolled"class="col-lg-12">
-            <h3>Your Classes</h3>
-            <ul>
-                {{#each userInfo.classTables}}
-                <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
-                <li>{{this.classname}}</li>
-				<!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-                <button class="classPg" data-user="{{userInfo.username}}"data-ClassTeacherusername="perla23">Class Page</button>
-                {{/each}}
-            </ul>
-            <h3>Enroll</h3>
-
+        <div class="col-lg-12 classes">
+			<div class="container-fluid" id="classesTeaching">
+				<h3>Classes Teaching</h3>
+				<ul>
+					{{#each userInfo.classTables}}
+					<!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
+					<li>{{this.classname}}</li>
+					<!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
+					<button class="classPg" data-user="{{userInfo.username}}"data-ClassTeacherusername="perla23">Class Page</button>
+					{{/each}}
+				</ul>
+			</div>
+			<div class="container-fluid" id="classesEnrolled">
+            	<h3>Classes Enrolled</h3>
+				{{!-- <ul>
+					{{#each userInfo.classTables}}
+					<!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
+					<li>{{this.classname}}</li>
+					<!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
+					<button class="classPg" data-user="{{userInfo.username}}"data-ClassTeacherusername="perla23">Class Page</button>
+					{{/each}}
+				</ul> --}}
+			</div>
             
-	<div id="classesEnrolled" class="col-lg-12">
-		<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
-	
-</div>
-       
-            <div id="classesEnrolled"class="col-lg-12">
-                <button class = "btn btn-primary" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
-            </div>
-        </div>
+			<div id="classesAvailableBtn" class="col-lg-12">
+				<button class="btn btn-outline-danger availClasses" type="button" data-toggle="modal" data-target="#new-class">Available Classes</button>
+			</div>
+			
+			<div id="createClassBtn"class="col-lg-12">
+				<button class = "btn btn-outline-danger crteClass" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
+			</div>
+		</div>
 
 
     </div>
