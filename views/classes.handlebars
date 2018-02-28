@@ -33,31 +33,19 @@
         </div>
     </div>
     <div class="row">
-        <div id="classesEnrolled"class="col-lg-12">
-            <h3>Your Classes</h3>
+        <div id="classesTeaching"class="col-lg-12">
+            <h3>You are Teaching:</h3>
             <ul>
                 {{#each userInfo.classTables}}
                 <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
                 <li>{{this.classname}}</li>
 				<!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-                <button class="classPg" data-user="{{userInfo.username}}"data-ClassTeacherusername="perla23">Class Page</button>
+                <button class="classPg" data-user="{{userInfo.username}}">Class Page</button>
                 {{/each}}
             </ul>
-            <h3>Enroll</h3>
-
-            
-	<div id="classesEnrolled" class="col-lg-12">
-		<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
-	
-</div>
-       
-<<<<<<< HEAD
-        
-=======
->>>>>>> d3c49697c99ecb429834c484602e902a6087cbf8
-            <div id="classesEnrolled"class="col-lg-12">
-                <button class = "btn btn-primary" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
-            </div>
+        </div>
+		<div id="classesEnrolled" class="col-lg-12">
+			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
         </div>
 
 

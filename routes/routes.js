@@ -49,11 +49,7 @@ router.get("/api/users/:username/",function(req,res){
     res.json(dbuser);
   });
 });
-<<<<<<< HEAD
 //ading a route to the classes page
-=======
-//adding a route to the classes page
->>>>>>> 2f325cbe716354d60f6244062e1a935a4f44a0c0
 router.get("/classes/:username/",function(req,res){
   db.userTable.findOne({
     where:{
@@ -66,11 +62,18 @@ router.get("/classes/:username/",function(req,res){
   }
     res.render("classes",userLoggedin);
   });
-  
 });
-
-//class page route teacherview
-router.get("/",function(req,res){
-
-})
-module.exports=router;
+//sending the classes obj
+router.get("/classes/:username/",function(req,res){
+  db.classTable.findAll({
+    where:{
+      username:req.params.username
+    },
+    include: [db.userTable]
+  }).then(function(dbuser){
+  var classesT={
+    userInfo:dbuser
+  }
+    res.render("classes",userLoggedin);
+  });
+});
