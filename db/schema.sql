@@ -2,17 +2,71 @@ DROP DATABASE IF EXISTS classapp_db;
 CREATE DATABASE classapp_db;
 
 USE classapp_db;
+ 
+DROP TABLE IF EXISTS AssignedHw;
 
-DROP TABLE IF EXISTS users;
-
-CREATE TABLE users (
-id INT NOT NULL AUTO_INCREMENT,
-username VARCHAR(20) NOT NULL,
-name VARCHAR(40) NOT NULL,
-password VARCHAR(40) NOT NULL,
-PRIMARY KEY (id)
+CREATE TABLE AssignedHw (
+    id INT NOT NULL AUTO_INCREMENT,
+    hwname VARCHAR(50) NOT NULL,
+    hwdesc VARCHAR(150) NOT NULL,
+    hwdueD DATETIME NOT NULL,
+    PRIMARY KEY (id)
 );
 
-SELECT * FROM users;
+DROP TABLE IF EXISTS EnrolledClass;
+
+CREATE TABLE EnrolledClass (
+    id INT NOT NULL AUTO_INCREMENT,
+    classname VARCHAR(50) NOT NULL,
+    classdesc VARCHAR(150) NOT NULL,
+    attendance BOOLEAN DEFAULT FALSE,
+    PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS HomeworkTD;
+
+CREATE TABLE HomeworkTD (
+    id INT NOT NULL AUTO_INCREMENT,
+    hwname VARCHAR(50) NOT NULL,
+    hwdesc VARCHAR(150) NOT NULL,
+    hwcomplete BOOLEAN DEFAULT FALSE,
+    PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS MadeClass;
+
+CREATE TABLE MadeClass (
+    id INT NOT NULL AUTO_INCREMENT,
+    classname VARCHAR(50) NOT NULL,
+    classdesc VARCHAR(150) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS Student;
+
+CREATE TABLE Student (
+    id INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS Teacher;
+
+CREATE TABLE Teacher (
+    id INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS User;
+
+CREATE TABLE User (
+    id INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    PRIMARY KEY (id)
+);
 
 
