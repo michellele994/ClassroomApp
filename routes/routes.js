@@ -38,7 +38,6 @@ router.post("/api/users", function(req, res) {
         res.json(dbusers);
     });
 });
-
 //checks to see if user exists
 router.get("/api/users/:username/", function(req, res) {
     db.userTable.findOne({
@@ -50,58 +49,6 @@ router.get("/api/users/:username/", function(req, res) {
         res.json(dbuser);
     });
 });
-
-/*//DO NOT WORK TOGETHER SEPARATE
-//THIS IS WORKING BY ITSELF
-//sending teachers with classes they teach
-router.get("/classes/:username/",function(req,res){
-  db.userTable.findOne({
-    where:{
-      username:req.params.username
-    },
-    include: [db.classTable]
-  }).then(function(dbuser){
-  var userLoggedin={
-    userInfo:dbuser
-  }
-    res.render("classes",userLoggedin);
-  });
-});
-
-//  WORKS BY ITSELF
-//sending all classes that teacher doesn't teach
-router.get("/classes/:username/",function(req,res){
-  db.classTable.findAll({
-     include: [db.userTable]
-}).then(function(dbclasses){
-  var classesAvail={
-    classInfo:dbclasses
-  }
-    res.render("classes",classesAvail);
-  });
-});*/
-
-/*//WORKS BY AS IS BUT REQUIRES FOR ME TO WRITE A HANDLEBARS HELPER FUNCTION TO ACCESS WHERE TEACHER IS NOT EQUAL TO USER
-//getting the users class information
-router.get("/classes/:username/",function(req,res){
-  db.userTable.findOne({
-    where:{
-      username:req.params.username
-    },
-    include: [db.classTable]
-  }).then(function(dbuser){
-    db.classTable.findAll({
-      include: [db.userTable]
-    }).then(function(dbclasses){
-      var userLoggedin={
-        userInfo:dbuser,
-        classInfo:dbclasses
-      }
-      res.render("classes",userLoggedin);
-    });
-  });
-});*/
-
 //FINDING WHERE ASSOCIATED TEACHER INFO IS NOT EQUAL TO USER
 router.get("/classes/:username/",function(req,res){
   db.userTable.findOne({
@@ -128,7 +75,23 @@ router.get("/classes/:username/",function(req,res){
     });
   });
 });
-
+//creating the students api
+router.get("/api/students", function(req, res) {
+  // Here we add an "include" property to our options in our findAll query
+  // We set the value to an array of the models we want to include in a left outer join
+  // In this case, just db.Post
+  db.Student.findAll({}).then(function(dbstudents) {
+      res.json(dbstudents);
+  });
+});
+router.post("/api/students", function(req, res) {
+  // Here we add an "include" property to our options in our findAll query
+  // We set the value to an array of the models we want to include in a left outer join
+  // In this case, just db.Post
+  db.Student.create(req.body).then(function(dbstudents) {
+    res.json(dbstudents);
+  });
+});
 
 
 module.exports=router;
