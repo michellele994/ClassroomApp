@@ -41,26 +41,6 @@ $(function() {
 		$.get("/api/users/"+userName).then(function(response){
 			if(response){
 				userID = response.id;
-<<<<<<< HEAD
-				var newClassroom = {
-					//need add a teacher name and username?
-					//classTeacher:userName,
-					classname: className,
-					classdesc: classDesc,
-					UserId: userID
-				}
-			}
-			if(className && classDesc)
-			{
-				$.ajax("/api/classes", {
-					type: "POST",
-					data: newClassroom
-				}).then(
-				function() {
-					console.log("class has been created");
-					location.reload();
-				})
-=======
 				var newClass = {
 				classname: className,
 				classdesc: classDesc,
@@ -77,7 +57,6 @@ $(function() {
 				location.reload();
 			})
 		}
->>>>>>> 58fc96a6073d217927c447fa61f643c3cff7efb4
 			}
 		});	
 	})

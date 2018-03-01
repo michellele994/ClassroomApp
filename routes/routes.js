@@ -14,7 +14,7 @@ router.get("/api/users", function(req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
-    db.User.findAll({ include: [{model: db.Classroom}] }).then(function(dbusers) {
+    db.userTable.findAll({ include: [db.classTable] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
@@ -34,18 +34,18 @@ router.post("/api/classes", function(req, res) {
 });
 //posting a new user into the api/users
 router.post("/api/users", function(req, res) {
-    db.User.create(req.body).then(function(dbusers) {
+    db.userTable.create(req.body).then(function(dbusers) {
         res.json(dbusers);
     });
 });
 
 //checks to see if user exists
 router.get("/api/users/:username/", function(req, res) {
-    db.User.findOne({
+    db.userTable.findOne({
         where: {
             username: req.params.username
         },
-        include: [{model: db.Classroom}]
+        include: [db.classTable]
     }).then(function(dbuser) {
         res.json(dbuser);
     });
