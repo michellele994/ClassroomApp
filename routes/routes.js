@@ -23,12 +23,12 @@ router.get("/api/students", function(req, res) {
     });
 });
 router.get("/api/classes", function(req, res) {
-    db.MadeClass.findAll({ include: [db.User, db.Student] }).then(function(dbclass) {
+    db.MadeClass.findAll({ include: [db.AssignedHW, db.User, db.Student] }).then(function(dbclass) {
         res.json(dbclass);
     });
 });
 router.get("/api/enrollment", function(req, res) {
-    db.EnrolledClass.findAll({ include: [db.Student] }).then(function(dbenrollment) {
+    db.EnrolledClass.findAll({ include: [db.Student, db.HomeworkTD] }).then(function(dbenrollment) {
         res.json(dbenrollment);
     });
 });

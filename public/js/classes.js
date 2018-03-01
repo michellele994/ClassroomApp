@@ -99,35 +99,62 @@ $(function() {
 				if(response){
 					var userID = response.id;
 					var nameOfUser = response.name;
-					$.ajax("/api/teachers", {
-						type: "POST",
-						data: {
-							username: userName,
-							name: nameOfUser
-						}
-					}).then(
-					function() {
-						console.log("teacher has been created");
-						$.get("/api/teachers/"+userName).then(function(response){
-							if(response){
-								var teacherID = response.id;
-								var newClass = {
-									classname: className,
-									classdesc: classDesc,
-									UserId: userID,
-									TeacherId: teacherID
+					$.get("/api/teachers/"+userName).then(function(response){
+						if(response === null)
+						{
+							$.ajax("/api/teachers", {
+								type: "POST",
+								data: {
+									username: userName,
+									name: nameOfUser
 								}
-								$.ajax("/api/classes", {
-									type: "POST",
-									data: newClass
-								}).then(
-								function() {
-									console.log("class has been created");
-									location.reload();
-								})
-							}
-						});
-					})
+							}).then(
+							function() {
+								console.log("teacher has been created");
+								$.get("/api/teachers/"+userName).then(function(response){
+									if(response){
+										var teacherID = response.id;
+										var newClass = {
+											classname: className,
+											classdesc: classDesc,
+											UserId: userID,
+											TeacherId: teacherID
+										}
+										$.ajax("/api/classes", {
+											type: "POST",
+											data: newClass
+										}).then(
+										function() {
+											console.log("class has been created");
+											location.reload();
+										})
+									}
+								});
+							})
+						}
+						else
+						{
+							$.get("/api/teachers/"+userName).then(function(response){
+								if(response){
+									var teacherID = response.id;
+									var newClass = {
+										classname: className,
+										classdesc: classDesc,
+										UserId: userID,
+										TeacherId: teacherID
+									}
+									$.ajax("/api/classes", {
+										type: "POST",
+										data: newClass
+									}).then(
+									function() {
+										console.log("class has been created");
+										location.reload();
+									})
+								}
+							});
+						}
+					});
 				}
 			});
 		}
