@@ -47,36 +47,45 @@ $(function() {
 		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
 		var userName = userInfo.substr(0, userInfo.indexOf("/"));
 		var userID;
-		$.get("/api/users/"+userName).then(function(response){
-			if(response){
-				userID = response.id;
-				var newClass = {
-				classname: className,
-				classdesc: classDesc,
-				userTableId: userID
-		}
+		var nameOfUser;
+		var teacherID;
 		if(className && classDesc)
 		{
-			$.ajax("/api/classes", {
-				type: "POST",
-				data: newClass
-			}).then(
-			function() {
-				console.log("class has been created");
-				location.reload();
-			})
+			$.get("/api/users/"+userName).then(function(response){
+				if(response){
+					userID = response.id;
+					nameOfUser = response.name;
+					$.ajax("/api/teachers", {
+						type: "POST",
+						data: {
+							username: userName,
+							name: nameOfUser
+						}
+					}).then(
+					function() {
+						console.log("teacher has been created");
+						$.get("/api/teachers/"+userName).then(function(response){
+							if(response){
+								teacherID = response.id;
+								var newClass = {
+									classname: className,
+									classdesc: classDesc,
+									UserId: userID,
+									TeacherId: teacherID
+								}
+								$.ajax("/api/classes", {
+									type: "POST",
+									data: newClass
+								}).then(
+								function() {
+									console.log("class has been created");
+									location.reload();
+								})
+							}
+						});
+					})
+				}
+			});
 		}
-			}
-		});	
-	})
-
-
-
-
-	// $("#new-class").on('shown.bs.modal', function () {
-	// 	$('#modal-dialog').trigger('focus')
-	// });
-	// $('#new-class').on('hidden.bs.modal', function (e) {
-	// 	$('.modal-body').empty();
-	// });
+	});
 });
