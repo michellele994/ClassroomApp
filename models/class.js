@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	var classTable = sequelize.define("classTable", {
+	var Classroom = sequelize.define("Classroom", {
 		classname: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -14,18 +14,16 @@ module.exports = function(sequelize, DataTypes) {
 				len: [1]
 			}
 		}
-
 	});
-
-	classTable.associate = function(models) {
-		classTable.hasMany(models.studentTable, {
+	Classroom.associate = function(models) {
+		/*Classroom.hasMany(models.studentTable, {
 			onDelete: "cascade"
-	    });
-		classTable.belongsTo(models.userTable, {
+	    });*/
+		Classroom.belongsTo(models.User, {
 			foreignKey: {
 				allowNull: false
 			}
 		});
 	};
-	return classTable;
+	return Classroom;
 }

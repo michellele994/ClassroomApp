@@ -14,7 +14,7 @@ router.get("/api/users", function(req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
-    db.userTable.findAll({ include: [db.classTable] }).then(function(dbusers) {
+    db.User.findAll({ include: [{model: db.Classroom}] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
@@ -22,40 +22,40 @@ router.get("/api/classes", function(req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
-    db.classTable.findAll({ include: [db.userTable, db.studentTable] }).then(function(dbclass) {
+    db.Classroom.findAll({ include: [db.User] }).then(function(dbclass) {
         res.json(dbclass);
     });
 });
 router.post("/api/classes", function(req, res) {
-    db.classTable.create(req.body).then(function(dbclasses) {
+    db.Classroom.create(req.body).then(function(dbclasses) {
         res.json(dbclasses);
     });
 });
 //posting a new user into the api/users
 router.post("/api/users", function(req, res) {
-    db.userTable.create(req.body).then(function(dbusers) {
+    db.User.create(req.body).then(function(dbusers) {
         res.json(dbusers);
     });
 });
 
 //checks to see if user exists
 router.get("/api/users/:username/", function(req, res) {
-    db.userTable.findOne({
+    db.User.findOne({
         where: {
             username: req.params.username
         },
-        include: [db.classTable]
+        include: [{model: db.Classroom}]
     }).then(function(dbuser) {
         res.json(dbuser);
     });
 });
 
 router.get("/classes/:username/", function(req, res) {
-    db.userTable.findOne({
+    db.User.findOne({
         where: {
             username: req.params.username
         },
-        include: [db.classTable]
+        include: [{model: db.Classroom}]
     }).then(function(dbuser) {
         var userLoggedin = {
             userInfo: dbuser
@@ -66,7 +66,6 @@ router.get("/classes/:username/", function(req, res) {
 });
 
 //class page route teacherview
-router.get("/", function(req, res) {
-
+router.get("/api/homework", function(req, res) {
 })
 module.exports = router;
