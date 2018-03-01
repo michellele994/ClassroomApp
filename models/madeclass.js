@@ -26,6 +26,8 @@ module.exports = function(sequelize, DataTypes) {
 		    allowNull: false
 		  }
 		});
+		MadeClass.hasMany(models.Student);
+		MadeClass.hasMany(models.AssignedHW);
   	};
 	return MadeClass;
 }

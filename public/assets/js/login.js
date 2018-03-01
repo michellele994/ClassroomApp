@@ -14,7 +14,7 @@ $(function() {
 					//change window location without goback 
 					//window.location.replace("/classes/"+username+"/"+name);
 					//allows go back
-					window.location="/classes/"+username+"/";
+					window.location="/welcome/"+username+"/";
 				}
 				else{
 					alert("Incorrect login");
