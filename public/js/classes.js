@@ -14,7 +14,6 @@ $(function() {
 				if(response){
 					var userID = response.id;
 					var nameOfUser = response.name;
-					console.log(classid, classname, classdesc)
 					$.ajax("/api/students", {
 						type: "POST",
 						data: {

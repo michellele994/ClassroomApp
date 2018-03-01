@@ -23,7 +23,7 @@ router.get("/api/students", function(req, res) {
     });
 });
 router.get("/api/classes", function(req, res) {
-    db.MadeClass.findAll({ include: [db.User] }).then(function(dbclass) {
+    db.MadeClass.findAll({ include: [db.User, db.Student] }).then(function(dbclass) {
         res.json(dbclass);
     });
 });
