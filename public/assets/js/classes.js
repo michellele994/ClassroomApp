@@ -1,4 +1,3 @@
-
 $(function() {
 	//enrolling in class button
 	$(".Enroll").on("click", function(event){

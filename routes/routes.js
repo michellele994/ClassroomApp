@@ -148,7 +148,6 @@ router.get("/classes/:username/",function(req,res){
     res.render("classes",userLoggedin);
   });
 });
-
 //  WORKS BY ITSELF
 //sending all classes that teacher doesn't teach
 router.get("/classes/:username/",function(req,res){
