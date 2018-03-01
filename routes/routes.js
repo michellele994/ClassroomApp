@@ -21,13 +21,14 @@ router.get("/api/users", function(req, res) {
 router.get("/api/classes", function(req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
-    db.Classroom.findAll({ include: [db.User] }).then(function(dbclass) {
+    // In this case, just db.Post , db.studentTable
+    db.classTable.findAll({ include: [db.userTable] }).then(function(dbclass) {
         res.json(dbclass);
     });
 });
 router.post("/api/classes", function(req, res) {
-    db.Classroom.create(req.body).then(function(dbclasses) {
+    db.classTable.create(req.body).then(function(dbclasses) {
+      console.log("im creating aclass");
         res.json(dbclasses);
     });
 });
@@ -50,22 +51,84 @@ router.get("/api/users/:username/", function(req, res) {
     });
 });
 
-router.get("/classes/:username/", function(req, res) {
-    db.User.findOne({
-        where: {
-            username: req.params.username
-        },
-        include: [{model: db.Classroom}]
-    }).then(function(dbuser) {
-        var userLoggedin = {
-            userInfo: dbuser
-        }
-        res.render("classes", userLoggedin);
-    });
-
+/*//DO NOT WORK TOGETHER SEPARATE
+//THIS IS WORKING BY ITSELF
+//sending teachers with classes they teach
+router.get("/classes/:username/",function(req,res){
+  db.userTable.findOne({
+    where:{
+      username:req.params.username
+    },
+    include: [db.classTable]
+  }).then(function(dbuser){
+  var userLoggedin={
+    userInfo:dbuser
+  }
+    res.render("classes",userLoggedin);
+  });
 });
 
-//class page route teacherview
-router.get("/api/homework", function(req, res) {
-})
-module.exports = router;
+//  WORKS BY ITSELF
+//sending all classes that teacher doesn't teach
+router.get("/classes/:username/",function(req,res){
+  db.classTable.findAll({
+     include: [db.userTable]
+}).then(function(dbclasses){
+  var classesAvail={
+    classInfo:dbclasses
+  }
+    res.render("classes",classesAvail);
+  });
+});*/
+
+/*//WORKS BY AS IS BUT REQUIRES FOR ME TO WRITE A HANDLEBARS HELPER FUNCTION TO ACCESS WHERE TEACHER IS NOT EQUAL TO USER
+//getting the users class information
+router.get("/classes/:username/",function(req,res){
+  db.userTable.findOne({
+    where:{
+      username:req.params.username
+    },
+    include: [db.classTable]
+  }).then(function(dbuser){
+    db.classTable.findAll({
+      include: [db.userTable]
+    }).then(function(dbclasses){
+      var userLoggedin={
+        userInfo:dbuser,
+        classInfo:dbclasses
+      }
+      res.render("classes",userLoggedin);
+    });
+  });
+});*/
+
+//FINDING WHERE ASSOCIATED TEACHER INFO IS NOT EQUAL TO USER
+router.get("/classes/:username/",function(req,res){
+  db.userTable.findOne({
+    where:{
+      username:req.params.username
+    },
+    include: [db.classTable]
+  }).then(function(dbuser){
+    db.classTable.findAll({
+      include: [{ 
+        model:db.userTable,
+        where:{
+            username: {
+              $ne: dbuser.username
+          }
+        }
+      }]
+    }).then(function(dbclasses){
+      var userLoggedin={
+        userInfo:dbuser,
+        classInfo:dbclasses
+      }
+      res.render("classes",userLoggedin);
+    });
+  });
+});
+
+
+
+module.exports=router;

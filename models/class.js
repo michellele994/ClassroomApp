@@ -15,11 +15,11 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	});
-	Classroom.associate = function(models) {
-		/*Classroom.hasMany(models.studentTable, {
+	classTable.associate = function(models) {
+		/*classTable.hasMany(models.studentTable, {
 			onDelete: "cascade"
 	    });*/
-		Classroom.belongsTo(models.User, {
+		classTable.belongsTo(models.userTable, {
 			foreignKey: {
 				allowNull: false
 			}
