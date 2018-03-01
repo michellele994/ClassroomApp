@@ -13,7 +13,7 @@ router.get("/welcome/:username/",function(req,res){
     where:{
       username:req.params.username
     },
-    include: [db.EnrolledClass]
+    include: [db.MadeClass, db.EnrolledClass]
   }).then(function(dbuser){
     db.MadeClass.findAll({
       include: [{ 
