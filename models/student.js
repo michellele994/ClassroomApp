@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	});
-	studentTable.associate = function(models) {
+	/*studentTable.associate = function(models) {
 		studentTable.belongsTo(models.classTable, {
 		  foreignKey: {
 		    allowNull: false
@@ -26,6 +26,6 @@ module.exports = function(sequelize, DataTypes) {
 		    allowNull: false
 		  }
 		});
-	};
+	};*/
 	return studentTable;
 }
