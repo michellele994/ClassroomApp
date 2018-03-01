@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	var studentTable = sequelize.define("studentTable", {
+	var Student = sequelize.define("Student", {
 		username: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -15,17 +15,12 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	});
-	studentTable.associate = function(models) {
-		studentTable.belongsTo(models.classTable, {
-		  foreignKey: {
-		    allowNull: false
-		  }
-		});
-		studentTable.hasMany(models.enrolledTable, {
+	Student.associate = function(models) {
+		Student.belongsTo(models.classTable, {
 		  foreignKey: {
 		    allowNull: false
 		  }
 		});
 	};
-	return studentTable;
+	return Student;
 }

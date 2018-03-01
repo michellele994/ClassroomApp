@@ -16,9 +16,9 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	});
 	classTable.associate = function(models) {
-		/*classTable.hasMany(models.studentTable, {
-			onDelete: "cascade"
-	    });*/
+		// classTable.hasMany(models.Student, {
+		// 	onDelete: "cascade"
+	 //    });
 		classTable.belongsTo(models.userTable, {
 			foreignKey: {
 				allowNull: false
