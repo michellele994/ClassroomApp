@@ -2,10 +2,15 @@
 $(function() {
 	//enrolling in class button
 	$(".Enroll").on("click", function(event){
+		var studentName=$(this).attr("data-studentname");
 		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
 		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
 		var userName = userInfo.substr(0, userInfo.indexOf("/"));
 
+		var newStudent={
+			username:userName,
+			name:studentName
+		}
 		
 	});
 	//view class page button clicked

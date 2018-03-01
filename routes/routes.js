@@ -80,7 +80,7 @@ router.get("/api/students", function(req, res) {
   // Here we add an "include" property to our options in our findAll query
   // We set the value to an array of the models we want to include in a left outer join
   // In this case, just db.Post
-  db.studentTable.findAll({}).then(function(dbstudents) {
+  db.Student.findAll({}).then(function(dbstudents) {
       res.json(dbstudents);
   });
 });
@@ -88,7 +88,7 @@ router.post("/api/students", function(req, res) {
   // Here we add an "include" property to our options in our findAll query
   // We set the value to an array of the models we want to include in a left outer join
   // In this case, just db.Post
-  db.userTable.create(req.body).then(function(dbstudents) {
+  db.Student.create(req.body).then(function(dbstudents) {
     res.json(dbstudents);
   });
 });
