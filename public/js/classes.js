@@ -11,7 +11,16 @@ $(function() {
 			username:userName,
 			name:studentName
 		}
-		
+
+		$.ajax("/api/students", {
+			type: "POST",
+			data: newStudent
+		}).then(
+		function() {
+			console.log("student has been created");
+			location.reload();
+		})
+
 	});
 	//view class page button clicked
 	$(".classPg").on("click", function(event)
