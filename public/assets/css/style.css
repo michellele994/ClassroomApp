@@ -15,24 +15,20 @@ body {
     height: 100%;
 }
 
-input {
+/* input {
     float: right;
     position: relative;
     width: 120px;
-}
+} */
 
 #formGroup {
-    width: 300px;
+    width: 35%;
     margin: 20px auto;
 }
 
 .btn-outline-danger {
     margin-top: 20px;
-    width: 135px;
-}
 
-#signup {
-    margin-left: 25px;
 }
 
 .classes {
@@ -52,4 +48,12 @@ input {
 .badge-pill {
     width: 25%;
     height: 25%;
+}
+
+h2 {
+    font-size: 250%;
+}
+
+input {
+    margin-left: 5px;
 }
