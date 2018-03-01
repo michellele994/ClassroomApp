@@ -11,9 +11,11 @@ $(function() {
 		var userName = userInfo.substr(0, userInfo.indexOf("/"));
 
 		$.get("/api/users/"+userName).then(function(response){
-				if(response){
-					var userID = response.id;
-					var nameOfUser = response.name;
+			var userID = response.id;
+			var nameOfUser = response.name;
+			$.get("/api/students/"+userName).then(function(sResponse){
+				if(sResponse === null)
+				{
 					$.ajax("/api/students", {
 						type: "POST",
 						data: {
@@ -45,7 +47,30 @@ $(function() {
 						});
 					})
 				}
+				else
+				{
+					$.get("/api/students/"+userName).then(function(response){
+						if(response){
+							var studentID = response.id;
+							var newClass = {
+								classname: classname,
+								classdesc: classdesc,
+								UserId: userID,
+								StudentId: studentID
+							}
+							$.ajax("/api/enrollment", {
+								type: "POST",
+								data: newClass
+							}).then(
+							function() {
+								console.log("enrollment has been created");
+								location.reload();
+							})
+						}
+					});
+				}
 			});
+		});
 
 
 
@@ -99,8 +124,8 @@ $(function() {
 				if(response){
 					var userID = response.id;
 					var nameOfUser = response.name;
-					$.get("/api/teachers/"+userName).then(function(response){
-						if(response === null)
+					$.get("/api/teachers/"+userName).then(function(tResponse){
+						if(tResponse === null)
 						{
 							$.ajax("/api/teachers", {
 								type: "POST",

@@ -1,27 +1,62 @@
-// Routes
-// =============================================================
 var db = require("../models");
-
 var express = require("express");
 var router = express.Router();
+
+//Routing for HTML
+//======================================================================
 router.get("/", function(req, res) {
     res.render("login");
 });
+// This renders the available classes for enrollment as long as user is not currently a teacher for the class.
+router.get("/classes/:username/",function(req,res){
+  db.User.findOne({
+    where:{
+      username:req.params.username
+    },
+    include: [db.MadeClass]
+  }).then(function(dbuser){
+    db.MadeClass.findAll({
+      include: [{ 
+        model:db.User,
+        where:{
+            username: {
+              $ne: dbuser.username
+          }
+        }
+      }]
+    }).then(function(dbclasses){
+      var userLoggedin={
+        userInfo:dbuser,
+        classInfo:dbclasses
+      }
+      res.render("classes",userLoggedin);
+    });
+  });
+});
+
+//Routing for APIs
+//======================================================================
+
+//Route for all existing users. If a user has MadeClass, they are a teacher of those classes. If a user has EnrolledClass, they are a student of those classes.
 router.get("/api/users", function(req, res) {
     db.User.findAll({ include: [db.MadeClass, db.EnrolledClass] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
+
+//Route for all teachers including the classes they have made. Teachers are made when a class is made as they are signed in.
 router.get("/api/teachers", function(req, res) {
     db.Teacher.findAll({ include: [db.MadeClass] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
+//Route for all students including the classes they have enrolled in. Students are mdae when they enroll into their first class
 router.get("/api/students", function(req, res) {
-    db.Student.findAll({ include: [db.MadeClass] }).then(function(dbusers) {
+    db.Student.findAll({ include: [db.EnrolledClass] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
+//Route for 
 router.get("/api/classes", function(req, res) {
     db.MadeClass.findAll({ include: [db.AssignedHW, db.User, db.Student] }).then(function(dbclass) {
         res.json(dbclass);
@@ -141,32 +176,6 @@ router.get("/classes/:username/",function(req,res){
 //   });
 // });
 
-//FINDING WHERE ASSOCIATED TEACHER INFO IS NOT EQUAL TO USER
-router.get("/classes/:username/",function(req,res){
-  db.User.findOne({
-    where:{
-      username:req.params.username
-    },
-    include: [db.MadeClass]
-  }).then(function(dbuser){
-    db.MadeClass.findAll({
-      include: [{ 
-        model:db.User,
-        where:{
-            username: {
-              $ne: dbuser.username
-          }
-        }
-      }]
-    }).then(function(dbclasses){
-      var userLoggedin={
-        userInfo:dbuser,
-        classInfo:dbclasses
-      }
-      res.render("classes",userLoggedin);
-    });
-  });
-});
 //creating the students api
 router.get("/api/students", function(req, res) {
   // Here we add an "include" property to our options in our findAll query
