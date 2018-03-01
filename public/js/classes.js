@@ -2,15 +2,63 @@
 $(function() {
 	//enrolling in class button
 	$(".Enroll").on("click", function(event){
-		var studentName=$(this).attr("data-studentname");
+		var classid = $(this).attr("data-classid");
+		var classname = $(this).attr("data-classname");
+		var classdesc = $(this).attr("data-classdesc");
+		// var studentName=$(this).attr("data-studentname");
 		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
 		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
 		var userName = userInfo.substr(0, userInfo.indexOf("/"));
 
-		var newStudent={
-			username:userName,
-			name:studentName
-		}
+		$.get("/api/users/"+userName).then(function(response){
+				if(response){
+					var userID = response.id;
+					var nameOfUser = response.name;
+					console.log(classid, classname, classdesc)
+					$.ajax("/api/students", {
+						type: "POST",
+						data: {
+							username: userName,
+							name: nameOfUser,
+							MadeClassId: classid
+						}
+					}).then(
+					function() {
+						console.log("student has been created");
+						$.get("/api/students/"+userName).then(function(response){
+							if(response){
+								var studentID = response.id;
+								var newClass = {
+									classname: classname,
+									classdesc: classdesc,
+									UserId: userID,
+									StudentId: studentID
+								}
+								$.ajax("/api/enrollment", {
+									type: "POST",
+									data: newClass
+								}).then(
+								function() {
+									console.log("enrollment has been created");
+									location.reload();
+								})
+							}
+						});
+					})
+				}
+			});
+
+
+
+
+
+
+
+
+		// var newStudent={
+		// 	username:userName,
+		// 	name:studentName
+		// }
 		
 	});
 	//view class page button clicked
@@ -41,20 +89,17 @@ $(function() {
 	$("#create-new-class").on("click", function(even)
 	{
 		event.preventDefault();
-		const className = $("#new-class-name").val().trim();
-		const classDesc = $("#new-class-desc").val().trim();
+		var className = $("#new-class-name").val().trim();
+		var classDesc = $("#new-class-desc").val().trim();
 		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
 		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
 		var userName = userInfo.substr(0, userInfo.indexOf("/"));
-		var userID;
-		var nameOfUser;
-		var teacherID;
 		if(className && classDesc)
 		{
 			$.get("/api/users/"+userName).then(function(response){
 				if(response){
-					userID = response.id;
-					nameOfUser = response.name;
+					var userID = response.id;
+					var nameOfUser = response.name;
 					$.ajax("/api/teachers", {
 						type: "POST",
 						data: {
@@ -66,7 +111,7 @@ $(function() {
 						console.log("teacher has been created");
 						$.get("/api/teachers/"+userName).then(function(response){
 							if(response){
-								teacherID = response.id;
+								var teacherID = response.id;
 								var newClass = {
 									classname: className,
 									classdesc: classDesc,

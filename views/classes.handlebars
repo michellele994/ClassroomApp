@@ -41,7 +41,7 @@
 					{{#each classInfo}}
                 		<div>
 							{{this.classname}}
-							<button data-studentname="{{userInfo.name}}"class="Enroll">Enroll</button>
+							<button data-classid="{{this.id}}" data-classname="{{this.classname}}" data-classdesc="{{this.classdesc}}" data-studentname="{{userInfo.name}}"class="Enroll">Enroll</button>
 						</div>
 						
 					{{/each}}

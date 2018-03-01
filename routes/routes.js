@@ -8,7 +8,7 @@ router.get("/", function(req, res) {
     res.render("login");
 });
 router.get("/api/users", function(req, res) {
-    db.User.findAll({ include: [db.MadeClass] }).then(function(dbusers) {
+    db.User.findAll({ include: [db.MadeClass, db.EnrolledClass] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
@@ -17,9 +17,19 @@ router.get("/api/teachers", function(req, res) {
         res.json(dbusers);
     });
 });
+router.get("/api/students", function(req, res) {
+    db.Student.findAll({ include: [db.MadeClass] }).then(function(dbusers) {
+        res.json(dbusers);
+    });
+});
 router.get("/api/classes", function(req, res) {
     db.MadeClass.findAll({ include: [db.User] }).then(function(dbclass) {
         res.json(dbclass);
+    });
+});
+router.get("/api/enrollment", function(req, res) {
+    db.EnrolledClass.findAll({ include: [db.Student] }).then(function(dbenrollment) {
+        res.json(dbenrollment);
     });
 });
 router.post("/api/classes", function(req, res) {
@@ -34,9 +44,19 @@ router.post("/api/users", function(req, res) {
         res.json(dbusers);
     });
 });
+router.post("/api/students", function(req, res) {
+    db.Student.create(req.body).then(function(dbusers) {
+        res.json(dbusers);
+    });
+});
 router.post("/api/teachers", function(req, res) {
     db.Teacher.create(req.body).then(function(dbteacher) {
         res.json(dbteacher);
+    });
+});
+router.post("/api/enrollment", function(req, res) {
+    db.EnrolledClass.create(req.body).then(function(dbenrollment) {
+        res.json(dbenrollment);
     });
 });
 //checks to see if user exists
@@ -45,7 +65,7 @@ router.get("/api/users/:username/", function(req, res) {
         where: {
             username: req.params.username
         },
-        include: [db.MadeClass]
+        include: [db.MadeClass, db.EnrolledClass]
     }).then(function(dbuser) {
         res.json(dbuser);
     });
@@ -56,6 +76,15 @@ router.get("/api/teachers/:username/", function(req, res) {
             username: req.params.username
         },
         include: [db.MadeClass]
+    }).then(function(dbteacher) {
+        res.json(dbteacher);
+    });
+});
+router.get("/api/students/:username/", function(req, res) {
+    db.Student.findOne({
+        where: {
+            username: req.params.username
+        }
     }).then(function(dbteacher) {
         res.json(dbteacher);
     });
@@ -91,26 +120,26 @@ router.get("/classes/:username/",function(req,res){
   });
 });*/
 
-/*//WORKS BY AS IS BUT REQUIRES FOR ME TO WRITE A HANDLEBARS HELPER FUNCTION TO ACCESS WHERE TEACHER IS NOT EQUAL TO USER
+//WORKS BY AS IS BUT REQUIRES FOR ME TO WRITE A HANDLEBARS HELPER FUNCTION TO ACCESS WHERE TEACHER IS NOT EQUAL TO USER
 //getting the users class information
-router.get("/classes/:username/",function(req,res){
-  db.User.findOne({
-    where:{
-      username:req.params.username
-    },
-    include: [db.Classroom]
-  }).then(function(dbuser){
-    db.Classroom.findAll({
-      include: [db.User]
-    }).then(function(dbclasses){
-      var userLoggedin={
-        userInfo:dbuser,
-        classInfo:dbclasses
-      }
-      res.render("classes",userLoggedin);
-    });
-  });
-});*/
+// router.get("/classes/:username/",function(req,res){
+//   db.User.findOne({
+//     where:{
+//       username:req.params.username
+//     },
+//     include: [db.MadeClass]
+//   }).then(function(dbuser){
+//     db.MadeClass.findAll({
+//       include: [db.User]
+//     }).then(function(dbclasses){
+//       var userLoggedin={
+//         userInfo:dbuser,
+//         classInfo:dbclasses
+//       }
+//       res.render("classes",userLoggedin);
+//     });
+//   });
+// });
 
 //FINDING WHERE ASSOCIATED TEACHER INFO IS NOT EQUAL TO USER
 router.get("/classes/:username/",function(req,res){
