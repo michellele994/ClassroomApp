@@ -1,7 +1,7 @@
 $(function() {
 	function populateModal(AvailableClasses){
 		for (var i=0;i<AvailableClasses.length;i++){
-			console.log("im here");
+			//console.log("im here");
 			var classAvailable=AvailableClasses[i].classname;
 			var classid=AvailableClasses[i].id;
 			var classname=AvailableClasses[i].classname;
@@ -43,7 +43,7 @@ $(function() {
 				var studentLength=teachersnotuser[j].Students.length;
 				//console.log(studentLength);
 				if(studentLength===0){
-					console.log("im undefined");
+					//console.log("im 0");
 					AvailableClasses.push(teachersnotuser[j]);
 				}
 				else{
@@ -93,7 +93,7 @@ $(function() {
 							MadeClassId: classid
 						}
 					}).then(
-					function() {
+					function(response) {
 						console.log("student has been created");
 						$.get("/api/students/"+userName).then(function(response){
 							if(response){
@@ -108,8 +108,8 @@ $(function() {
 									type: "POST",
 									data: newClass
 								}).then(
-								function() {
-									console.log("enrollment has been created");
+								function(response) {
+									console.log("enrollment has been createdif");
 									location.reload();
 								})
 							}
@@ -132,7 +132,7 @@ $(function() {
 								data: newClass
 							}).then(
 							function() {
-								console.log("enrollment has been created");
+								console.log("enrollment has been created else");
 								location.reload();
 							})
 						}

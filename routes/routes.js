@@ -42,15 +42,15 @@ router.get("/welcome/:username/",function(req,res){
     });
 });
 
-//send available classes
+/*//send available classes
 router.get("/welcomeClasses/:username/",function(req,res){
     console.log("im");
     /*db.MadeClass.findAll({
         include:[db.Teacher,db.Student]
     }).then(function(dbClasses){
         console.log(dbClasses[0].classname);
-    });*/
-});
+    });
+});*/
 
 
 //Routing for APIs
