@@ -36,14 +36,8 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<div>
-					{{#each classInfo}}
-                		<div>
-							{{this.classname}}
-							<button data-classid="{{this.id}}" data-classname="{{this.classname}}" data-classdesc="{{this.classdesc}}" data-studentname="{{userInfo.name}}"class="Enroll">Enroll</button>
-						</div>
-						
-					{{/each}}
+				<div id="classesAvailableContainer">
+					
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -65,11 +59,11 @@
   				<div class="card-header"><h3>Classes Teaching</h3></div>
  					<div class="card-body ">
     				<div>
-						{{#each userInfo.MadeClasses}}
+						{{#each classesTeaching}}
 						<!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
 						<div>{{this.classname}}</div>
 						<!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-						<button class="classPg" data-user="{{userInfo.username}}"data-ClassTeacherusername="perla23">Class Page</button>
+						<button class="classPg" data-ClassID="{{this.id}}">Class Page</button>
 						{{/each}}
 					</div>			
   					</div>
@@ -81,11 +75,11 @@
   				<div class="card-header"><h3>Enrolled Classes</h3></div>
  					<div class="card-body ">
     				<div>
-						{{#each userInfo.EnrolledClasses}}
+						{{#each classesEnrolled}}
 						<!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
 						<div>{{this.classname}}</div>
 						<!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-						<button class="classPg" data-user="{{userInfo.username}}"data-ClassTeacherusername="perla23">Class Page</button>
+						<button class="classPg" data-ClassID="{{this.id}}">Class Page</button>
 						{{/each}}
 					</div>			
   					</div>
@@ -93,7 +87,9 @@
 			</div>
             
 			<div id="classesAvailableBtn" class="col-lg-12">
-				<button class="btn btn-outline-danger badge-pill availClasses" type="button" data-toggle="modal" data-target="#classesAvailable">Available Classes</button>
+
+				<button id="AvailableClassesBtn"class="btn btn-outline-danger badge-pill availClasses" type="button" data-toggle="modal" >Available Classes</button>
+				
 			</div>
 			
 			<div id="createClassBtn"class="col-lg-12">

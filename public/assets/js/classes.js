@@ -1,4 +1,59 @@
 $(function() {
+	function populateModal(AvailableClasses){
+		for (var i=0;i<AvailableClasses.length;i++){
+			console.log("im here");
+			var classAvailable=AvailableClasses[i].classname;
+			var classID=AvailableClasses[i].id;
+			var className="<div class='availableClass'data-classID="+classID+">"+classAvailable+"<div>"
+			var enrollebtn="<button data-classID="+classID+" class='Enroll'>Enroll</button>"
+			return $("#classesAvailableContainer").html(className);
+		}
+	};
+	//POPULATE CLASSES AVAILABLE 
+	$("#AvailableClassesBtn").on("click",function(event){
+		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
+		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
+		var userName = userInfo.substr(0, userInfo.indexOf("/"));
+		
+		$("#classesAvailableContainer").empty();
+		
+		$.get("/api/classes").then(function(allClasses){
+			var AvailableClasses=[];
+			var teachersnotuser=[];
+			for(var i=0;i<allClasses.length;i++){
+				var teacher=allClasses[i].Teacher.username;
+				if(teacher !== userName ){
+					console.log(teacher);
+					var classes={
+						id:allClasses[i].id,
+						classname:allClasses[i].classname,
+						Students:allClasses[i].Students
+					}
+					teachersnotuser.push(classes);
+				}
+			}
+			
+			console.log(teachersnotuser.length);
+			for (var j=0;j<teachersnotuser.length;j++){
+				//console.log(j);
+				for(var k=0;k<teachersnotuser[j].Students.length;k++){
+					//console.log(k);
+					var student= teachersnotuser[j].Students[k].username;
+					//console.log(student);
+					if(student!==userName){
+						classAvailable.push(teachersnotuser[j]);
+					}
+					//console.log(student);
+				}
+			}
+			console.log(AvailableClasses.length);
+			populateModal(AvailableClasses);
+			$("#classesAvailable").modal("show");
+		});
+		
+	});
+	
+	
 	//enrolling in class button
 	$(".Enroll").on("click", function(event){
 		var classid = $(this).attr("data-classid");
