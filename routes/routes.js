@@ -43,18 +43,28 @@ router.get("/welcome/:username/",function(req,res){
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*//send available classes
+=======
+
+//send available classes
+>>>>>>> 4222128d806399c5302fab8c8e2419ca09a44ab8
 router.get("/welcomeClasses/:username/",function(req,res){
     console.log("im");
     /*db.MadeClass.findAll({
         include:[db.Teacher,db.Student]
     }).then(function(dbClasses){
         console.log(dbClasses[0].classname);
+<<<<<<< HEAD
     });
 });*/
 =======
 
 >>>>>>> 0ae087b50de82b3a7576631ba53e9d8a51edefbf
+=======
+    });*/
+});
+>>>>>>> 4222128d806399c5302fab8c8e2419ca09a44ab8
 
 
 //Routing for APIs
