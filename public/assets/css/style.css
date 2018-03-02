@@ -5,8 +5,7 @@ body {
 }
 
 .jumbotron {
-    border: 3px;
-    border-color: white;
+    border: none;
 }
 
 #loginContainer {
@@ -15,6 +14,7 @@ body {
     height: 100%;
 }
 
+
 /* input {
     float: right;
     position: relative;
@@ -22,18 +22,20 @@ body {
 } */
 
 #formGroup {
-    width: 35%;
+    /*width: 35%;*/
     margin: 20px auto;
 }
 
-.btn-outline-danger {
+.btn-info,
+.btn-success {
     margin-top: 20px;
-
+    color: black;
 }
 
 .classes {
-    width: 300px;
+    width: 70%;
     color: white;
+    margin: auto;
 }
 
 #mainHeading {
@@ -46,7 +48,7 @@ body {
 }
 
 .badge-pill {
-    width: 25%;
+    /*width: 25%;*/
     height: 25%;
 }
 
