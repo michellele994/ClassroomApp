@@ -62,8 +62,8 @@
 						{{#each classesTeaching}}
 						<!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
 						<div>{{this.classname}}</div>
-						<!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-						<button class="classPg" data-ClassID="{{this.id}}">Class Page</button>
+						<!--will go in data="{{this.Teacher.username}}" once teacher name and username is added-->
+						<button class="classPg" data-ClassID="{{this.id}} data-classTeacherusername="{{this.Teacher.username}}">Class Page</button>
 						{{/each}}
 					</div>			
   					</div>
