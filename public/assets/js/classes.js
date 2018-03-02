@@ -3,9 +3,11 @@ $(function() {
 	//enrolling in class button
 	$(".Enroll").on("click", function(event){
 		var classid = $(this).attr("data-classid");
-		var classname = $(this).attr("data-classname");
-		var classdesc = $(this).attr("data-classdesc");
-		// var studentName=$(this).attr("data-studentname");
+		$.get("/api/classes/"+classid).then(function(response){
+			var classname = response.classname;
+			var classdesc = response.classdesc;
+		})
+
 		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
 		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
 		var userName = userInfo.substr(0, userInfo.indexOf("/"));
