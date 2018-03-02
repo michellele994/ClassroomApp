@@ -1,118 +1,123 @@
 <div class="container-fluid">
     <div class="row d-flex d-md-block flex-nowrap wrapper">
         <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width" id="sidebar">
-                <div class="list-group border-0 card text-center text-md-left">
+            <div class="list-group border-0 card text-center text-md-left">
                 <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Classes</span> </a>
                 <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-film"></i> <span class="d-none d-md-inline">Item 2</span></a>
                 <a href="#menu3" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Item 3</span></a>
                 <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Item 4</span></a>
-                </div>
+            </div>
         </div>
         <a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-bars fa-2x py-2 p-1"></i></a>
         <main class="col-md-9 col px-5 pl-md-2 pt-2 main">
-        <div class="modal fade" id="new-class" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="modal-title">Create a new class!</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal fade" id="new-class" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="modal-title">Create a new class!</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="new-class-name">Name of Class:</label>
-                            <input type="text" id="new-class-name" name="new-class-name" maxlength="30">
-                            <br>
-                            <label for="new-class-desc">Class Description:</label>
-                            <input type="text" id="new-class-desc" name="new-class-desc" maxlength="500">
-                            </br>
-                            <button class="btn btn-outline-primary" type="submit" id="create-new-class">Create<i class="far fa-check-circle"></i></button>
-                            <br>
-                            <span id="cannot-create-error"></span>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="new-class-name">Name of Class:</label>
+                                <input type="text" id="new-class-name" name="new-class-name" maxlength="30">
+                                <br>
+                                <label for="new-class-desc">Class Description:</label>
+                                <input type="text" id="new-class-desc" name="new-class-desc" maxlength="500">
+                                </br>
+                                <button class="btn btn-outline-primary" type="submit" id="create-new-class">Create<i class="far fa-check-circle"></i></button>
+                                <br>
+                                <span id="cannot-create-error"></span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal fade" id="classesAvailable" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="modal-title">Available Classes!</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal fade" id="classesAvailable" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="modal-title">Available Classes!</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            {{#each classInfo}}
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                {{#each classInfo}}
                                 <div>
                                     {{this.classname}}
-                                    <button data-classid="{{this.id}}" data-classname="{{this.classname}}" data-classdesc="{{this.classdesc}}" data-studentname="{{userInfo.name}}"class="Enroll">Enroll</button>
+                                    <button data-classid="{{this.id}}" data-classname="{{this.classname}}" data-classdesc="{{this.classdesc}}" data-studentname="{{userInfo.name}}"
+                                        class="Enroll">Enroll</button>
                                 </div>
-                                
-                            {{/each}}
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid text-center">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 id="mainHeading">Welcome {{userInfo.name}}</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 wrapper classes">
-                    <div class="container-fluid" id="classesTeaching">
-                        <div class="card text-white bg-danger border-white mb-3 mx-auto" style="max-width: 60rem; opacity: .80">
-                        <div class="card-header"><h3>Classes Teaching</h3></div>
-                            <div class="card-body ">
-                            <div>
-                                {{#each userInfo.MadeClasses}}
-                                <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
-                                <div>{{this.classname}}</div>
-                                <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-                                <button class="classPg" data-user="{{userInfo.username}}"data-ClassTeacherusername="perla23">Class Page</button>
+
                                 {{/each}}
-                            </div>            
                             </div>
                         </div>
-                    </div>
-                    <div class="container-fluid" id="classesEnrolled">
-                        <div class="card text-white bg-danger border-white mb-3 mx-auto" style="max-width: 60rem; opacity: .75">
-                        <div class="card-header"><h3>Enrolled Classes</h3></div>
-                            <div class="card-body ">
-                            <div>
-                                {{#each userInfo.EnrolledClasses}}
-                                <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
-                                <div>{{this.classname}}</div>
-                                <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-                                <button class="classPg" data-user="{{userInfo.username}}"data-ClassTeacherusername="perla23">Class Page</button>
-                                {{/each}}
-                            </div>            
-                            </div>
+                        <div class="modal-footer">
+                            <a id="close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
                         </div>
-                    </div>
-                    
-                    <div id="classesAvailableBtn" class="col-lg-12">
-                        <button class="btn btn-outline-danger badge-pill availClasses" type="button" data-toggle="modal" data-target="#classesAvailable">Available Classes</button>
-                    </div>
-                    
-                    <div id="createClassBtn"class="col-lg-12">
-                        <button class = "btn btn-outline-danger badge-pill crteClass" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="container-fluid text-center">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 id="mainHeading">Welcome {{userInfo.name}}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 wrapper classes">
+                        <div class="container-fluid" id="classesTeaching">
+                            <div class="card text-white bg-danger border-white mb-3 mx-auto" style="max-width: 60rem; opacity: .80">
+                                <div class="card-header">
+                                    <h3>Classes Teaching</h3>
+                                </div>
+                                <div class="card-body ">
+                                    <div>
+                                        {{#each userInfo.MadeClasses}}
+                                        <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
+                                        <div>{{this.classname}}</div>
+                                        <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
+                                        <button class="classPg" data-user="{{userInfo.username}}" data-ClassTeacherusername="perla23">Class Page</button>                                        {{/each}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid" id="classesEnrolled">
+                            <div class="card text-white bg-danger border-white mb-3 mx-auto" style="max-width: 60rem; opacity: .75">
+                                <div class="card-header">
+                                    <h3>Enrolled Classes</h3>
+                                </div>
+                                <div class="card-body ">
+                                    <div>
+                                        {{#each userInfo.EnrolledClasses}}
+                                        <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
+                                        <div>{{this.classname}}</div>
+                                        <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
+                                        <button class="classPg" data-user="{{userInfo.username}}" data-ClassTeacherusername="perla23">Class Page</button>                                        {{/each}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="classesAvailableBtn" class="col-lg-12">
+                            <button class="btn btn-outline-danger badge-pill availClasses" type="button" data-toggle="modal" data-target="#classesAvailable">Available Classes</button>
+                        </div>
+
+                        <div id="createClassBtn" class="col-lg-12">
+                            <button class="btn btn-outline-danger badge-pill crteClass" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
-</div> 
+</div>
+
+
