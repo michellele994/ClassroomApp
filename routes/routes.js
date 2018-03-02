@@ -43,15 +43,21 @@ router.get("/welcome/:username/",function(req,res){
 });
 
 
+/*//send available classes
+=======
+
 //send available classes
+>>>>>>> 4222128d806399c5302fab8c8e2419ca09a44ab8
 router.get("/welcomeClasses/:username/",function(req,res){
     console.log("im");
     /*db.MadeClass.findAll({
         include:[db.Teacher,db.Student]
     }).then(function(dbClasses){
         console.log(dbClasses[0].classname);
-    });*/
-});
+<<<<<<< HEAD
+    });
+});*/
+
 
 
 //Routing for APIs

@@ -38,7 +38,8 @@
                 </div>
               </div>
             </div>
-            <div class="modal fade" id="classesAvailable" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+            
+            <div class="modal fade" id="classesAvailableModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -48,13 +49,8 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                            <div>
-                                {{#each classInfo}}
-	                                <div class = "each-class">
-	                                    {{this.classname}}
-	                                    <button data-classid="{{this.id}}" class="Enroll">Enroll</button>
-	                                </div>
-                                {{/each}}
+                            <div id="classesAvailableModalbody">
+            
                             </div>
                         </div>
                   <div class="modal-footer">
@@ -106,7 +102,7 @@
                             </div>
                         </div>
                         <div id="classesAvailableBtn" class="col-lg-12">
-                            <button class="btn btn-outline-danger badge-pill availClasses" type="button" data-toggle="modal" data-target="#classesAvailable">Available Classes</button>
+                            <button id="seeAvailclassesBtn" class="btn btn-outline-danger badge-pill availClasses" type="button" >Available Classes</button>
                         </div>
 
                         <div id="createClassBtn" class="col-lg-12">
