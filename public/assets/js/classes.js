@@ -6,7 +6,7 @@ $(function() {
 			var classID=AvailableClasses[i].id;
 			var className="<div class='availableClass'data-classID="+classID+">"+classAvailable+"<div>"
 			var enrollebtn="<button data-classID="+classID+" class='Enroll'>Enroll</button>"
-			return $("#classesAvailableContainer").html(className);
+			return $("#classesAvailableContainer").append(className);
 		}
 	};
 	//POPULATE CLASSES AVAILABLE 
@@ -23,7 +23,7 @@ $(function() {
 			for(var i=0;i<allClasses.length;i++){
 				var teacher=allClasses[i].Teacher.username;
 				if(teacher !== userName ){
-					console.log(teacher);
+					//console.log(teacher);
 					var classes={
 						id:allClasses[i].id,
 						classname:allClasses[i].classname,
@@ -32,21 +32,28 @@ $(function() {
 					teachersnotuser.push(classes);
 				}
 			}
+			console.log(teachersnotuser[1]);
+			console.log(teachersnotuser[1].Students[0]);
 			
-			console.log(teachersnotuser.length);
+			//console.log(teachersnotuser.length);
 			for (var j=0;j<teachersnotuser.length;j++){
-				//console.log(j);
-				for(var k=0;k<teachersnotuser[j].Students.length;k++){
-					//console.log(k);
-					var student= teachersnotuser[j].Students[k].username;
-					//console.log(student);
-					if(student!==userName){
-						classAvailable.push(teachersnotuser[j]);
-					}
-					//console.log(student);
+				console.log(j);
+				console.log(teachersnotuser[j].Students.length);
+				if(teachersnotuser[j].Students.length==="undefined"){
+					AvailableClasses.push(teachersnotuser[j]);
 				}
+				else{
+					for(var k=0;k<teachersnotuser[j].Students.length;k++){
+						var student= teachersnotuser[j].Students[k].username;
+						console.log(student);
+						if(student!==userName){
+							AvailableClasses.push(teachersnotuser[j]);
+						}
+					}
+				}
+				
 			}
-			console.log(AvailableClasses.length);
+			//console.log(AvailableClasses.length);
 			populateModal(AvailableClasses);
 			$("#classesAvailable").modal("show");
 		});
