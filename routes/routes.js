@@ -42,6 +42,7 @@ router.get("/welcome/:username/",function(req,res){
     });
 });
 
+<<<<<<< HEAD
 /*//send available classes
 router.get("/welcomeClasses/:username/",function(req,res){
     console.log("im");
@@ -51,6 +52,9 @@ router.get("/welcomeClasses/:username/",function(req,res){
         console.log(dbClasses[0].classname);
     });
 });*/
+=======
+
+>>>>>>> 0ae087b50de82b3a7576631ba53e9d8a51edefbf
 
 
 //Routing for APIs
@@ -107,6 +111,17 @@ router.get("/api/teachers/:username/", function(req, res) {
         include: [db.MadeClass]
     }).then(function(dbteacher) {
         res.json(dbteacher);
+    });
+});
+//API route for a single class
+router.get("/api/classes/:classid/", function(req, res) {
+    db.MadeClass.findOne({
+        where: {
+            id: req.params.classid
+        },
+        include: [db.AssignedHW, db.Teacher, db.Student]
+    }).then(function(dbclass) {
+        res.json(dbclass);
     });
 });
 //API route for a single student
