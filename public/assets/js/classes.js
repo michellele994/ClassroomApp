@@ -1,7 +1,7 @@
 $(function() {
 	function populateModal(AvailableClasses){
 		for (var i=0;i<AvailableClasses.length;i++){
-			//console.log("im here");
+			//console.log("im here 333");
 			var classAvailable=AvailableClasses[i].classname;
 			var classid=AvailableClasses[i].id;
 			var classname=AvailableClasses[i].classname;
@@ -9,16 +9,17 @@ $(function() {
 			var datas="data-classid="+classid+" data-classname="+classname+" data-classdesc="+classdesc;
 			var className="<div class='availableClass'data-classID="+classid+">"+classAvailable+"<div>"
 			var enrollebtn="<button "+datas+" class='Enroll'>Enroll</button>"
-			$("#classesAvailableContainer").append(className+enrollebtn);
+			$("#classesAvailableModalbody").append(className+enrollebtn);
 		}
 	};
 	//POPULATE CLASSES AVAILABLE 
-	$("#AvailableClassesBtn").on("click",function(event){
+	$("#seeAvailclassesBtn").on("click",function(event){
+		//console.log("see avail clicked");
 		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
 		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
 		var userName = userInfo.substr(0, userInfo.indexOf("/"));
 		
-		$("#classesAvailableContainer").empty();
+		$("#classesAvailableModalbody").empty();
 		
 		$.get("/api/classes").then(function(allClasses){
 			var AvailableClasses=[];
@@ -39,7 +40,7 @@ $(function() {
 			//console.log("lengthwithoutT" +teachersnotuser.length);
 			//now we take the array with the classes and check if studentsusername is not equal to username then we push into array
 			for (var j=0;j<teachersnotuser.length;j++){
-				//console.log("j= "+j);
+				console.log("j= "+j);
 				var studentLength=teachersnotuser[j].Students.length;
 				//console.log(studentLength);
 				if(studentLength===0){
@@ -60,14 +61,15 @@ $(function() {
 			//console.log("classeLength: "+AvailableClasses.length);
 			//we send the array with the available classes to a function to populate our modal
 			populateModal(AvailableClasses);
-			$("#classesAvailable").modal("show");
+			$("#classesAvailableModal").modal("show");
+			
 		});
 		
 	});
 	
 	//enrolling in class button
 	//we need to use event delegation since our buttons do not exist when our document loads
-	$("#classesAvailableContainer").on("click",".Enroll" ,function(event){
+	$("#classesAvailableModalbody").on("click",".Enroll" ,function(event){
 	//$(".Enroll").on("click", function(event){
 		console.log("enrolled is being clicked");
 		var classid = $(this).attr("data-classid");
