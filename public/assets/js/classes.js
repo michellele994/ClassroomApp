@@ -6,7 +6,7 @@ $(function() {
 			var classID=AvailableClasses[i].id;
 			var className="<div class='availableClass'data-classID="+classID+">"+classAvailable+"<div>"
 			var enrollebtn="<button data-classID="+classID+" class='Enroll'>Enroll</button>"
-			return $("#classesAvailableContainer").append(className);
+			$("#classesAvailableContainer").append(className+enrollebtn);
 		}
 	};
 	//POPULATE CLASSES AVAILABLE 
@@ -20,6 +20,7 @@ $(function() {
 		$.get("/api/classes").then(function(allClasses){
 			var AvailableClasses=[];
 			var teachersnotuser=[];
+			//finds where teacheruserna is not equal username then pushes into an array the class info, and the students
 			for(var i=0;i<allClasses.length;i++){
 				var teacher=allClasses[i].Teacher.username;
 				if(teacher !== userName ){
@@ -32,28 +33,29 @@ $(function() {
 					teachersnotuser.push(classes);
 				}
 			}
-			console.log(teachersnotuser[1]);
-			console.log(teachersnotuser[1].Students[0]);
-			
-			//console.log(teachersnotuser.length);
+			console.log("lengthwithoutT" +teachersnotuser.length);
+			//now we take the array with the classes and check if studentsusername is not equal to username then we push into array
 			for (var j=0;j<teachersnotuser.length;j++){
-				console.log(j);
-				console.log(teachersnotuser[j].Students.length);
-				if(teachersnotuser[j].Students.length==="undefined"){
+				console.log("j= "+j);
+				var studentLength=teachersnotuser[j].Students.length;
+				console.log(studentLength);
+				if(studentLength===0){
+					console.log("im undefined");
 					AvailableClasses.push(teachersnotuser[j]);
 				}
 				else{
 					for(var k=0;k<teachersnotuser[j].Students.length;k++){
+						console.log("im defined");
 						var student= teachersnotuser[j].Students[k].username;
-						console.log(student);
+						console.log("current student "+ student);
 						if(student!==userName){
 							AvailableClasses.push(teachersnotuser[j]);
 						}
 					}
-				}
-				
+				}		
 			}
-			//console.log(AvailableClasses.length);
+			console.log("classeLength: "+AvailableClasses.length);
+			//we send the array with the available classes to a function to populate our modal
 			populateModal(AvailableClasses);
 			$("#classesAvailable").modal("show");
 		});
@@ -62,7 +64,10 @@ $(function() {
 	
 	
 	//enrolling in class button
-	$(".Enroll").on("click", function(event){
+	//we need to use event delegation since our buttons do not exist when our document loads
+	$("#classesAvailableContainer").on("click",".Enroll" ,function(event){
+	//$(".Enroll").on("click", function(event){
+		console.log("enrolled is being clicked");
 		var classid = $(this).attr("data-classid");
 		var classname = $(this).attr("data-classname");
 		var classdesc = $(this).attr("data-classdesc");
@@ -72,6 +77,7 @@ $(function() {
 		var userName = userInfo.substr(0, userInfo.indexOf("/"));
 
 		$.get("/api/users/"+userName).then(function(response){
+			
 			var userID = response.id;
 			var nameOfUser = response.name;
 			$.get("/api/students/"+userName).then(function(sResponse){
