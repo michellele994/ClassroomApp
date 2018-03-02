@@ -3,9 +3,12 @@ $(function() {
 		for (var i=0;i<AvailableClasses.length;i++){
 			console.log("im here");
 			var classAvailable=AvailableClasses[i].classname;
-			var classID=AvailableClasses[i].id;
-			var className="<div class='availableClass'data-classID="+classID+">"+classAvailable+"<div>"
-			var enrollebtn="<button data-classID="+classID+" class='Enroll'>Enroll</button>"
+			var classid=AvailableClasses[i].id;
+			var classname=AvailableClasses[i].classname;
+			var classdesc=AvailableClasses[i].classdesc;
+			var datas="data-classid="+classid+" data-classname="+classname+" data-classdesc="+classdesc;
+			var className="<div class='availableClass'data-classID="+classid+">"+classAvailable+"<div>"
+			var enrollebtn="<button "+datas+" class='Enroll'>Enroll</button>"
 			$("#classesAvailableContainer").append(className+enrollebtn);
 		}
 	};
@@ -33,35 +36,34 @@ $(function() {
 					teachersnotuser.push(classes);
 				}
 			}
-			console.log("lengthwithoutT" +teachersnotuser.length);
+			//console.log("lengthwithoutT" +teachersnotuser.length);
 			//now we take the array with the classes and check if studentsusername is not equal to username then we push into array
 			for (var j=0;j<teachersnotuser.length;j++){
-				console.log("j= "+j);
+				//console.log("j= "+j);
 				var studentLength=teachersnotuser[j].Students.length;
-				console.log(studentLength);
+				//console.log(studentLength);
 				if(studentLength===0){
 					console.log("im undefined");
 					AvailableClasses.push(teachersnotuser[j]);
 				}
 				else{
 					for(var k=0;k<teachersnotuser[j].Students.length;k++){
-						console.log("im defined");
+						//console.log("im defined");
 						var student= teachersnotuser[j].Students[k].username;
-						console.log("current student "+ student);
+						//console.log("current student "+ student);
 						if(student!==userName){
 							AvailableClasses.push(teachersnotuser[j]);
 						}
 					}
 				}		
 			}
-			console.log("classeLength: "+AvailableClasses.length);
+			//console.log("classeLength: "+AvailableClasses.length);
 			//we send the array with the available classes to a function to populate our modal
 			populateModal(AvailableClasses);
 			$("#classesAvailable").modal("show");
 		});
 		
 	});
-	
 	
 	//enrolling in class button
 	//we need to use event delegation since our buttons do not exist when our document loads
