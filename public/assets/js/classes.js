@@ -71,12 +71,12 @@ $(function() {
 	//$(".Enroll").on("click", function(event){
 		console.log("enrolled is being clicked");
 		var classid = $(this).attr("data-classid");
-		var classname = $(this).attr("data-classname");
-		var classdesc = $(this).attr("data-classdesc");
-		// var studentName=$(this).attr("data-studentname");
-		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
-		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
-		var userName = userInfo.substr(0, userInfo.indexOf("/"));
+		$.get("/api/classes/"+classid).then(function(response){
+			var classname = response.classname;
+			var classdesc = response.classdesc;
+			var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
+			userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
+			var userName = userInfo.substr(0, userInfo.indexOf("/"));
 
 		$.get("/api/users/"+userName).then(function(response){
 			
@@ -114,36 +114,10 @@ $(function() {
 								})
 							}
 						});
-					})
-				}
-				else
-				{
-					$.get("/api/students/"+userName).then(function(response){
-						if(response){
-							var studentID = response.id;
-							var newClass = {
-								classname: classname,
-								classdesc: classdesc,
-								UserId: userID,
-								StudentId: studentID
-							}
-							$.ajax("/api/enrollment", {
-								type: "POST",
-								data: newClass
-							}).then(
-							function() {
-								console.log("enrollment has been created");
-								location.reload();
-							})
-						}
-					});
-				}
+					}
+				});
 			});
-		});
-
-
-
-
+		})
 
 
 
@@ -160,22 +134,19 @@ $(function() {
 		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
 		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
 		var userName = userInfo.substr(0, userInfo.indexOf("/"));
-		var classTeacher=$(this).attr("data-classTeacherusername");
-		//console.log(userName);
-		//console.log(classTeacher);
-		if (userName===classTeacher){
-			//change window location without goback 
-					//window.location.replace("/classes/"+username+"/"+name);
-					//allows go back
-					window.location="/classTeacherview/"+userName+"/";
-		}
-		else{
-			//change window location without goback 
-					//window.location.replace("/classes/"+username+"/"+name);
-					//allows go back
-					window.location="/classStudentview/"+userName+"/";
-		}
-		
+		var classid=$(this).attr("data-classid");
+		$.get("/api/classes/"+classid).then(function(response){
+			var teachername = response.Teacher.username;
+			if (userName===teachername){
+						window.location="/classTeacherview/"+userName+"/";
+			}
+			else{
+				//change window location without goback 
+						//window.location.replace("/classes/"+username+"/"+name);
+						//allows go back
+						window.location="/classStudentview/"+userName+"/";
+			}
+		})
 	})
 
 	//creating new class button
