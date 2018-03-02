@@ -52,8 +52,7 @@
                                 {{#each classInfo}}
                                 <div>
                                     {{this.classname}}
-                                    <button data-classid="{{this.id}}" data-classname="{{this.classname}}" data-classdesc="{{this.classdesc}}" data-studentname="{{userInfo.name}}"
-                                        class="Enroll">Enroll</button>
+                                    <button data-classid="{{this.id}}" class="Enroll">Enroll</button>
                                 </div>
 
                                 {{/each}}
@@ -84,7 +83,8 @@
                                         <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
                                         <div>{{this.classname}}</div>
                                         <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-                                        <button class="classPg" data-user="{{userInfo.username}}" data-ClassTeacherusername="perla23">Class Page</button>                                        {{/each}}
+                                        <button class="classPg" data-classid="{{this.id}}">Class Page</button>
+                                        {{/each}}
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,8 @@
                                         <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
                                         <div>{{this.classname}}</div>
                                         <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-                                        <button class="classPg" data-user="{{userInfo.username}}" data-ClassTeacherusername="perla23">Class Page</button>                                        {{/each}}
+                                        <button class="classPg" data-classid="{{this.id}}">Class Page</button>
+                                        {{/each}}
                                     </div>
                                 </div>
                             </div>
