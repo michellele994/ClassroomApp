@@ -39,9 +39,9 @@
 			<div class="modal-body">
 				<div>
 					{{#each classInfo}}
-                		<div>
+                		<div>{{userInfo.name}}
 							{{this.classname}}
-							<button data-classid="{{this.id}}" data-classname="{{this.classname}}" data-classdesc="{{this.classdesc}}" data-studentname="{{userInfo.name}}"class="Enroll">Enroll</button>
+							<button data-classid="{{this.id}}" class="Enroll">Enroll</button>
 						</div>
 						
 					{{/each}}

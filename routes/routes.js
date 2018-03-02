@@ -35,6 +35,8 @@ router.get("/welcome/:username/",function(req,res){
 });
 
 
+
+
 //Routing for APIs
 //======================================================================
 
@@ -89,6 +91,17 @@ router.get("/api/teachers/:username/", function(req, res) {
         include: [db.MadeClass]
     }).then(function(dbteacher) {
         res.json(dbteacher);
+    });
+});
+//API route for a single class
+router.get("/api/classes/:classid/", function(req, res) {
+    db.MadeClass.findOne({
+        where: {
+            id: req.params.classid
+        },
+        include: [db.AssignedHW, db.Teacher, db.Student]
+    }).then(function(dbclass) {
+        res.json(dbclass);
     });
 });
 //API route for a single student
