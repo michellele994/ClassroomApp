@@ -5,12 +5,11 @@ $(function() {
 		//getting information from the form inputs
 		const username = $("#enter_username").val().trim();
 		const name = $("#enter_name").val().trim();
-		//make sure that both required fields have been entered before login in
 		if (username && name !="")
 		{
 			$.get("/api/users/"+username+"/").then(function(response){
 				if(response){
-					console.log(response);
+					//console.log(response);
 					//change window location without goback 
 					//window.location.replace("/classes/"+username+"/"+name);
 					//allows go back
@@ -37,14 +36,29 @@ $(function() {
 		var userExists=false;
 		var userNameexists=false;
 
-		//new user to make the post request
-		var newUser = {
-			username: username,
-			name: name
-		}
-		//make sure that both required fields have been entered before creating an account
-		if (username && name)
+		var nameAppropriate = true;
+
+		for (var i = 0; i < username.length; i++)
 		{
+			if (username.charAt(i) === " " ||
+				username.charCodeAt(i) < 47 ||
+				(username.charCodeAt(i) >57 && username.charCodeAt(i) < 65) ||
+				(username.charCodeAt(i) > 90 && username.charCodeAt(i) < 97) ||
+				username.charCodeAt(i) > 122 )
+			{
+				nameAppropriate = false;
+				break;
+			}
+		}
+		console.log(nameAppropriate);
+		//make sure that both required fields have been entered before creating an account
+		if (username && name && nameAppropriate)
+		{
+			//new user to make the post request
+			var newUser = {
+				username: username,
+				name: name
+			}
 			//before sending post request we must make sure that users dont exist
 			$.get("/api/users/",{
 				//type:"GET"
@@ -83,6 +97,10 @@ $(function() {
 					}
 				}
 			})
+		}
+		else if (!nameAppropriate)
+		{
+			alert("Your username is inappropraite");
 		}
 		else
 		{
