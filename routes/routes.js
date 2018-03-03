@@ -23,10 +23,7 @@ router.get("/welcome/:username/",function(req,res){
                 }
             }]
         }).then(function(dbclassesTeaching){
-<<<<<<< HEAD
-=======
         //if class doesnt update use this
->>>>>>> 51d3040fcfaf2f1c7396a31a10a4cd99f14ce0e3
             db.EnrolledClass.findAll({
                 include:[{
                     model:db.Student,

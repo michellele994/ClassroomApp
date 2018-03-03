@@ -53,24 +53,10 @@ $(function() {
 					teachersnotuser.push(classes);
 				}
 			}
-<<<<<<< HEAD
-			//now we take the array with the classes and check if studentsusername is not equal to username then we push into array
-			for (var j=0;j<teachersnotuser.length;j++){
-				var studentLength=teachersnotuser[j].Students.length;
-
-				for(var k=0;k<teachersnotuser[j].Students.length;k++){
-					var student= teachersnotuser[j].Students[k].username;
-					if(student!==userName){
-						AvailableClasses.push(teachersnotuser[j]);
-					}
-				}
-			}
-=======
 			console.log(teachersnotuser[0]);
 			console.log(teachersnotuser.length);
 			//if classes dont update use this get returns where user is not a student
 			$.get("/api/availableClasses/"+userName).then(function(classesnotEnrolled){
->>>>>>> 51d3040fcfaf2f1c7396a31a10a4cd99f14ce0e3
 			//console.log("classeLength: "+AvailableClasses.length);
 			//we send the array with the available classes to a function to populate our modal 
 			comparingArrays(teachersnotuser,classesnotEnrolled);
