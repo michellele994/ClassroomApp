@@ -23,6 +23,10 @@ router.get("/welcome/:username/",function(req,res){
                 }
             }]
         }).then(function(dbclassesTeaching){
+<<<<<<< HEAD
+=======
+        //if class doesnt update use this
+>>>>>>> 51d3040fcfaf2f1c7396a31a10a4cd99f14ce0e3
             db.EnrolledClass.findAll({
                 include:[{
                     model:db.Student,
@@ -30,6 +34,14 @@ router.get("/welcome/:username/",function(req,res){
                         username:dbUser.username
                     }
                 }]
+           /*//if class updates
+            db.MadeClass.findAll({
+                include:[{
+                    model:db.Student,
+                    where:{
+                        username:dbUser.username
+                    }
+                }]*/
             }).then(function(dbclassesEnrolled){
                 var userLoggedin={
                     userInfo:dbUser,
@@ -138,6 +150,22 @@ router.get("/api/students/:username/", function(req, res) {
         res.json(dbteacher);
     });
 });
+//if classes doesnt update use this classes where user not enrolled
+router.get("/api/availableClasses/:username", function(req, res) {
+    db.EnrolledClass.findAll({
+        include:[{
+            model:db.Student,
+            where:{
+                username:{
+                    $ne:req.params.username
+                }
+            }
+        }]
+    }).then(function(dbclassesnotEnrolled){
+        res.json(dbclassesnotEnrolled)
+    });
+});
+
 
 //POSTS
 //======================================================================
