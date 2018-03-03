@@ -81,7 +81,7 @@ router.get("/api/users", function(req, res) {
 
 //API route for all teachers including the classes they have made. Teachers are made when a class is made as they are signed in.
 router.get("/api/teachers", function(req, res) {
-    db.Teacher.findAll({ include: [db.MadeClass] }).then(function(dbusers) {
+    db.Teacher.findAll({ include: [db.MadeClass, db.Student] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
