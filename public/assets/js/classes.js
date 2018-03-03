@@ -1,15 +1,34 @@
 $(function() {
+
+	//avialable classes if classes doesnt update
+	function comparingArrays(teachersnotuser,classesnotEnrolled,callback){
+		var AvailableClasses=[];
+		if (classesnotEnrolled.length===0){
+			populateModal(teachersnotuser);
+		}
+		else{
+			for(var i=0;i<teachersnotuser.length;i++){
+				for(var j=0;j<classesnotEnrolled.length;j++){
+					if(teachersnotuser[i].classname===classesnotEnrolled[j].classname){
+						console.log(teachersnotuser[i].classname);
+						console.log(classesnotEnrolled[j].classname);
+						AvailableClasses.push(teachersnotuser[i]);
+					}
+				}
+			}
+			populateModal(AvailableClasses);
+		}
+	}
+
 	function populateModal(AvailableClasses){
 		for (var i=0;i<AvailableClasses.length;i++){
-			//console.log("im here 333");
-			var classAvailable=AvailableClasses[i].classname;
+			console.log("im here 333");
 			var classid=AvailableClasses[i].id;
 			var classname=AvailableClasses[i].classname;
-			var classdesc=AvailableClasses[i].classdesc;
-			var datas="data-classid="+classid+" data-classname="+classname+" data-classdesc="+classdesc;
-			var className="<div class='availableClass'data-classID="+classid+">"+classAvailable+"<div>"
+			var datas="data-classid="+classid;
+			var classDisplay="<div class='availableClass'data-classID="+classid+">"+classname+"<div>"
 			var enrollebtn="<button "+datas+" class='Enroll'>Enroll</button>"
-			$("#classesAvailableModalbody").append(className+enrollebtn);
+			$("#classesAvailableModalbody").append(classDisplay+enrollebtn);
 		}
 	};
 	//POPULATE CLASSES AVAILABLE 
@@ -18,53 +37,34 @@ $(function() {
 		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
 		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
 		var userName = userInfo.substr(0, userInfo.indexOf("/"));
-		
 		$("#classesAvailableModalbody").empty();
-		
 		$.get("/api/classes").then(function(allClasses){
-			var AvailableClasses=[];
+			//var AvailableClasses=[];
 			var teachersnotuser=[];
-			//finds where teacheruserna is not equal username then pushes into an array the class info, and the students
 			for(var i=0;i<allClasses.length;i++){
 				var teacher=allClasses[i].Teacher.username;
+				//where user is not a teacher
 				if(teacher !== userName ){
 					//console.log(teacher);
 					var classes={
 						id:allClasses[i].id,
-						classname:allClasses[i].classname,
-						Students:allClasses[i].Students
+						classname:allClasses[i].classname
 					}
 					teachersnotuser.push(classes);
 				}
 			}
-			//console.log("lengthwithoutT" +teachersnotuser.length);
-			//now we take the array with the classes and check if studentsusername is not equal to username then we push into array
-			for (var j=0;j<teachersnotuser.length;j++){
-				console.log("j= "+j);
-				var studentLength=teachersnotuser[j].Students.length;
-				//console.log(studentLength);
-				if(studentLength===0){
-					//console.log("im 0");
-					AvailableClasses.push(teachersnotuser[j]);
-				}
-				else{
-					for(var k=0;k<teachersnotuser[j].Students.length;k++){
-						//console.log("im defined");
-						var student= teachersnotuser[j].Students[k].username;
-						//console.log("current student "+ student);
-						if(student!==userName){
-							AvailableClasses.push(teachersnotuser[j]);
-						}
-					}
-				}		
-			}
+			console.log(teachersnotuser[0]);
+			console.log(teachersnotuser.length);
+			//if classes dont update use this get returns where user is not a student
+			$.get("/api/availableClasses/"+userName).then(function(classesnotEnrolled){
 			//console.log("classeLength: "+AvailableClasses.length);
-			//we send the array with the available classes to a function to populate our modal
-			populateModal(AvailableClasses);
+			//we send the array with the available classes to a function to populate our modal 
+			comparingArrays(teachersnotuser,classesnotEnrolled);
+			//console.log(AvailableClasses);
+			//populateModal(AvailableClasses);
 			$("#classesAvailableModal").modal("show");
-			
-		});
-		
+			});
+		});	
 	});
 	
 	//enrolling in class button
