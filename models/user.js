@@ -13,6 +13,10 @@ module.exports = function(sequelize, DataTypes) {
 			validate: {
 				len: [1]
 			}
+		},
+		teacher: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false
 		}
 	});
 	User.associate = function(models) {
