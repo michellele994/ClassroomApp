@@ -77,6 +77,7 @@ $(function() {
 		$.get("/api/classes/"+classid).then(function(response){
 			var classname = response.classname;
 			var classdesc = response.classdesc;
+			var teacherid = response.TeacherId;
 			var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
 			userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
 			if ( userInfo.indexOf("/") !== -1)
@@ -100,6 +101,7 @@ $(function() {
 							data: {
 								username: userName,
 								name: nameOfUser,
+								TeacherId: teacherid,
 								MadeClassId: classid
 							}
 						}).then(
