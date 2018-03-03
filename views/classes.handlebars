@@ -11,59 +11,51 @@
         <a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-bars fa-2x py-2 p-1"></i></a>
         <main class="col-md-9 col px-5 pl-md-2 pt-2 main">
             <div class="modal fade" id="new-class" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="modal-title">Create a new class!</h3>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="new-class-name">Name of Class:</label>
-                                <input type="text" id="new-class-name" name="new-class-name" maxlength="30">
-                                <br>
-                                <label for="new-class-desc">Class Description:</label>
-                                <input type="text" id="new-class-desc" name="new-class-desc" maxlength="500">
-                                <br>
-                                <button class="btn btn-outline-info badge-pill" type="submit" id="create-new-class">Create<i class="far fa-check-circle"></i></button>
-                                <br>
-                                <span id="cannot-create-error"></span>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a id="close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
-                        </div>
-                    </div>
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title" id="modal-title">Create a new class!</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                              <label for="new-class-name">Name of Class:</label>
+                              <input type="text" id="new-class-name" name="new-class-name" maxlength="30">
+                              <br>
+                              <label for="new-class-desc">Class Description:</label>
+                              <input type="text" id="new-class-desc" name="new-class-desc" maxlength="500">
+                              </br>
+                              <button class="btn btn-outline-info badge-pill" type="submit" id="create-new-class">Create<i class="far fa-check-circle"></i></button>
+                              <br>
+                              <span id="cannot-create-error"></span>
+                          </div>
+                  </div>
+                  <div class="modal-footer">
+                    <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div class="modal fade" id="classesAvailable" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="modal-title">Available Classes!</h3>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                            <div>
-                                {{#each classInfo}}
-                                <div class = "h5">
-                                    {{this.classname}}
-                                    <button data-classid="{{this.id}}" data-classname="{{this.classname}}" data-classdesc="{{this.classdesc}}" data-studentname="{{userInfo.name}}"
-                                        class="Enroll btn btn-outline-warning badge-pill">Enroll</button>
-                                </div>
-
-                                {{/each}}
+            <div class="modal fade" id="classesAvailableModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title" id="modal-title">Available Classes!</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                            <div id="classesAvailableModalbody">
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <a id="close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
-                        </div>
-                    </div>
+                  <div class="modal-footer">
+                    <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
+                  </div>
                 </div>
+              </div>
             </div>
             <div class="container-fluid text-center">
                 <div class="row">
@@ -79,12 +71,13 @@
                                     <h3>Classes Teaching</h3>
                                 </div>
                                 <div class="card-body ">
-                                    <div class= "h4">
-                                        {{#each userInfo.MadeClasses}}
+                                    <div>
+                                        {{#each classesTeaching}}
                                         <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
                                         <div>{{this.classname}}</div>
                                         <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-                                        <button class="classPg btn btn-info badge-pill" data-user="{{userInfo.username}}" data-ClassTeacherusername="perla23">Class Page</button>                                        {{/each}}
+                                        <button class="classPg btn btn-info badge-pill" data-ClassID="{{this.id}}">Class Page</button>
+                                        {{/each}}
                                     </div>
                                 </div>
                             </div>
@@ -96,18 +89,18 @@
                                 </div>
                                 <div class="card-body ">
                                     <div>
-                                        {{#each userInfo.EnrolledClasses}}
+                                        {{#each classesEnrolled}}
                                         <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
                                         <div class= "h4">{{this.classname}}</div>
                                         <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-                                        <button class="classPg btn btn-warning badge-pill" data-user="{{userInfo.username}}" data-ClassTeacherusername="perla23">Class Page</button>                                        {{/each}}
+                                        <button class="classPg btn btn-warning badge-pill" data-ClassID="{{this.id}}">Class Page</button>
+                                        {{/each}}
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div id="classesAvailableBtn" class="col-lg-12">
-                            <button class="btn btn-info badge-pill availClasses col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#classesAvailable">Available Classes</button>
+                            <button id="seeAvailclassesBtn" class="btn btn-info badge-pill availClasses" type="button" >Available Classes</button>
                         </div>
 
                         <div id="createClassBtn" class="col-lg-12">

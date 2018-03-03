@@ -9,31 +9,54 @@ router.get("/", function(req, res) {
 });
 // This renders the available classes for enrollment as long as user is not currently a teacher for the class.
 router.get("/welcome/:username/",function(req,res){
-  db.User.findOne({
-    where:{
-      username:req.params.username
-    },
-    include: [db.MadeClass, db.EnrolledClass]
-  }).then(function(dbuser){
-    db.MadeClass.findAll({
-      include: [{ 
-        model:db.User,
+    db.User.findOne({
         where:{
-            username: {
-              $ne: dbuser.username
-          }
-        }
-      }]
-    }).then(function(dbclasses){
-      var userLoggedin={
-        userInfo:dbuser,
-        classInfo:dbclasses
-      }
-      res.render("classes",userLoggedin);
+            username:req.params.username
+        },
+        include: [db.MadeClass, db.EnrolledClass]
+    }).then(function(dbUser){
+        db.MadeClass.findAll({
+            include:[{
+                model:db.Teacher,
+                where:{
+                    username:dbUser.username
+                }
+            }]
+        }).then(function(dbclassesTeaching){
+            db.MadeClass.findAll({
+                include:[{
+                    model:db.Student,
+                    where:{
+                        username:dbUser.username
+                    }
+                }]
+            }).then(function(dbclassesEnrolled){
+                var userLoggedin={
+                    userInfo:dbUser,
+                    classesTeaching:dbclassesTeaching,
+                    classesEnrolled:dbclassesEnrolled
+                    }
+                res.render("classes",userLoggedin);
+            });
+        });
     });
-  });
 });
 
+
+/*//send available classes
+=======
+
+//send available classes
+>>>>>>> 4222128d806399c5302fab8c8e2419ca09a44ab8
+router.get("/welcomeClasses/:username/",function(req,res){
+    console.log("im");
+    /*db.MadeClass.findAll({
+        include:[db.Teacher,db.Student]
+    }).then(function(dbClasses){
+        console.log(dbClasses[0].classname);
+<<<<<<< HEAD
+    });
+});*/
 
 
 
@@ -115,7 +138,6 @@ router.get("/api/students/:username/", function(req, res) {
     });
 });
 
-
 //POSTS
 //======================================================================
 router.post("/api/classes", function(req, res) {
@@ -143,59 +165,5 @@ router.post("/api/enrollment", function(req, res) {
         res.json(dbenrollment);
     });
 });
-
-
-
-/*//DO NOT WORK TOGETHER SEPARATE
-//THIS IS WORKING BY ITSELF
-//sending teachers with classes they teach
-router.get("/classes/:username/",function(req,res){
-  db.User.findOne({
-    where:{
-      username:req.params.username
-    },
-    include: [db.Classroom]
-  }).then(function(dbuser){
-  var userLoggedin={
-    userInfo:dbuser
-  }
-    res.render("classes",userLoggedin);
-  });
-});
-
-//  WORKS BY ITSELF
-//sending all classes that teacher doesn't teach
-router.get("/classes/:username/",function(req,res){
-  db.Classroom.findAll({
-     include: [db.User]
-}).then(function(dbclasses){
-  var classesAvail={
-    classInfo:dbclasses
-  }
-    res.render("classes",classesAvail);
-  });
-});*/
-
-//WORKS BY AS IS BUT REQUIRES FOR ME TO WRITE A HANDLEBARS HELPER FUNCTION TO ACCESS WHERE TEACHER IS NOT EQUAL TO USER
-//getting the users class information
-// router.get("/classes/:username/",function(req,res){
-//   db.User.findOne({
-//     where:{
-//       username:req.params.username
-//     },
-//     include: [db.MadeClass]
-//   }).then(function(dbuser){
-//     db.MadeClass.findAll({
-//       include: [db.User]
-//     }).then(function(dbclasses){
-//       var userLoggedin={
-//         userInfo:dbuser,
-//         classInfo:dbclasses
-//       }
-//       res.render("classes",userLoggedin);
-//     });
-//   });
-// });
-
 
 module.exports=router;
