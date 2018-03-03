@@ -150,7 +150,7 @@ input {
     #sidebar .list-group .collapse.show, #sidebar .list-group .collapsing {
         position: relative;
         z-index: 1;
-        width: 190px;
+        width: 170px;
         top: 0;
     }
     #sidebar .list-group > .list-group-item {
