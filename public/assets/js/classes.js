@@ -73,18 +73,26 @@ $(function() {
 	//$(".Enroll").on("click", function(event){
 		console.log("enrolled is being clicked");
 		var classid = $(this).attr("data-classid");
+		//Look through the current class information
 		$.get("/api/classes/"+classid).then(function(response){
 			var classname = response.classname;
 			var classdesc = response.classdesc;
 			var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
 			userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
-			var userName = userInfo.substr(0, userInfo.indexOf("/"));
-
-			$.get("/api/users/"+userName).then(function(response){
-			
-				var userID = response.id;
-				var nameOfUser = response.name;
+			if ( userInfo.indexOf("/") !== -1)
+			{
+				var userName = userInfo.substr(0, userInfo.indexOf("/"));
+			}
+			else {
+				userName = userInfo;
+			}
+			//Look at current user's information
+			$.get("/api/users/"+userName).then(function(uResponse){
+				var userID = uResponse.id;
+				var nameOfUser = uResponse.name;
+				//look to see if user already exists as students
 				$.get("/api/students/"+userName).then(function(sResponse){
+					//If user is not yet a student, make them a student
 					if(sResponse === null)
 					{
 						$.ajax("/api/students", {
@@ -95,11 +103,11 @@ $(function() {
 								MadeClassId: classid
 							}
 						}).then(
-						function(response) {
+						function(createdSResponse) {
 							console.log("student has been created");
-							$.get("/api/students/"+userName).then(function(response){
-								if(response){
-									var studentID = response.id;
+							$.get("/api/students/"+userName).then(function(studentsResponseWithNew){
+								if(studentsResponseWithNew){
+									var studentID = studentsResponseWithNew.id;
 									var newClass = {
 										classname: classname,
 										classdesc: classdesc,
@@ -110,7 +118,7 @@ $(function() {
 									type: "POST",
 									data: newClass
 									}).then(
-									function(response) {
+									function(createdEResponse) {
 										console.log("enrollment has been createdif");
 										location.reload();
 									})
@@ -118,27 +126,28 @@ $(function() {
 							});
 						})
 					}
+					//If it already exists, read the information
 					else
 					{
-						$.get("/api/students/"+userName).then(function(response){
-							if(response){
-								var studentID = response.id;
-								var newClass = {
-									classname: classname,
-									classdesc: classdesc,
-									UserId: userID,
-									StudentId: studentID
-								}
-								$.ajax("/api/enrollment", {
-									type: "POST",
-									data: newClass
-								}).then(
-								function() {
-									console.log("enrollment has been created else");
-									location.reload();
-								})
-							}
-						});
+						var studentID = sResponse.id;
+
+						var newEnrolled = {
+							classname: classname,
+							classdesc: classdesc,
+							UserId: userID,
+							StudentId: studentID
+						}
+
+
+						$.ajax("/api/enrollment", {
+							type: "POST",
+							data: newEnrolled
+						}).then(
+						function() {
+							console.log("enrollment has been created else");
+							location.reload();
+						})
+
 					}
 				});
 			})
@@ -177,7 +186,13 @@ $(function() {
 		var classDesc = $("#new-class-desc").val().trim();
 		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
 		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
-		var userName = userInfo.substr(0, userInfo.indexOf("/"));
+		if ( userInfo.indexOf("/") !== -1)
+		{
+			var userName = userInfo.substr(0, userInfo.indexOf("/"));
+		}
+		else {
+			userName = userInfo;
+		}
 		if(className && classDesc)
 		{
 			$.get("/api/users/"+userName).then(function(response){
