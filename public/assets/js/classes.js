@@ -1,7 +1,7 @@
 $(function() {
 
 	//avialable classes if classes doesnt update
-	function comparingArrays(teachersnotuser,classesnotEnrolled,callback){
+	function comparingArrays(teachersnotuser,classesnotEnrolled){
 		var AvailableClasses=[];
 		if (classesnotEnrolled.length===0){
 			populateModal(teachersnotuser);
