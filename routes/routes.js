@@ -23,13 +23,22 @@ router.get("/welcome/:username/",function(req,res){
                 }
             }]
         }).then(function(dbclassesTeaching){
-            db.MadeClass.findAll({
+        //if class doesnt update use this
+            db.EnrolledClass.findAll({
                 include:[{
                     model:db.Student,
                     where:{
                         username:dbUser.username
                     }
                 }]
+           /*//if class updates
+            db.MadeClass.findAll({
+                include:[{
+                    model:db.Student,
+                    where:{
+                        username:dbUser.username
+                    }
+                }]*/
             }).then(function(dbclassesEnrolled){
                 var userLoggedin={
                     userInfo:dbUser,
@@ -137,6 +146,22 @@ router.get("/api/students/:username/", function(req, res) {
         res.json(dbteacher);
     });
 });
+//if classes doesnt update use this classes where user not enrolled
+router.get("/api/availableClasses/:username", function(req, res) {
+    db.EnrolledClass.findAll({
+        include:[{
+            model:db.Student,
+            where:{
+                username:{
+                    $ne:req.params.username
+                }
+            }
+        }]
+    }).then(function(dbclassesnotEnrolled){
+        res.json(dbclassesnotEnrolled)
+    });
+});
+
 
 //POSTS
 //======================================================================
