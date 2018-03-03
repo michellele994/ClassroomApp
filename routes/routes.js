@@ -23,7 +23,10 @@ router.get("/welcome/:username/",function(req,res){
                 }
             }]
         }).then(function(dbclassesTeaching){
+<<<<<<< HEAD
+=======
         //if class doesnt update use this
+>>>>>>> 51d3040fcfaf2f1c7396a31a10a4cd99f14ce0e3
             db.EnrolledClass.findAll({
                 include:[{
                     model:db.Student,
@@ -141,7 +144,8 @@ router.get("/api/students/:username/", function(req, res) {
     db.Student.findOne({
         where: {
             username: req.params.username
-        }
+        },
+        include: [db.EnrolledClass]
     }).then(function(dbteacher) {
         res.json(dbteacher);
     });
@@ -190,5 +194,17 @@ router.post("/api/enrollment", function(req, res) {
         res.json(dbenrollment);
     });
 });
+
+router.put("/api/classes/:classid", function(req, res) {
+    db.MadeClass.update(req.body,
+      {
+        where: {
+          id: req.params.classid
+        }
+      })
+    .then(function(dbClasses) {
+      res.json(dbClasses);
+    });
+  });
 
 module.exports=router;
