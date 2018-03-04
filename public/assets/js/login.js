@@ -4,7 +4,7 @@ $(function() {
 		event.preventDefault();
 		//getting information from the form inputs
 		const username = $("#enter_username").val().trim();
-		const name = $("#enter_name").val().trim();
+		//const name = $("#enter_name").val().trim();
 		if (username && name !="")
 		{
 			$.get("/api/users/"+username+"/").then(function(response){
@@ -27,12 +27,16 @@ $(function() {
 	});
 
 	//signup button will take information from form to create data
-	$("#signup").on("click", function(event) {
+	$("#create-new-user").on("click", function(event) {
 		event.preventDefault();
 
 		//getting information from the form inputs
-		const username = $("#enter_username").val().trim();
-		const name = $("#enter_name").val().trim();
+		const username = $("#new_username").val().trim();
+		const name = $("#new_name").val().trim();
+		const password=$("#new_password").val().trim();
+		const teacher=$("input[name=teacher]:checked").val();
+		console.log(teacher);
+
 		var userExists=false;
 		var userNameexists=false;
 
@@ -50,61 +54,59 @@ $(function() {
 				break;
 			}
 		}
-		console.log(nameAppropriate);
+		//console.log(nameAppropriate);
 		//make sure that both required fields have been entered before creating an account
 		if (username && name && nameAppropriate)
 		{
 			//new user to make the post request
 			var newUser = {
 				username: username,
-				name: name
+				name: name,
+				teacher:teacher
 			}
 			//before sending post request we must make sure that users dont exist
-			$.get("/api/users/",{
-				//type:"GET"
-		
-			}).then(function(response){
+			$.get("/api/users/"+username+"/").then(function(response){
 				//console.log(response[1].name);
 				//go through the api and check if the username and name are taken
-				for(var i=0;i<response.length;i++){
+				/*for(var i=0;i<response.length;i++){
 					if(response[i].name===name&&response[i].username===username){
 						userExists=true;
 					}
 					if(response[i].username===username){
 						userNameexists=true;
 					}
-				}
+				}*/
 				//if both username and name are take userExists already
-				if(userExists===true){
-					alert("This name already exists!");
+				//if(userExists===true){
+				if(response){
+					//alert("This name already exists!");
+				//}
+				//else{
+					//if username is taken
+					//if(userNameexists===true){
+					alert("Username is taken");
 				}
 				else{
-					//if username is taken
-					if(userNameexists===true){
-						alert("Username is taken");
-					}
-					else{
 						//(userExists===false&&userNameexists===false){
 						//Create a new user
-						$.ajax("/api/users", {
-							type: "POST",
-							data: newUser
-						}).then(
-						function() {
-							alert("congrats you have created an account. Enter your information again to log in");
-							location.reload();
-						});
-					}
+					$.ajax("/api/users", {
+						type: "POST",
+						data: newUser
+					}).then(function() {
+						alert("congrats you have created an account. Enter your information again to log in");
+						window.location="/welcome/"+username+"/";
+					});
 				}
 			})
 		}
-		else if (!nameAppropriate)
-		{
-			alert("Your username is inappropraite");
+		else {
+			if (!nameAppropriate){
+				alert("Your username is inappropraite");
+			}
+			else
+			{
+				alert("please enter a username and password");
+			}	
 		}
-		else
-		{
-			alert("please enter a username and password");
-		}	
 	});
 });

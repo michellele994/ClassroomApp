@@ -7,6 +7,7 @@ var router = express.Router();
 router.get("/", function(req, res) {
     res.render("login");
 });
+
 // This renders the available classes for enrollment as long as user is not currently a teacher for the class.
 router.get("/welcome/:username/",function(req,res){
     db.User.findOne({
@@ -103,7 +104,7 @@ router.get("/api/enrollment", function(req, res) {
         res.json(dbenrollment);
     });
 });
-//API route for a single user
+//API route for a single user //DOES USER EXIST LOG IN AND SIGNUP
 router.get("/api/users/:username/", function(req, res) {
     db.User.findOne({
         where: {
