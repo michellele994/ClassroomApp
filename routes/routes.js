@@ -7,10 +7,14 @@ var router = express.Router();
 router.get("/", function(req, res) {
     res.render("login");
 });
+//Teacher will only see classes teaching and create a class
+router.get("/welcomeTeacher/:username",function(req,res){
+    res.render("classesTeacher");
+});
 
 // This renders the available classes for enrollment as long as user is not currently a teacher for the class.
 router.get("/welcome/:username/",function(req,res){
-    db.User.findOne({
+    /*db.User.findOne({
         where:{
             username:req.params.username
         },
@@ -24,7 +28,7 @@ router.get("/welcome/:username/",function(req,res){
                 }
             }]
         }).then(function(dbclassesTeaching){
-        //if class doesnt update use this
+        //if class doesnt update use this*/
             db.EnrolledClass.findAll({
                 include:[{
                     model:db.Student,
@@ -42,13 +46,13 @@ router.get("/welcome/:username/",function(req,res){
                 }]*/
             }).then(function(dbclassesEnrolled){
                 var userLoggedin={
-                    userInfo:dbUser,
-                    classesTeaching:dbclassesTeaching,
+                    //userInfo:dbUser,
+                    //classesTeaching:dbclassesTeaching,
                     classesEnrolled:dbclassesEnrolled
                     }
                 res.render("classes",userLoggedin);
-            });
-        });
+            //});
+        //});
     });
 });
 
