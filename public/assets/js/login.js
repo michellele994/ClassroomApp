@@ -4,8 +4,9 @@ $(function() {
 		event.preventDefault();
 		//getting information from the form inputs
 		const username = $("#enter_username").val().trim();
+		//const password= $("enter_password").val().trim();
 		//const name = $("#enter_name").val().trim();
-		if (username && name !="")
+		if (username)
 		{
 			$.get("/api/users/"+username+"/").then(function(response){
 				if(response){
