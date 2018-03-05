@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	});
 	AssignedHW.associate = function(models) {
-		AssignedHW.belongsTo(models.MadeClass, {
+		AssignedHW.belongsTo(models.ExistingClass, {
 		  foreignKey: {
 		    allowNull: false
 		  }

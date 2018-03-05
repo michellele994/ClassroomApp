@@ -1,12 +1,12 @@
+
 $(function() {
 	//login
 	$("#take_user").on("click", function(event) {
 		event.preventDefault();
 		//getting information from the form inputs
 		const username = $("#enter_username").val().trim();
-		//const password= $("enter_password").val().trim();
-		//const name = $("#enter_name").val().trim();
-		if (username)
+		const name = $("#enter_name").val().trim();
+		if (username && name !="")
 		{
 			$.get("/api/users/"+username+"/").then(function(response){
 				if(response){
@@ -14,12 +14,7 @@ $(function() {
 					//change window location without goback 
 					//window.location.replace("/classes/"+username+"/"+name);
 					//allows go back
-					if (response.teacher===false){
-						window.location="/welcome/"+username+"/";
-					}
-					else{
-						window.location="/welcomeTeacher/"+username+"/";
-					}
+					window.location="/welcome/"+username+"/";
 				}
 				else{
 					alert("Incorrect login");
@@ -33,18 +28,13 @@ $(function() {
 	});
 
 	//signup button will take information from form to create data
-	$("#create-new-user").on("click", function(event) {
+	$("#signup").on("click", function(event) {
 		event.preventDefault();
 
 		//getting information from the form inputs
-		const username = $("#new_username").val().trim();
-		const name = $("#new_name").val().trim();
-		const password=$("#new_password").val().trim();
-		const teacher=$("input[name=teacher]:checked").val();
-		console.log(teacher);
-
+		const username = $("#enter_username").val().trim();
+		const name = $("#enter_name").val().trim();
 		var userExists=false;
-		var userNameexists=false;
 
 		var nameAppropriate = true;
 
@@ -60,59 +50,43 @@ $(function() {
 				break;
 			}
 		}
-		//console.log(nameAppropriate);
+		console.log(nameAppropriate);
 		//make sure that both required fields have been entered before creating an account
 		if (username && name && nameAppropriate)
 		{
 			//new user to make the post request
 			var newUser = {
 				username: username,
-				name: name,
-				teacher:teacher
+				name: name
 			}
 			//before sending post request we must make sure that users dont exist
-			$.get("/api/users/"+username+"/").then(function(response){
+			$.get("/api/users/"+username).then(function(response){
 				//console.log(response[1].name);
 				//go through the api and check if the username and name are taken
-				/*for(var i=0;i<response.length;i++){
-					if(response[i].name===name&&response[i].username===username){
-						userExists=true;
-					}
-					if(response[i].username===username){
-						userNameexists=true;
-					}
-				}*/
-				//if both username and name are take userExists already
-				//if(userExists===true){
-				if(response){
-					//alert("This name already exists!");
-				//}
-				//else{
-					//if username is taken
-					//if(userNameexists===true){
-					alert("Username is taken");
+				if (response)
+				{
+					alert("The username already exists!");
 				}
-				else{
-						//(userExists===false&&userNameexists===false){
-						//Create a new user
-					$.ajax("/api/users", {
+				else
+				{
+					$.ajax("/api/users/", {
 						type: "POST",
 						data: newUser
-					}).then(function() {
+					}).then(
+					function() {
 						alert("congrats you have created an account. Enter your information again to log in");
 						window.location="/welcome/"+username+"/";
 					});
 				}
 			})
 		}
-		else {
-			if (!nameAppropriate){
-				alert("Your username is inappropraite");
-			}
-			else
-			{
-				alert("please enter a username and password");
-			}	
+		else if (!nameAppropriate)
+		{
+			alert("Your username is inappropraite");
 		}
+		else
+		{
+			alert("please enter a username and password");
+		}	
 	});
 });

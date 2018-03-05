@@ -13,17 +13,11 @@ module.exports = function(sequelize, DataTypes) {
 			validate: {
 				len: [1]
 			}
-		},
-		teacher: {
-			type: DataTypes.BOOLEAN,
-			allowNull: false
 		}
 	});
 	User.associate = function(models) {
-	    User.hasMany(models.MadeClass, {
-	    	onDelete: "cascade"
-	    });
-	    User.hasMany(models.EnrolledClass);
+		User.hasOne(models.Student);
+		User.hasOne(models.Teacher);
   	};
 	return User;
 }

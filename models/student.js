@@ -16,17 +16,19 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	});
 	Student.associate = function(models) {
-		Student.belongsTo(models.MadeClass, {
+		Student.belongsTo(models.User, {
 		  foreignKey: {
 		    allowNull: false
 		  }
 		});
-		Student.belongsTo(models.Teacher, {
-		  foreignKey: {
-		    allowNull: false
-		  }
-		});
-		Student.hasMany(models.EnrolledClass);
+		// Student.belongsTo(models.Teacher, {
+		//   foreignKey: {
+		//     allowNull: false
+		//   }
+		// });
+		// Student.hasMany(models.EnrolledClass);
+
+		Student.belongsToMany(models.ExistingClass, { through: "StudentClassroomRoster"});
 	};
 	return Student;
 }
