@@ -26,7 +26,19 @@ router.get("/classTeacherview/:userName/:classid",function(req,res){
         //res.json(dbclassInfo);
         res.render("teacherView",classInfo);
     });
-    
+});
+router.get("/api/classTeacherview/:userName/:classid",function(req,res){
+    db.ExistingClass.findOne({
+        where:{
+            id:req.params.classid
+        },
+        include:[db.Teacher,db.AssignedHW,db.Student]
+    }).then(function(dbclassInfo){
+        var classInfo={
+            classInfo:dbclassInfo
+        }
+        res.json(dbclassInfo);
+    });
 });
 // This renders the available classes for enrollment as long as user is not currently a teacher for the class.
 router.get("/welcome/:username/",function(req,res){
@@ -79,7 +91,6 @@ router.get("/welcome/:username/",function(req,res){
 
 //Routing for APIs
 //======================================================================
-
 //API route for all existing users. If a user has MadeClass, they are a teacher of those classes. If a user has EnrolledClass, they are a student of those classes.
 router.get("/api/users", function(req, res) {
     db.User.findAll({ include: [db.Teacher, db.Student] }).then(function(dbusers) {
@@ -150,6 +161,11 @@ router.get("/api/students/:username/", function(req, res) {
     });
 });
 
+/*router.post("api/hw/:classid",function(req,res){
+    db.AssignedHW.fidnAll({}).then(function(dbHw) {
+        res.json(dbHw);
+    });
+})*/
 
 //POSTS
 //======================================================================
@@ -190,6 +206,12 @@ router.post("/api/enrollment/", function(req, res) {
         })
     });
 });
+
+router.post("api/hw/:classid",function(req,res){
+    db.AssignedHW.create(req.body).then(function(dbHw) {
+        res.json(dbHw);
+    });
+})
 
 module.exports=router;
 
