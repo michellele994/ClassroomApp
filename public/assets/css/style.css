@@ -8,14 +8,12 @@ body {
     /*position: fixed;*/
     background-repeat: no-repeat;
     background-size: cover;
-<<<<<<< HEAD
     height: 100%;
-=======
     letter-spacing: 3px;
 }
+
 button {
     letter-spacing: 3px;
->>>>>>> f322351f99fe84b402a5687098204750cb982cc5
 }
 
 .jumbotron {
