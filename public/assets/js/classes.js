@@ -198,9 +198,6 @@ $(function() {
 	//view class page button clicked
 	$(".classPg").on("click", function(event)
 	{
-		var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
-		userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
-		var userName = userInfo.substr(0, userInfo.indexOf("/"));
 		var classid=$(this).attr("data-classid");
 		$.get("/api/classes/"+classid).then(function(response){
 			var teachername = response.Teacher.username;

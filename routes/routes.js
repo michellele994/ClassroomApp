@@ -108,7 +108,7 @@ router.get("/api/teachers/:username/", function(req, res) {
 });
 //API route for a single class
 router.get("/api/classes/:classid/", function(req, res) {
-    db.MadeClass.findOne({
+    db.ExistingClass.findOne({
         where: {
             id: req.params.classid
         },
