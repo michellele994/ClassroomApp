@@ -9,41 +9,46 @@ router.get("/", function(req, res) {
 });
 // This renders the available classes for enrollment as long as user is not currently a teacher for the class.
 router.get("/welcome/:username/",function(req,res){
-    db.User.findOne({
+    db.Teacher.findOne({
         where:{
             username:req.params.username
         },
-        include: [db.MadeClass, db.EnrolledClass]
-    }).then(function(dbUser){
-        db.MadeClass.findAll({
-            include:[{
-                model:db.Teacher,
+        include: [db.ExistingClass]
+    }).then(function(dbTeacher){
+        db.Student.findOne({
+            where:{
+                username:req.params.username
+            },
+            include: [db.ExistingClass]
+        }).then(function(dbStudent){
+            db.User.findOne({
                 where:{
-                    username:dbUser.username
+                    username:req.params.username
                 }
-            }]
-        }).then(function(dbclassesTeaching){
-        //if class doesnt update use this
-            db.EnrolledClass.findAll({
-                include:[{
-                    model:db.Student,
-                    where:{
-                        username:dbUser.username
-                    }
-                }]
-           /*//if class updates
-            db.MadeClass.findAll({
-                include:[{
-                    model:db.Student,
-                    where:{
-                        username:dbUser.username
-                    }
-                }]*/
-            }).then(function(dbclassesEnrolled){
+            }).then(function(dbUser){
+                var classesTeaching;
+                var classesEnrolled;
+                if(dbTeacher === null)
+                {
+                    classesTeaching = null;
+                }
+                else
+                {
+                    classesTeaching = dbTeacher.ExistingClasses
+                }
+                if(dbStudent === null)
+                {
+                    classesEnrolled = null;
+                }
+                else
+                {
+                    classesEnrolled = dbStudent.ExistingClasses
+                }
+
                 var userLoggedin={
-                    userInfo:dbUser,
-                    classesTeaching:dbclassesTeaching,
-                    classesEnrolled:dbclassesEnrolled
+                    userInfo: dbUser,
+                    classesTeaching: classesTeaching,
+                    classesEnrolled: classesEnrolled
                     }
                 res.render("classes",userLoggedin);
             });
@@ -51,56 +56,32 @@ router.get("/welcome/:username/",function(req,res){
     });
 });
 
-
-/*//send available classes
-=======
-
-//send available classes
->>>>>>> 4222128d806399c5302fab8c8e2419ca09a44ab8
-router.get("/welcomeClasses/:username/",function(req,res){
-    console.log("im");
-    /*db.MadeClass.findAll({
-        include:[db.Teacher,db.Student]
-    }).then(function(dbClasses){
-        console.log(dbClasses[0].classname);
-<<<<<<< HEAD
-    });
-});*/
-
-
-
 //Routing for APIs
 //======================================================================
 
 //API route for all existing users. If a user has MadeClass, they are a teacher of those classes. If a user has EnrolledClass, they are a student of those classes.
 router.get("/api/users", function(req, res) {
-    db.User.findAll({ include: [db.MadeClass, db.EnrolledClass] }).then(function(dbusers) {
+    db.User.findAll({ include: [db.Teacher, db.Student] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
 
 //API route for all teachers including the classes they have made. Teachers are made when a class is made as they are signed in.
 router.get("/api/teachers", function(req, res) {
-    db.Teacher.findAll({ include: [db.MadeClass, db.Student] }).then(function(dbusers) {
+    db.Teacher.findAll({ include: [db.ExistingClass] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
 //API route for all students including the classes they have enrolled in. Students are mdae when they enroll into their first class
 router.get("/api/students", function(req, res) {
-    db.Student.findAll({ include: [db.EnrolledClass] }).then(function(dbusers) {
+    db.Student.findAll({ include: [db.ExistingClass] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
 //API route for all the classes. CLasses are made purely by teachers. This shows associated homework, teacher, and students
 router.get("/api/classes", function(req, res) {
-    db.MadeClass.findAll({ include: [db.AssignedHW, db.Teacher, db.Student] }).then(function(dbclass) {
+    db.ExistingClass.findAll({ include: [db.Teacher, db.Student]}).then(function(dbclass) {
         res.json(dbclass);
-    });
-});
-//API route for all enrollment. Anytime someone enrolls, this is made. This has an associating between Students and Homework
-router.get("/api/enrollment", function(req, res) {
-    db.EnrolledClass.findAll({ include: [db.Student, db.HomeworkTD] }).then(function(dbenrollment) {
-        res.json(dbenrollment);
     });
 });
 //API route for a single user
@@ -109,7 +90,7 @@ router.get("/api/users/:username/", function(req, res) {
         where: {
             username: req.params.username
         },
-        include: [db.MadeClass, db.EnrolledClass]
+        include: [db.Teacher, db.Student]
     }).then(function(dbuser) {
         res.json(dbuser);
     });
@@ -120,7 +101,7 @@ router.get("/api/teachers/:username/", function(req, res) {
         where: {
             username: req.params.username
         },
-        include: [db.MadeClass]
+        include: [db.ExistingClass]
     }).then(function(dbteacher) {
         res.json(dbteacher);
     });
@@ -131,7 +112,7 @@ router.get("/api/classes/:classid/", function(req, res) {
         where: {
             id: req.params.classid
         },
-        include: [db.AssignedHW, db.Teacher, db.Student]
+        include: [db.Teacher, db.Student]
     }).then(function(dbclass) {
         res.json(dbclass);
     });
@@ -142,24 +123,9 @@ router.get("/api/students/:username/", function(req, res) {
         where: {
             username: req.params.username
         },
-        include: [db.EnrolledClass]
+        include: [db.ExistingClass]
     }).then(function(dbteacher) {
         res.json(dbteacher);
-    });
-});
-//if classes doesnt update use this classes where user not enrolled
-router.get("/api/availableClasses/:username", function(req, res) {
-    db.EnrolledClass.findAll({
-        include:[{
-            model:db.Student,
-            where:{
-                username:{
-                    $ne:req.params.username
-                }
-            }
-        }]
-    }).then(function(dbclassesnotEnrolled){
-        res.json(dbclassesnotEnrolled)
     });
 });
 
@@ -167,7 +133,7 @@ router.get("/api/availableClasses/:username", function(req, res) {
 //POSTS
 //======================================================================
 router.post("/api/classes", function(req, res) {
-    db.MadeClass.create(req.body).then(function(dbclasses) {
+    db.ExistingClass.create(req.body).then(function(dbclasses) {
         res.json(dbclasses);
     });
 });
@@ -186,22 +152,23 @@ router.post("/api/teachers", function(req, res) {
         res.json(dbteacher);
     });
 });
-router.post("/api/enrollment", function(req, res) {
-    db.EnrolledClass.create(req.body).then(function(dbenrollment) {
-        res.json(dbenrollment);
+router.post("/api/enrollment/", function(req, res) {
+    db.ExistingClass.findOne({
+        where: {
+            id: req.body.classid
+        }
+    }).then(function(currentClass){
+        db.Student.findOne({
+            where: {
+                username: req.body.username
+            }
+        }).then(function(currentStudent){
+            // console.log(currentStudent);
+            // console.log(currentClass);
+            currentClass.addStudent(currentStudent);
+        })
     });
 });
 
-router.put("/api/classes/:classid", function(req, res) {
-    db.MadeClass.update(req.body,
-      {
-        where: {
-          id: req.params.classid
-        }
-      })
-    .then(function(dbClasses) {
-      res.json(dbClasses);
-    });
-  });
 
 module.exports=router;
