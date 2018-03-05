@@ -9,11 +9,26 @@ router.get("/", function(req, res) {
     res.render("login");
 });
 //student page view
-router.get("/classStudentview/:userName/:classid",function(req,res){
-    res.render("studentView");
+router.get("/classStudentview/:username/:classid",function(req,res){
+    db.ExistingClass.findOne({
+        where:{
+            id:req.params.classid
+        },include:[{
+            model:db.Student,
+            where:{
+                username:req.params.username
+            }
+    }]
+    }).then(function(dbstudentInfo){
+        var studentInfo={
+            currentStudent:dbstudentInfo
+        }
+        //res.json(studentInfo);
+        res.render("studentView",studentInfo);
+    })
 });
 //teacher page view
-router.get("/classTeacherview/:userName/:classid",function(req,res){
+router.get("/classTeacherview/:username/:classid",function(req,res){
     db.ExistingClass.findOne({
         where:{
             id:req.params.classid
@@ -27,7 +42,7 @@ router.get("/classTeacherview/:userName/:classid",function(req,res){
         res.render("teacherView",classInfo);
     });
 });
-router.get("/api/classTeacherview/:userName/:classid",function(req,res){
+router.get("/api/classTeacherview/:username/:classid",function(req,res){
     db.ExistingClass.findOne({
         where:{
             id:req.params.classid
