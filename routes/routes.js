@@ -4,14 +4,29 @@ var router = express.Router();
 
 //Routing for HTML
 //======================================================================
+//login page
 router.get("/", function(req, res) {
     res.render("login");
 });
+//student page view
 router.get("/classStudentview/:userName/:classid",function(req,res){
     res.render("studentView");
 });
+//teacher page view
 router.get("/classTeacherview/:userName/:classid",function(req,res){
-    res.render("teacherView");
+    db.ExistingClass.findOne({
+        where:{
+            id:req.params.classid
+        },
+        include:[db.Teacher,db.AssignedHW]
+    }).then(function(dbclassInfo){
+        var classInfo={
+            classInfo:dbclassInfo
+        }
+        //res.json(dbclassInfo);
+        res.render("teacherView",classInfo);
+    });
+    
 });
 // This renders the available classes for enrollment as long as user is not currently a teacher for the class.
 router.get("/welcome/:username/",function(req,res){
