@@ -7,6 +7,12 @@ var router = express.Router();
 router.get("/", function(req, res) {
     res.render("login");
 });
+router.get("/classStudentview/:userName/:classid",function(req,res){
+    res.render("studentView");
+});
+router.get("/classTeacherview/:userName/:classid",function(req,res){
+    res.render("teacherView");
+});
 // This renders the available classes for enrollment as long as user is not currently a teacher for the class.
 router.get("/welcome/:username/",function(req,res){
     db.Teacher.findOne({
