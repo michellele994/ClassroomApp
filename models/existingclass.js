@@ -22,11 +22,7 @@ module.exports = function(sequelize, DataTypes) {
 		  }
 		});
 		ExistingClass.belongsToMany(models.Student, { through: "StudentClassroomRoster"});
-<<<<<<< HEAD
 		ExistingClass.hasMany(models.AssignedHW);
-=======
-		// ExistingClass.hasMany(models.AssignedHW);
->>>>>>> f322351f99fe84b402a5687098204750cb982cc5
   	};
 	return ExistingClass;
 }
