@@ -166,16 +166,17 @@ $(function() {
 								classid: classid,
 								username: userName
 							}
-						}).then(function(createdAssociation) {
-							console.log("This should have been done");
-						})
+						});
+						//For some reason using ".then" doesnt work here.
+						setTimeout(function(){
+							console.log("enrollment has been created else");
+							location.reload();
+						}, 500);
 					})
 				}
 				//If it already exists, read the information
 				else
 				{
-					var studentID = studentResponse.id;
-
 					var newEnrolled = {
 						classid: classid,
 						username: userName
@@ -183,12 +184,12 @@ $(function() {
 					$.ajax("/api/enrollment", {
 						type: "POST",
 						data: newEnrolled
-					}).then(
-					function() {
+					});
+					//For some reason using ".then" doesnt work here.
+					setTimeout(function(){
 						console.log("enrollment has been created else");
 						location.reload();
-					})
-
+					}, 500);
 				}
 			});
 		});
