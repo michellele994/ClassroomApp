@@ -186,7 +186,8 @@ $(function() {
 						data: newEnrolled
 					});
 					//For some reason using ".then" doesnt work here.
-					setTimeout(function(){
+					setTimeout(
+						function(){
 						console.log("enrollment has been created else");
 						location.reload();
 					}, 500);

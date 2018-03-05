@@ -8,10 +8,6 @@ body {
     height: 100% !important;
     background-repeat: no-repeat;
     background-size: cover;
-    letter-spacing: 3px;
-}
-button {
-    letter-spacing: 3px;
 }
 
 .jumbotron {

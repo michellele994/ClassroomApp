@@ -5,8 +5,8 @@ $(function() {
 		event.preventDefault();
 		//getting information from the form inputs
 		const username = $("#enter_username").val().trim();
-		const name = $("#enter_name").val().trim();
-		if (username && name !="")
+		const passworkd = $("#enter_password").val().trim();
+		if (username)//!="" && name !="")
 		{
 			$.get("/api/users/"+username+"/").then(function(response){
 				if(response){
@@ -28,12 +28,13 @@ $(function() {
 	});
 
 	//signup button will take information from form to create data
-	$("#signup").on("click", function(event) {
+	$("#create-new-user").on("click", function(event) {
 		event.preventDefault();
 
 		//getting information from the form inputs
-		const username = $("#enter_username").val().trim();
-		const name = $("#enter_name").val().trim();
+		const username = $("#new_username").val().trim();
+		const name = $("#new_name").val().trim();
+		//const password=$("#new_password").val().trim();
 		var userExists=false;
 
 		var nameAppropriate = true;
