@@ -16,10 +16,8 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	});
 	User.associate = function(models) {
-	    User.hasMany(models.MadeClass, {
-	    	onDelete: "cascade"
-	    });
-	    User.hasMany(models.EnrolledClass);
+		User.hasOne(models.Student);
+		User.hasOne(models.Teacher);
   	};
 	return User;
 }

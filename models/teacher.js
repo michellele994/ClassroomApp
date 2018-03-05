@@ -16,9 +16,17 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	});
 	Teacher.associate = function(models) {
-		Teacher.hasMany(models.MadeClass, {
+		Teacher.belongsTo(models.User, {
+		  foreignKey: {
+		    allowNull: false
+		  }
+		});
+		Teacher.hasMany(models.ExistingClass, {
 	    	onDelete: "cascade"
-	    });
+		});
+		// Teacher.hasMany(models.Student, {
+	 //    	onDelete: "cascade"
+	 //    });
 	};
 	return Teacher;
 }
