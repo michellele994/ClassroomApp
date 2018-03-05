@@ -9,6 +9,12 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
+
+    letter-spacing: 3px;
+}
+button {
+    letter-spacing: 3px;
+
 }
 
 .jumbotron {
@@ -78,11 +84,6 @@ hr {
 h2 {
     font-size: 250%;
 }
-
-
-/*input {
-    margin-left: 8px;
-}*/
 
 #sidebar {
     overflow: hidden;
