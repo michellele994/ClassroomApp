@@ -209,3 +209,14 @@ h2 {
 main {
     margin: auto;
 }
+/*studnet view styling*/
+#hwSubmissioncontainer{
+    color:#000;
+}
+#userInfo{
+    color:#ffff;
+}
+/*teacher view styling*/
+#teacherViewmainHeadings{
+    color:#fff;
+}
