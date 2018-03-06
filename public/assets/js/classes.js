@@ -186,7 +186,8 @@ $(function() {
 						data: newEnrolled
 					});
 					//For some reason using ".then" doesnt work here.
-					setTimeout(function(){
+					setTimeout(
+						function(){
 						console.log("enrollment has been created else");
 						location.reload();
 					}, 500);
@@ -202,13 +203,13 @@ $(function() {
 		$.get("/api/classes/"+classid).then(function(response){
 			var teachername = response.Teacher.username;
 			if (userName===teachername){
-						window.location="/classTeacherview/"+userName+"/";
+						window.location="/classTeacherview/"+userName+"/"+classid;
 			}
 			else{
 				//change window location without goback 
 						//window.location.replace("/classes/"+username+"/"+name);
 						//allows go back
-						window.location="/classStudentview/"+userName+"/";
+						window.location="/classStudentview/"+userName+"/"+classid;
 			}
 		})
 	})

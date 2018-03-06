@@ -1,1 +1,74 @@
-student view
+<div class="container-fluid">
+    <!--ALL ASSGS MODAL-->
+    <div class="modal fade" id="allHwModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modal-title">All Assignments</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                    
+                <div class="modal-footer">
+                    <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Main body of page-->
+    <div id="userInfo" class="container-fluid text-center">
+        <h1>{{currentStudent.classname}}</h1>
+        <h8>Instructor: {{currentStudent.Teacher.name}}</h8>
+        <h6>Student:{{currentStudent.Students.[0].name}}</h6>
+    </div>
+    <div id="mainContainer"class="container-fluid text-center">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 wrapper classes">
+                <div class="container-fluid" id="classesTeaching">
+                    <div class="card text-white bg-danger border-white mb-3 mx-auto" style="max-width: 60rem; opacity: .80">
+                        <div class="card-header">
+                            <h3>Assignments</h3>
+                        </div>
+                        <div class="card-body ">
+                            <!--accordion-->
+                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="headingOne">
+                                    <h5 class="mb-0"></h5>
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            HW title
+                                        </a>
+                                    </h5>
+                                </div>
+                                <!--hw assignement collapse-->
+                                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="card-block">
+                                        <div id="hwSubmissioncontainer">
+                                            <div>hw description</div>
+                                            <div class="form-group">
+                                                <label for="new-hw-title">Submit Link:</label>
+                                                <input type="text" id="hw_title" name="new-class-name" maxlength="30">
+                                                <br>
+                                                <label for="new-hw-dueDate">Comment:</label>
+                                                <input type="text" id="hw_dueDate" name="new-class-desc" maxlength="500">
+                                                </br>
+                                                <button data-classid="{{currentStudent.id}}"class="btn btn-outline-info badge-pill" type="submit" id="submitHw">Submit<i class="far fa-check-circle"></i></button>
+                                                <br>
+                                                <span id="cannot-create-error"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-info badge-pill crteClass col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#allHwModal">View All Assignments</button> 
+            <!--<div>Attendance</div>-->
+        </div>
+    </div>
+</div>

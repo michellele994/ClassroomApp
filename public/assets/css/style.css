@@ -5,13 +5,9 @@ html {
 body {
     background-image: url("../imgs/blackboard.jpg");
     background-color: #191516;
-    height: 100% !important;
+    /*position: fixed;*/
     background-repeat: no-repeat;
     background-size: cover;
-    letter-spacing: 3px;
-}
-button {
-    letter-spacing: 3px;
 }
 
 .jumbotron {
@@ -21,7 +17,12 @@ button {
 #loginContainer {
     /*background-size: 100%;*/
     color: #fff;
-    height: 100%;
+    /*height: 100%;*/
+}
+
+.card,
+.cardClasses {
+    background: #195627;
 }
 
 #formGroup {
@@ -29,10 +30,22 @@ button {
     margin: 20px auto;
 }
 
-.btn-info,
-.btn-success {
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #fff;
+    color: #195627;
     margin-top: 20px;
+}
+
+.btn-info {
+    margin-top: 10px;
     color: black;
+}
+
+.btn-success {
+    background-color: #195627;
+    border-color: #fff;
+    margin-top: 10px;
 }
 
 .classes {
@@ -53,14 +66,17 @@ button {
     height: 25%;
 }
 
+hr:first-child {
+    display: none;
+}
+
+hr {
+    background-color: #fff;
+}
+
 h2 {
     font-size: 250%;
 }
-
-
-/*input {
-    margin-left: 8px;
-}*/
 
 #sidebar {
     overflow: hidden;
@@ -216,6 +232,7 @@ main {
     margin: auto;
 }
 
+
 .col-md-3.sidebarWidth {
     max-width: 15%;
 }
@@ -223,4 +240,16 @@ main {
 .sidebarNames {
     padding-right: 5px;
     font-size: 14px;
+
+/*studnet view styling*/
+#hwSubmissioncontainer{
+    color:#000;
+}
+#userInfo{
+    color:#ffff;
+}
+/*teacher view styling*/
+#teacherViewmainHeadings{
+    color:#fff;
+
 }
