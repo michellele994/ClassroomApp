@@ -251,11 +251,7 @@ router.post("/api/enrollment/", function(req, res) {
     });
 });
 
-<<<<<<< HEAD
-router.post("api/hw/:classid",function(req,res){
-=======
 router.post("/api/homework/:classid",function(req,res){
->>>>>>> e0642f6c06c859fffdeae240a1255553fd409d9b
     db.Homework.create(req.body).then(function(dbHw) {
         res.json(dbHw);
 
