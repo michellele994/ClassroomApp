@@ -8,11 +8,20 @@ body {
     /*position: fixed;*/
     background-repeat: no-repeat;
     background-size: cover;
+<<<<<<< HEAD
     height: 100%;
     letter-spacing: 3px;
 }
 
 button {
+=======
+    letter-spacing: 3px;
+}
+button{
+    letter-spacing: 3px;
+}
+input{
+>>>>>>> 82ccbde5df7e9e38a26481b8efeb131d7cce8f93
     letter-spacing: 3px;
 }
 
@@ -84,35 +93,32 @@ h2 {
     font-size: 250%;
 }
 
-
-/*input {
-    margin-left: 8px;
-}*/
-
 #sidebar {
     overflow: hidden;
     z-index: 3;
 }
 
 #sidebar .list-group {
-    min-width: 400px;
     opacity: 0.75;
-    background-color: rgb(51, 51, 51);
+    background-color: #195627;
     min-height: 100vh;
 }
 
-#sidebar i {
-    margin-right: 6px;
-}
+/* #sidebar i {
+    margin-right: 8px;
+    margin-left: 4px;
+} */
 
 #sidebar .list-group-item {
     border-radius: 0;
-    background-color: #333;
-    color: #ccc;
+    background-color: #195627;
     border-left: 0;
     border-right: 0;
-    border-color: #2c2c2c;
+    border-color: #fff;
     white-space: nowrap;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 
@@ -202,7 +208,7 @@ h2 {
     }
     #sidebar .list-group>.list-group-item {
         text-align: center;
-        padding: .75rem .5rem;
+        padding: .75rem 0.5rem;
     }
     /* hide caret icons of top level when collapsed */
     #sidebar .list-group>.list-group-item[aria-expanded="true"]::after,
@@ -239,4 +245,35 @@ h2 {
 
 main {
     margin: auto;
+}
+
+.col-md-3.sidebarWidth {
+    max-width: 15%;
+}
+
+.sidebarNames {
+    padding-right: 5px;
+    font-size: 14px;
+}
+
+#hwSubmissioncontainer{
+    color:#000;
+
+}
+
+#hwSubmissioncontainer {
+    color: #000;
+}
+
+#userInfo{
+    color:#ffff;
+}
+
+#teacherViewmainHeadings{
+    color:#fff;
+
+}
+
+.hwSubmission {
+    border: none;
 }

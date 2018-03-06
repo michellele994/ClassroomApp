@@ -1,3 +1,96 @@
+<div class="container-fluid">
+    <div class="row d-flex d-md-block flex-nowrap wrapper">
+        <div class="col-md-3 sidebarWidth float-left col-1 pl-0 pr-0 collapse width" id="sidebar">
+            <div class="list-group border-0 card text-center text-md-left">
+                <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline sidebarNames">Classes</span> </a>
+                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-film"></i> <span class="d-none d-md-inline sidebarNames">Item 2</span></a>
+                <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline sidebarNames">Resources</span></a>
+                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline sidebarNames">Logout</span></a>
+            </div>
+        </div>
 
-teacher view
-<button>Michelle is so cool</button>
+		<a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-bars fa-2x py-2 p-1 m-2 ml-5"></i></a>
+        <main class="col-md-12 col px-5 pl-md-3 pt-2 main">
+                <!--POST HW MODAL-->
+                <div class="modal fade" id="postHwModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="modal-title">Create a new Assignment</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="new-hw-title">Title:</label>
+                                    <input type="text" id="hw_title" name="new-class-name" maxlength="30">
+                                    <br>
+                                    <label for="new-hw-dueDate">Due Date:</label>
+                                    <input type="text" id="hw_dueDate" name="new-class-desc" maxlength="500">
+                                    </br>
+                                    <label for="new-hw-desc">Description:</label>
+                                    <textarea class="form-control" id="hw_description" name="new-class-desc" rows="3" maxlength="500"></textarea>
+                                    </br>
+                                    <button data-classid="{{classInfo.id}}"class="btn btn-outline-success badge-pill" type="submit" id="postNewhw">Create<i class="far fa-check-circle"></i></button>
+                                    <br>
+                                    <span id="cannot-create-error"></span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--ALL ASSGS MODAL-->
+                <div class="modal fade" id="allHwModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="modal-title">All Assignments</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                hwtitle
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="card-block">
+                                                hw description
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            <div class="modal-footer">
+                                <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Main body of page-->
+                <div id="teacherViewmainHeadings"class="container-fluid text-center">
+                    <h1>{{classInfo.classname}}</h1>
+                    <h6>Instructor: {{classInfo.Teacher.username}}</h6>
+                </div>
+                
+                <div id="mainContainer"class="container-fluid text-center">
+                
+                    <button class="btn btn-success badge-pill crteClass col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#postHwModal">Add Assignment</button>
+                    <button class="btn btn-success badge-pill crteClass col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#allHwModal">View All Assignments</button> 
+        <!--<div>Attendance</div>-->
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

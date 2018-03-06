@@ -1,43 +1,53 @@
 <div class="container-fluid">
     <div class="row d-flex d-md-block flex-nowrap wrapper">
-        <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width" id="sidebar">
+        <div class="col-md-3 sidebarWidth float-left col-1 pl-0 pr-0 collapse width" id="sidebar">
             <div class="list-group border-0 card text-center text-md-left">
-                <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline">Classes</span> </a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-film"></i> <span class="d-none d-md-inline">Item 2</span></a>
-                <a href="#menu3" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Item 3</span></a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Item 4</span></a>
+                <a href="/welcome/{{userInfo.username}}" class="list-group-item d-inline-block collapsed homeBtn" data-parent="#sidebar"><i class="fa fa-home"></i> <span class="d-none d-md-inline sidebarNames">Home</span> </a>
+                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-film"></i> <span class="d-none d-md-inline sidebarNames">Item 2</span></a>
+				<a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline sidebarNames">Resources</span></a>
+                <div class="collapse" id="menu3">
+                    <a href="https://github.com/" target="_blank" class="list-group-item" data-parent="#menu3">GitHub</a>
+                    <a href="https://stackoverflow.com/" target="_blank" class="list-group-item" data-parent="#menu3">Stack Overflow</a>
+                    <a href="https://google.com/" target="_blank" class="list-group-item" data-parent="#menu3">Google</a>
+					<a href="https://slack.com/" target="_blank" class="list-group-item" data-parent="#menu3">Slack</a>
+                    <a href="https://youtube.com/" target="_blank" class="list-group-item" data-parent="#menu3">Youtube</a>
+                    <a href="https://www.wikipedia.org/" target="_blank" class="list-group-item" data-parent="#menu3">Wiki</a>
+                </div>
+                <a href="/" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-sign-out"></i> <span class="d-none d-md-inline sidebarNames">Logout</span></a>
             </div>
         </div>
-        <a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-bars fa-2x py-2 p-1"></i></a>
-        <main class="col-md-9 col px-5 pl-md-2 pt-2 main">
+
+		<a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-bars fa-2x py-2 p-1 m-2 ml-5"></i></a>
+        <main class="col-md-12 col px-5 pl-md-3 pt-2 main">
             <div class="modal fade" id="new-class" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h3 class="modal-title" id="modal-title">Create a new class!</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                              <label for="new-class-name">Name of Class:</label>
-                              <input type="text" id="new-class-name" name="new-class-name" maxlength="30">
-                              <br>
-                              <label for="new-class-desc">Class Description:</label>
-                              <input type="text" id="new-class-desc" name="new-class-desc" maxlength="500">
-                              </br>
-                              <button class="btn btn-outline-info badge-pill" type="submit" id="create-new-class">Create<i class="far fa-check-circle"></i></button>
-                              <br>
-                              <span id="cannot-create-error"></span>
-                          </div>
-                  </div>
-                  <div class="modal-footer">
-                    <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
-                  </div>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="modal-title">Create a new class!</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="new-class-name">Name of Class:</label>
+                                <input type="text" id="new-class-name" name="new-class-name" maxlength="30">
+                                <br>
+                                <label for="new-class-desc">Class Description:</label>
+								<textarea class="form-control" id="new-class-desc" name="new-class-desc" rows="3" maxlength="500"></textarea>								
+                                </br>
+                                <button class="btn btn-success badge-pill" type="submit" id="create-new-class">Create<i class="far fa-check-circle"></i></button>
+                                <br>
+                                <span id="cannot-create-error"></span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
+            <!--view available classes modal-->
             <div class="modal fade" id="classesAvailableModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -66,7 +76,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12 wrapper classes">
                         <div class="container-fluid" id="classesTeaching">
-                            <div class="card text-white border-white mb-3 mx-auto  cardClasses" style="max-width: 60rem; opacity: .80">
+                            <div class="card text-white border-white mb-3 mx-auto cardClasses" style="max-width: 60rem; opacity: .80">
                                 <div class="card-header">
                                     <h3>Classes Teaching</h3>
                                 </div>
@@ -81,7 +91,7 @@
                                         
                                         <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
 
-                                        <button class="classPg btn btn-info badge-pill" data-ClassID="{{this.id}}">Class Page</button>
+                                        <button class="classPg btn btn-warning badge-pill" data-ClassID="{{this.id}}">Class Page</button>
                                         {{/each}}
 
                                     </div>
@@ -107,10 +117,7 @@
                             </div>
                         </div>
                         <div id="classesAvailableBtn" class="col-lg-12">
-                            <button class="btn btn-warning badge-pill availClasses col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#classesAvailable">Available Classes</button>
-
-                            <button id="seeAvailclassesBtn" class="btn btn-info badge-pill availClasses" type="button" >Available Classes</button>
-
+                            <button id="seeAvailclassesBtn" class="btn btn-warning badge-pill availClasses col-sm-12 col-md-6 col-lg-4" type="button" data-target="#classesAvailable">Available Classes</button>
                         </div>
 
                         <div id="createClassBtn" class="col-lg-12">
@@ -122,5 +129,3 @@
         </main>
     </div>
 </div>
-
-
