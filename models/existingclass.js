@@ -23,6 +23,7 @@ module.exports = function(sequelize, DataTypes) {
 		});
 		ExistingClass.belongsToMany(models.Student, { through: "StudentClassroomRoster"});
 		ExistingClass.hasMany(models.Homework);
+
   	};
 	return ExistingClass;
 }
