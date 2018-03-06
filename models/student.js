@@ -21,14 +21,8 @@ module.exports = function(sequelize, DataTypes) {
 		    allowNull: false
 		  }
 		});
-		// Student.belongsTo(models.Teacher, {
-		//   foreignKey: {
-		//     allowNull: false
-		//   }
-		// });
-		// Student.hasMany(models.EnrolledClass);
-
 		Student.belongsToMany(models.ExistingClass, { through: "StudentClassroomRoster"});
+		Student.belongsToMany(models.Homework, { through: "AssignedHomework"});
 	};
 	return Student;
 }
