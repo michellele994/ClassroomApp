@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
 		  }
 		});
 		Student.belongsToMany(models.ExistingClass, { through: "StudentClassroomRoster"});
-		Student.belongsToMany(models.Homework, { through: "AssignedHomework"});
+		Student.belongsToMany(models.Homework, { through: models.AssignedHomework });
 	};
 	return Student;
 }
