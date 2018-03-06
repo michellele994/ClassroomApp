@@ -231,7 +231,6 @@ h2 {
 main {
     margin: auto;
 }
-<<<<<<< HEAD
 
 .col-md-3.sidebarWidth {
     max-width: 15%;
@@ -240,16 +239,17 @@ main {
 .sidebarNames {
     padding-right: 5px;
     font-size: 14px;
-=======
-/*studnet view styling*/
-#hwSubmissioncontainer{
-    color:#000;
 }
+
+#hwSubmissioncontainer {
+    color: #000;
+}
+
 #userInfo{
     color:#ffff;
 }
-/*teacher view styling*/
+
 #teacherViewmainHeadings{
     color:#fff;
->>>>>>> 90fd11d8e66c971b75f62f09cad6dae860bf6b5b
+
 }
