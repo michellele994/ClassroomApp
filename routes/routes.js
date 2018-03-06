@@ -33,7 +33,7 @@ router.get("/classTeacherview/:username/:classid",function(req,res){
         where:{
             id:req.params.classid
         },
-        include:[db.Teacher,db.AssignedHW]
+        include:[db.Teacher,db.Homework]
     }).then(function(dbclassInfo){
         var classInfo={
             classInfo:dbclassInfo
@@ -47,7 +47,7 @@ router.get("/api/classTeacherview/:username/:classid",function(req,res){
         where:{
             id:req.params.classid
         },
-        include:[db.Teacher,db.AssignedHW,db.Student]
+        include:[db.Teacher,db.Homework,db.Student]
     }).then(function(dbclassInfo){
         var classInfo={
             classInfo:dbclassInfo
@@ -223,7 +223,7 @@ router.post("/api/enrollment/", function(req, res) {
 });
 
 router.post("api/hw/:classid",function(req,res){
-    db.AssignedHW.create(req.body).then(function(dbHw) {
+    db.Homework.create(req.body).then(function(dbHw) {
         res.json(dbHw);
     });
 })
