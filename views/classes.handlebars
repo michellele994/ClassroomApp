@@ -66,24 +66,30 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12 wrapper classes">
                         <div class="container-fluid" id="classesTeaching">
-                            <div class="card text-white bg-danger border-white mb-3 mx-auto" style="max-width: 60rem; opacity: .80">
+                            <div class="card text-white border-white mb-3 mx-auto  cardClasses" style="max-width: 60rem; opacity: .80">
                                 <div class="card-header">
                                     <h3>Classes Teaching</h3>
                                 </div>
                                 <div class="card-body ">
+
                                     <div>
                                         {{#each classesTeaching}}
+
                                         <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
+                                        <hr>
                                         <div>{{this.classname}}</div>
+                                        
                                         <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
+
                                         <button class="classPg btn btn-info badge-pill" data-ClassID="{{this.id}}">Class Page</button>
                                         {{/each}}
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="container-fluid" id="classesEnrolled">
-                            <div class="card text-white bg-danger border-white mb-3 mx-auto" style="max-width: 60rem; opacity: .75">
+                            <div class="card text-white border-white mb-3 mx-auto" style="max-width: 60rem; opacity: .75">
                                 <div class="card-header">
                                     <h3>Enrolled Classes</h3>
                                 </div>
@@ -91,6 +97,7 @@
                                     <div>
                                         {{#each classesEnrolled}}
                                         <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
+                                        <hr>
                                         <div class= "h4">{{this.classname}}</div>
                                         <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
                                         <button class="classPg btn btn-warning badge-pill" data-ClassID="{{this.id}}">Class Page</button>
@@ -100,11 +107,14 @@
                             </div>
                         </div>
                         <div id="classesAvailableBtn" class="col-lg-12">
+                            <button class="btn btn-warning badge-pill availClasses col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#classesAvailable">Available Classes</button>
+
                             <button id="seeAvailclassesBtn" class="btn btn-info badge-pill availClasses" type="button" >Available Classes</button>
+
                         </div>
 
                         <div id="createClassBtn" class="col-lg-12">
-                            <button class="btn btn-info badge-pill crteClass col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
+                            <button class="btn btn-warning badge-pill crteClass col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#new-class">Create a class</button>
                         </div>
                     </div>
                 </div>
