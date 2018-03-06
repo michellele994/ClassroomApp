@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
 		    allowNull: false
 		  }
 		});
-		Homework.belongsToMany(models.Student, { through: "AssignedHomework"});
+		Homework.belongsToMany(models.Student, { through: models.AssignedHomework});
   	};
 	return Homework;
 }

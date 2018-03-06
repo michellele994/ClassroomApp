@@ -112,7 +112,6 @@ router.get("/api/users", function(req, res) {
         res.json(dbusers);
     });
 });
-
 //API route for all teachers including the classes they have made. Teachers are made when a class is made as they are signed in.
 router.get("/api/teachers", function(req, res) {
     db.Teacher.findAll({ include: [db.ExistingClass] }).then(function(dbusers) {
@@ -121,14 +120,20 @@ router.get("/api/teachers", function(req, res) {
 });
 //API route for all students including the classes they have enrolled in. Students are mdae when they enroll into their first class
 router.get("/api/students", function(req, res) {
-    db.Student.findAll({ include: [db.ExistingClass] }).then(function(dbusers) {
+    db.Student.findAll({ include: [db.ExistingClass, db.Homework] }).then(function(dbusers) {
         res.json(dbusers);
     });
 });
 //API route for all the classes. CLasses are made purely by teachers. This shows associated homework, teacher, and students
 router.get("/api/classes", function(req, res) {
-    db.ExistingClass.findAll({ include: [db.Teacher, db.Student]}).then(function(dbclass) {
+    db.ExistingClass.findAll({ include: [db.Teacher, db.Student, db.Homework]}).then(function(dbclass) {
         res.json(dbclass);
+    });
+});
+//API route for all the homework. Homework are made purely by teachers who belong to the class.
+router.get("/api/:classid/homework", function(req, res) {
+    db.Homework.findAll({ where: {ExistingClassId: req.params.classid},include: db.Student}).then(function(dbHw) {
+        res.json(dbHw);
     });
 });
 //API route for a single user
@@ -159,7 +164,7 @@ router.get("/api/classes/:classid/", function(req, res) {
         where: {
             id: req.params.classid
         },
-        include: [db.Teacher, db.Student]
+        include: [db.Teacher, db.Student, db.Homework]
     }).then(function(dbclass) {
         res.json(dbclass);
     });
@@ -170,11 +175,35 @@ router.get("/api/students/:username/", function(req, res) {
         where: {
             username: req.params.username
         },
-        include: [db.ExistingClass]
+        include: [db.ExistingClass, db.Homework]
     }).then(function(dbteacher) {
         res.json(dbteacher);
     });
 });
+
+
+router.get("/api/homework/:classid/:hwname", function(req, res) {
+    db.Homework.findOne({
+        where: {
+            homeworkname: req.params.hwname,
+            ExistingClassId: req.params.classid
+        }
+    }).then(function(dbthisHomework)
+        {
+            res.json(dbthisHomework);
+        })
+})
+
+router.get("/api/homework/:classid",function(req,res){
+    db.Homework.findAll({
+        where:{
+            ExistingClassId:req.params.classid
+        }
+    }).then(function(dbHomework) {
+        res.json(dbHomework);
+    });
+});
+
 
 /*router.post("api/hw/:classid",function(req,res){
     db.AssignedHW.fidnAll({}).then(function(dbHw) {
@@ -222,10 +251,35 @@ router.post("/api/enrollment/", function(req, res) {
     });
 });
 
+<<<<<<< HEAD
 router.post("api/hw/:classid",function(req,res){
+=======
+router.post("/api/homework/:classid",function(req,res){
+>>>>>>> e0642f6c06c859fffdeae240a1255553fd409d9b
     db.Homework.create(req.body).then(function(dbHw) {
         res.json(dbHw);
+
     });
+})
+
+
+router.post("/api/assigningHw/:hwname",function(req,res){
+    var arrStudents = req.body.students
+    db.Homework.findOne({
+        where: {
+            homeworkname: req.params.hwname
+        }
+    }).then(function(thisHomework){
+        arrStudents.forEach(function(student){
+            db.Student.findAll({
+                where: {
+                    id: student.id
+                }
+            }).then(function(thisStudent){
+                thisHomework.addStudent(thisStudent, { through: { completed: false }});
+            });
+        });
+    })
 })
 
 module.exports=router;
