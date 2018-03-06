@@ -8,13 +8,6 @@ body {
     /*position: fixed;*/
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
-
-    letter-spacing: 3px;
-}
-button {
-    letter-spacing: 3px;
-
 }
 
 .jumbotron {
@@ -235,4 +228,15 @@ h2 {
 
 main {
     margin: auto;
+}
+/*studnet view styling*/
+#hwSubmissioncontainer{
+    color:#000;
+}
+#userInfo{
+    color:#ffff;
+}
+/*teacher view styling*/
+#teacherViewmainHeadings{
+    color:#fff;
 }
