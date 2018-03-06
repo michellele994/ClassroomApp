@@ -102,8 +102,8 @@ h2 {
     border-color: #fff;
     white-space: nowrap;
     color: white;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 
@@ -257,4 +257,8 @@ main {
 #teacherViewmainHeadings{
     color:#fff;
 
+}
+
+.hwSubmission {
+    border: none;
 }
