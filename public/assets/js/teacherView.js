@@ -1,4 +1,5 @@
 $(function() {
+
     var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
         userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
         userName = userInfo.substr(0, userInfo.indexOf("/"));
@@ -59,7 +60,7 @@ $(function() {
                                     }
                                 }).then(function()
                                 {
-                                    console.log("should e done");
+                                    location.reload();
                                 })
                             });
                         }
@@ -79,6 +80,7 @@ $(function() {
                                 data: newHomework
                             }).then(function(){
                                 console.log("posted to all hw");
+                                location.reload();
                             });
                         }
                         else
