@@ -83,7 +83,7 @@ $(function() {
                             $.ajax("/api/homework/"+classid,{
                                 type:"POST",
                                 data: newHomework
-                            }).
+                            });
                             $("#alert-message-hwpostfailure").empty();
                             $("#alert-message-hwpostsuccess").text("Hw has been posted");
                             setTimeout(function() {
