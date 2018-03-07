@@ -8,12 +8,20 @@ body {
     /*position: fixed;*/
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100%;
     letter-spacing: 3px;
 }
-button{
+
+button {
     letter-spacing: 3px;
 }
-input{
+
+button {
+    letter-spacing: 3px;
+    margin: 10px;
+}
+
+input {
     letter-spacing: 3px;
 }
 
@@ -95,6 +103,7 @@ h2 {
     background-color: #195627;
     min-height: 100vh;
 }
+
 
 /* #sidebar i {
     margin-right: 8px;
@@ -247,24 +256,35 @@ main {
     padding-right: 5px;
     font-size: 14px;
 }
+<<<<<<< HEAD
 #hwSubmissioncontainer{
     color:#000;
 
+=======
+
+#hwSubmissioncontainer {
+    color: #000;
+>>>>>>> 972bcae8841c47139a56ab1bd51d9273179c3990
 }
 
 #hwSubmissioncontainer {
     color: #000;
 }
 
-#userInfo{
-    color:#ffff;
+#userInfo {
+    color: #fff;
 }
 
-#teacherViewmainHeadings{
-    color:#fff;
-
+#teacherViewmainHeadings {
+    color: #fff;
 }
 
 .hwSubmission {
     border: none;
+}
+
+#alert-message, #alert-message-login {
+    color: red;
+    font-size: 85%;
+    font-weight: bolder;
 }
