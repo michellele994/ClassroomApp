@@ -14,7 +14,7 @@ $(function() {
 			var classid=AvailableClasses[i].id;
 			var classname=AvailableClasses[i].classname;
 			var datas="data-classid="+classid;
-			var classDisplay="<div class='availableClass'data-classID="+classid+">"+classname+"<div>"
+			var classDisplay="<div class='text-capitalize availableClass'data-classID="+classid+">"+classname+"<div>"
 			var enrollebtn="<button "+datas+" class='Enroll'>Enroll</button>"
 			$("#classesAvailableModalbody").append(classDisplay+enrollebtn);
 		}
