@@ -5,11 +5,12 @@ $(function() {
         userName = userInfo.substr(0, userInfo.indexOf("/"));
 	//postHw
 	$("#postNewhw").on("click", function(event) {
+        
         var classid=$(this).attr("data-classid");
         event.preventDefault();
 
         //Create class 
-        alert("hw ass has been submitted");
+        //alert("hw ass has been submitted");
         //get homeworkid
         $.get("/api/classes/"+classid).then(function(thisClass){
             var title = $("#hw_title").val().trim();
@@ -58,41 +59,52 @@ $(function() {
                                     {
                                         students: thisClass.Students
                                     }
-                                }).then(function()
-                                {
+                                });
+                                $("#alert-message-hwpostfailure").empty();
+                                $("#alert-message-hwpostsuccess").text("Hw has been posted");
+                                setTimeout(function() {
                                     location.reload();
-                                })
+                                }, 500);
                             });
                         }
                         else
                         {
-                            alert("Thishomework already existed!!!!");
+                            $("#alert-message-hwpostsuccess").empty();
+                            //alert("Thishomework already existed!!!!");
+                            $("#alert-message-hwpostfailure").text("This homework already exists");
                         }
                     });
                 }
                 else if (thisClass.Students.length === 0){
-                    alert("You have posted homework, but you dont have any students. Future students will not be assigned this homework.")
+                    //alert("You have posted homework, but you dont have any students. Future students will not be assigned this homework.")
                     $.get("/api/homework/"+classid+"/"+title).then(function(thisHomework){
                         if(thisHomework === null)
                         {
                             $.ajax("/api/homework/"+classid,{
                                 type:"POST",
                                 data: newHomework
-                            }).then(function(){
-                                console.log("posted to all hw");
+                            }).
+                            $("#alert-message-hwpostfailure").empty();
+                            $("#alert-message-hwpostsuccess").text("Hw has been posted");
+                            setTimeout(function() {
                                 location.reload();
-                            });
+                            }, 500);
                         }
                         else
                         {
-                            alert("Thishomework already existed!!!!");
+                            //hw already exists
+                            //alert("Thishomework already existed!!!!");
+                            $("#alert-message-hwpostsuccess").empty();
+                            $("#alert-message-hwpostfailure").text("This homework already exists");
                         }
                     });
                 }
             }
             else
             {
-                alert("the name of hw is not appropraite or check if you had written a description")
+                //alert("the name of hw is not appropraite or check if you had written a description")
+                $("#alert-message-hwpostsuccess").empty();
+                $("#alert-message-hwpostfailure").text("The name of hw is not appropraite or check if you had written a description");
             }
         });
     });
