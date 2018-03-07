@@ -18,6 +18,7 @@ button {
 
 button {
     letter-spacing: 3px;
+    margin: 10px;
 }
 
 input {
@@ -274,4 +275,10 @@ main {
 
 .hwSubmission {
     border: none;
+}
+
+#alert-message, #alert-message-login {
+    color: red;
+    font-size: 85%;
+    font-weight: bolder;
 }

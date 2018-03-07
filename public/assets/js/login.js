@@ -17,13 +17,13 @@ $(function() {
 					window.location="/welcome/"+username+"/";
 				}
 				else{
-					alert("Incorrect login");
+					$("#alert-message-login").text("Incorrect login, please try again");
 				}
 			});
 		}
 		else
 		{
-			alert("please enter a username and password");
+			$("#alert-message-login").text("Please enter a username and password");
 		}
 	});
 
@@ -75,7 +75,6 @@ $(function() {
 						data: newUser
 					}).then(
 					function() {
-						alert("congrats you have created an account. Enter your information again to log in");
 						window.location="/welcome/"+username+"/";
 					});
 				}
@@ -83,11 +82,11 @@ $(function() {
 		}
 		else if (!nameAppropriate)
 		{
-			alert("Your username is inappropraite");
+			$("#alert-message").text("Your username has inappropriate characters. Please try again!");
 		}
 		else
 		{
-			alert("please enter a username and password");
+			$("#alert-message").text("Please enter a username and password");
 		}	
 	});
 });

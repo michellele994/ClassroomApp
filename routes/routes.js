@@ -13,7 +13,7 @@ router.get("/classStudentview/:username/:classid",function(req,res){
     db.ExistingClass.findOne({
         where:{
             id:req.params.classid
-        },include:[db.Teacher,{
+        },include:[db.Homework, db.Teacher,{
             model:db.Student,
             where:{
                 username:req.params.username
@@ -23,7 +23,7 @@ router.get("/classStudentview/:username/:classid",function(req,res){
         var studentInfo={
             currentStudent:dbstudentInfo
         }
-        //res.json(studentInfo);
+        // res.json(dbstudentInfo);
         res.render("studentView",studentInfo);
     })
 });
