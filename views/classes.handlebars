@@ -80,17 +80,11 @@
                                 <div class="card-header">
                                     <h3>Classes Teaching</h3>
                                 </div>
-                                <div class="card-body ">
-
+                                <div class="card-body">
                                     <div>
                                         {{#each classesTeaching}}
-
-                                        <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
                                         <hr>
                                         <div class="text-capitalize">{{this.classname}}</div>
-                                        
-                                        <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
-
                                         <button class="classPg btn btn-outline-light badge-pill" data-ClassID="{{this.id}}">Class Page</button>
                                         {{/each}}
 
@@ -106,10 +100,8 @@
                                 <div class="card-body ">
                                     <div>
                                         {{#each classesEnrolled}}
-                                        <!--BELOW LINK WILL TAKE YOU TO THE CLASS VIE TEACHER/STUDENT-->
                                         <hr>
                                         <div class= "h4 text-capitalize">{{this.classname}}</div>
-                                        <!--will go in data="{{this.classTeacher}}" once teacher name and username is added-->
                                         <button class="classPg btn btn-outline-light badge-pill" data-ClassID="{{this.id}}">Class Page</button>
                                         {{/each}}
                                     </div>

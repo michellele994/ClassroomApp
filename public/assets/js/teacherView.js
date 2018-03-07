@@ -1,4 +1,5 @@
 $(function() {
+
     var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
         userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
         userName = userInfo.substr(0, userInfo.indexOf("/"));
