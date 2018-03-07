@@ -7,21 +7,48 @@ $(function() {
         hwid=$(this).attr("data-hwid");
     });
     $("#submitHw").on("click",function(event){
-       //console.log("im here"); 
-        var studentid=$(this).attr("data-studentid")
-        //console.log(studentid);
+        var studentUsername=$(this).attr("data-student-username")
+        var classid = $(this).attr("data-classid");
         var hwLink=$("#hwLink").val().trim();
-        //console.log(hwLink);
         var comment=$("#hwComment").val().trim();
-        //PERLA:SHOULD WE INCLUDE A LINK ATTRIBUTE IN THE DATATABLE TO STORE THE LINK?
         //post to database happens here
+        $.get("/api/students/"+studentUsername).then(function(thisStudent){
+            {
+                // //Check to see the validity of the homework link
+                if(hwLink === null || hwLink === "")
+                {
+                    $("#alert-message-submithwsuccess").empty();
+                    $("#alert-message-submithwfailure").text("You did not submit anything for your homework. Please ensure that your link works.");
+                }
+                else
+                {
+                    $.ajax("/api/submitted/"+studentUsername+"/"+hwid,{
+                        type:"POST",
+                        data: {
+                            submitlink: hwLink,
+                            comment: comment,
+                            complete: true
+                        }
+                    }).then(function(){
+                        $("#alert-message-submithwfailure").empty();
+                        $("#alert-message-submithwsuccess").text("You have submitted your homework!");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 500);
+                    });
+                }
+
+                // $.get("/api/homework/"+classid).then(function(thisClassHomework){
+
+                // })
+                // var dbLink = thisStudent.Homework
+                // var dbComment = thisHomework.comment;
+                // var dbComplete = thisHomework.complete;
+            }
+        });
         if(hwLink){
             $("#alert-message-submithwfailure").empty();
-            $("#alert-message-submithwsuccess").text("Hw has been submitted");
-        }
-        else{
-            $("#alert-message-submithwsuccess").empty();
-            $("#alert-message-submithwfailure").text("Provide a valid link");
-        }   
+            $("#alert-message-submithwsuccess").text("Your homework has been successfully submitted");
+        }  
     })
 });

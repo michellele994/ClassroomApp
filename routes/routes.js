@@ -204,13 +204,6 @@ router.get("/api/homework/:classid",function(req,res){
     });
 });
 
-
-/*router.post("api/hw/:classid",function(req,res){
-    db.AssignedHW.fidnAll({}).then(function(dbHw) {
-        res.json(dbHw);
-    });
-})*/
-
 //POSTS
 //======================================================================
 router.post("/api/classes", function(req, res) {
@@ -244,8 +237,6 @@ router.post("/api/enrollment/", function(req, res) {
                 username: req.body.username
             }
         }).then(function(currentStudent){
-            // console.log(currentStudent);
-            // console.log(currentClass);
             currentClass.addStudent(currentStudent);
         })
     });
@@ -257,8 +248,6 @@ router.post("/api/homework/:classid",function(req,res){
 
     });
 })
-
-
 router.post("/api/assigningHw/:hwname",function(req,res){
     var arrStudents = req.body.students
     db.Homework.findOne({
@@ -277,7 +266,26 @@ router.post("/api/assigningHw/:hwname",function(req,res){
         });
     })
 })
-
+router.post("/api/submitted/:studentuser/:hwid/", function(req,res){
+    db.Student.findOne({
+        where: {
+            username: req.params.studentuser
+        },
+        include: [db.Homework]
+    }).then(function(thisStudent){
+        db.Homework.findOne({
+            where: {
+                id: req.params.hwid
+            }
+        }).then(function(thisHomework){
+            thisHomework.addStudent(thisStudent, {through: {
+                submitlink: req.body.submitlink,
+                comment: req.body.comment,
+                completed: true
+            }})
+        });
+    })
+})
 module.exports=router;
 
 
