@@ -2,10 +2,18 @@
     <div class="row d-flex d-md-block flex-nowrap wrapper">
         <div class="col-md-3 sidebarWidth float-left col-1 pl-0 pr-0 collapse width" id="sidebar">
             <div class="list-group border-0 card text-center text-md-left">
-                <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-dashboard"></i> <span class="d-none d-md-inline sidebarNames">Classes</span> </a>
+                <a href="/welcome/{{classInfo.Teacher.username}}" class="list-group-item d-inline-block collapsed homeBtn" data-parent="#sidebar"><i class="fa fa-home"></i> <span class="d-none d-md-inline sidebarNames">Home</span> </a>
                 <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-film"></i> <span class="d-none d-md-inline sidebarNames">Item 2</span></a>
-                <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline sidebarNames">Resources</span></a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline sidebarNames">Logout</span></a>
+				<a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline sidebarNames">Resources</span></a>
+                <div class="collapse" id="menu3">
+                    <a href="https://github.com/" target="_blank" class="list-group-item" data-parent="#menu3">GitHub</a>
+                    <a href="https://stackoverflow.com/" target="_blank" class="list-group-item" data-parent="#menu3">Stack Overflow</a>
+                    <a href="https://google.com/" target="_blank" class="list-group-item" data-parent="#menu3">Google</a>
+					<a href="https://slack.com/" target="_blank" class="list-group-item" data-parent="#menu3">Slack</a>
+                    <a href="https://youtube.com/" target="_blank" class="list-group-item" data-parent="#menu3">Youtube</a>
+                    <a href="https://www.wikipedia.org/" target="_blank" class="list-group-item" data-parent="#menu3">Wiki</a>
+                </div>
+                <a href="/" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-sign-out"></i> <span class="d-none d-md-inline sidebarNames">Logout</span></a>
             </div>
         </div>
 
@@ -53,25 +61,24 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            {{#each classInfo.Homework}}
                             <div class="modal-body">
-                                <div id="accordion" role="tablist" aria-multiselectable="true">
+                                {{!-- <div id="accordion" role="tablist" aria-multiselectable="true"> --}}
                                     <div class="card">
                                         <div class="card-header bg-white" role="tab" id="headingOne">
                                             <h5 class="mb-0">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                hwtitle
-                                                </a>
+                                                {{!-- <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> --}}
+                                               DueDate: {{this.hwdue}}
+                                                {{this.homeworkname}}
+                                                {{!-- </a> --}}
                                             </h5>
                                         </div>
-                                        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                                            <div class="card-block bg-white text-center">
-                                                hw description
+                                            <div class="card-block">
+                                                {{this.homeworkdesc}}
                                             </div>
-                                        </div>
                                     </div>
-                                </div>
                             </div>
-                                
+                            {{/each}}    
                             <div class="modal-footer">
                                 <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
                             </div>
@@ -80,7 +87,7 @@
                 </div>
                 <!--Main body of page-->
                 <div id="teacherViewmainHeadings"class="container-fluid text-center">
-                    <h1>{{classInfo.classname}}</h1>
+                    <h1 class="text-capitalize">{{classInfo.classname}}</h1>
                     <h6>Instructor: {{classInfo.Teacher.username}}</h6>
                 </div>
                 
