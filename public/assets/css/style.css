@@ -8,12 +8,19 @@ body {
     /*position: fixed;*/
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100%;
     letter-spacing: 3px;
 }
-button{
+
+button {
     letter-spacing: 3px;
 }
-input{
+
+button {
+    letter-spacing: 3px;
+}
+
+input {
     letter-spacing: 3px;
 }
 
@@ -95,6 +102,7 @@ h2 {
     background-color: #195627;
     min-height: 100vh;
 }
+
 
 /* #sidebar i {
     margin-right: 8px;
@@ -248,22 +256,20 @@ main {
     font-size: 14px;
 }
 
-#hwSubmissioncontainer{
-    color:#000;
-
+#hwSubmissioncontainer {
+    color: #000;
 }
 
 #hwSubmissioncontainer {
     color: #000;
 }
 
-#userInfo{
-    color:#ffff;
+#userInfo {
+    color: #fff;
 }
 
-#teacherViewmainHeadings{
-    color:#fff;
-
+#teacherViewmainHeadings {
+    color: #fff;
 }
 
 .hwSubmission {
