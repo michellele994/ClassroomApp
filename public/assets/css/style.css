@@ -277,7 +277,7 @@ main {
     border: none;
 }
 
-#alert-message, #alert-message-login {
+#alert-message, #alert-message-login, #cannot-create-error {
     color: red;
     font-size: 85%;
     font-weight: bolder;
