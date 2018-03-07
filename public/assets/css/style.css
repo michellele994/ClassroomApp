@@ -256,9 +256,15 @@ main {
     padding-right: 5px;
     font-size: 14px;
 }
+<<<<<<< HEAD
+#hwSubmissioncontainer{
+    color:#000;
+
+=======
 
 #hwSubmissioncontainer {
     color: #000;
+>>>>>>> 972bcae8841c47139a56ab1bd51d9273179c3990
 }
 
 #hwSubmissioncontainer {

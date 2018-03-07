@@ -1,4 +1,32 @@
 <div class="container-fluid">
+    <div class="modal fade" id="submitHwModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modal-title">Create a new class!</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   <div class="form-group">
+                        <label for="link">Submit Link:</label>
+                        <input class="col-md-8" type="text" id="hwLink" name="hwLink" maxlength="30">
+                        <br>
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control col-md-10 mx-auto" id="hwComment" name="hwComment" rows="3" maxlength="500"></textarea>
+                        </br>
+                        <button data-studentid="{{currentStudent.Students.[0].id}}" data-classid="{{currentStudent.id}}"class="btn btn-outline-success badge-pill" type="submit" id="submitHw">Submit<i class="far fa-check-circle"></i></button>
+                        <br>
+                    </div>
+                </dov>
+                  <div class="modal-footer">
+                    <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div> 
     <div class="row d-flex d-md-block flex-nowrap wrapper">
         <div class="col-md-3 sidebarWidth float-left col-1 pl-0 pr-0 collapse width" id="sidebar">
             <div class="list-group border-0 card text-center text-md-left">
@@ -33,53 +61,19 @@
                                     <div class="card-header">
                                         <h3>Assignments</h3>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body"></div>
                                         {{#each currentStudent.Homework}}
-                                        {{!-- <div id="accordion" role="tablist" aria-multiselectable="true"> --}}
-                                        <div class="modal fade" id="{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h3 class="modal-title" id="modal-title">{{this.homeworkname}}</h3>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    {{this.homeworkdesc}}
-                                                    <div class="form-group text-white">
-                                                        <label for="new-hw-title">Submit Link:</label>
-                                                        <input class="col-md-8" type="text" id="hw_title" name="new-class-name" maxlength="30">
-                                                        <br>
-                                                        <label for="new-hw-dueDate">Comment:</label>
-                                                        <textarea class="form-control col-md-10 mx-auto" id="hw_dueDate" name="new-class-desc" rows="3" maxlength="500"></textarea>
-                                                        </br>
-                                                        <button data-classid="{{currentStudent.id}}"class="btn btn-outline-light badge-pill" type="submit" id="submitHw">Submit<i class="far fa-check-circle"></i></button>
-                                                        <br>
-                                                        <span id="cannot-create-error"></span>
-                                                    </div>
-                                                </div>
-                                                    <div class="modal-footer">
-                                                        <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            <div class="card hwSubmission">
-                                                <div class="card-header" role="tab" id="headingOne">
-                                                    <h5 class="mb-0">
-                                                       <button class="hw" type="button" data-toggle="modal">{{this.homeworkname}}</button> 
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        {{/each}}
+                                        {{this.homeworkname}}<br> {{this.homeworkdesc}}              
+                                        <br>
+                                        <button class="hwModalopen" type="button" data-toggle="modal"data-target="#submitHwModal" data-hwid="{{this.id}}">Submit</button>   
+                                        {{/each}} 
                                     </div>
                                 </div>
                             </div>
                         </div> 
-                        <!--<div>Attendance</div>-->
                     </div>
                 </div>
         </main>
     </div>
 </div>
+                                     

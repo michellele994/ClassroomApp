@@ -60,7 +60,7 @@ $(function() {
                                     }
                                 }).then(function()
                                 {
-                                    console.log("should e done");
+                                    location.reload();
                                 })
                             });
                         }
@@ -80,6 +80,7 @@ $(function() {
                                 data: newHomework
                             }).then(function(){
                                 console.log("posted to all hw");
+                                location.reload();
                             });
                         }
                         else
