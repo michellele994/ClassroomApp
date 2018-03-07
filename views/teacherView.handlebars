@@ -16,7 +16,6 @@
                 <a href="/" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-sign-out"></i> <span class="d-none d-md-inline sidebarNames">Logout</span></a>
             </div>
         </div>
-
 		<a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-bars fa-2x py-2 p-1 m-2 ml-5"></i></a>
         <main class="col-md-12 col px-5 pl-md-3 pt-2 main">
                 <!--POST HW MODAL-->
@@ -30,11 +29,16 @@
                                 </button>
                             </div>
                             <div class="modal-body mx-auto">
+                                {{!-- alert msgs --}}
+                                <div id ="alert-message-hwpost">
+                                    <div class="alert-message-failure" id ="alert-message-hwpostfailure"></div>
+                                    <div class="alert-message-success" id ="alert-message-hwpostsuccess"></div>
+                                 </div>
                                 <div class="form-group">
                                     <label for="new-hw-title">Title:</label>
                                     <input class = "col-sm-12 mb-2" type="text" id="hw_title" name="new-class-name" maxlength="30">
                                     <br>
-                                    <label for="new-hw-dueDate">Due Date:</label>
+                                    <label for="new-hw-dueDate">Due Date:(mm/dd/yyyy)</label>
                                     <input class = "col-sm-12 mb-2" type="text" id="hw_dueDate" name="new-class-desc" maxlength="500">
                                     </br>
                                     <label for="new-hw-desc">Description:</label>
@@ -42,7 +46,6 @@
                                     </br>
                                     <button data-classid="{{classInfo.id}}"class="btn btn-outline-success badge-pill" type="submit" id="postNewhw">Create<i class="far fa-check-circle"></i></button>
                                     <br>
-                                    <span id="cannot-create-error"></span>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -66,20 +69,15 @@
                                 {{!-- <div id="accordion" role="tablist" aria-multiselectable="true"> --}}
                                     <div class="card">
                                         <div class="card-header bg-white" role="tab" id="headingOne">
-                                            <h5 class="mb-0">
-                                                {{!-- <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> --}}
-                                               DueDate: {{this.hwdue}}
-                                                {{this.homeworkname}}
-                                                {{!-- </a> --}}
-                                            </h5>
+                                            <h4>{{this.homeworkname}}:</h4>
+                                              <h6>{{this.homeworkdesc}}</h6> 
                                         </div>
-                                            <div class="card-block">
-                                                {{this.homeworkdesc}}
-                                            </div>
+                                        <div class="card-block bg-white text-center text-capitalize">
+                                            Due Date: {{this.hwdue}}
+                                        </div>
                                     </div>
                                 {{/each}} 
                             </div>
-                               
                             <div class="modal-footer">
                                 <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
                             </div>
@@ -88,15 +86,12 @@
                 </div>
                 <!--Main body of page-->
                 <div id="teacherViewmainHeadings"class="container-fluid text-center">
-                    <h1 class="text-capitalize">{{classInfo.classname}}</h1>
-                    <h6>Instructor: {{classInfo.Teacher.username}}</h6>
+                    <h1 class="text-capitalize text-white">{{classInfo.classname}}</h1>
+                    <h6 class = "text-capitalize text-white">Instructor: {{classInfo.Teacher.username}}</h6>
                 </div>
-                
                 <div id="mainContainer"class="container-fluid text-center">
-                
                     <button class="btn btn-success badge-pill crteClass col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#postHwModal">Add Assignment</button>
                     <button class="btn btn-success badge-pill crteClass col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#allHwModal">View All Assignments</button> 
-        <!--<div>Attendance</div>-->
                 </div>
             </div>
         </main>

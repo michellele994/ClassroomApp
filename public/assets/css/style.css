@@ -256,15 +256,9 @@ main {
     padding-right: 5px;
     font-size: 14px;
 }
-<<<<<<< HEAD
-#hwSubmissioncontainer{
-    color:#000;
-
-=======
 
 #hwSubmissioncontainer {
     color: #000;
->>>>>>> 972bcae8841c47139a56ab1bd51d9273179c3990
 }
 
 #hwSubmissioncontainer {
@@ -285,6 +279,17 @@ main {
 
 #alert-message, #alert-message-login, #cannot-create-error {
     color: red;
+    font-size: 85%;
+    font-weight: bolder;
+}
+/* teacher/student view msgs */
+.alert-message-failure{
+    color: red;
+    font-size: 85%;
+    font-weight: bolder;
+}
+.alert-message-success{
+    color: #195627;
     font-size: 85%;
     font-weight: bolder;
 }

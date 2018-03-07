@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		},
 		hwdue: {
-			type: DataTypes.DATE,
+			type: DataTypes.DATEONLY,
 			allowNull: false
 		},
 	});
