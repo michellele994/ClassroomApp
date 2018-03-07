@@ -10,17 +10,18 @@
                   </div>
                   <div class="modal-body mx-auto">
                     <div class="form-group">
-                              <label for="new-class-name">Name:</label>
-                              <input class = "col-sm-12 mb-2" type="text" id="new_name" name="new-class-name" maxlength="30">
+
+                              <label for="new-name">Name:</label>
+                              <input class = "col-sm-12 mb-2" type="text" id="new_name" name="new-name" maxlength="30">
                               <br>
-                              <label for="new-class-desc">username:</label>
-                              <input class = "col-sm-12 mb-2" type="text" id="new_username" name="new-class-desc" maxlength="500">
-                              <br>
-                              <label for="new-class-desc">password:</label>
-                              <input class = "col-sm-12 mb-2" type="text" id="new_password" name="new-class-desc" maxlength="500">
-                              <br>
-                              
-                              <button class="btn btn-outline-info badge-pill" type="submit" id="create-new-user">Create<i class="far fa-check-circle"></i></button>
+                              <label for="new-username">username:</label>
+                              <input class = "col-sm-12 mb-2" type="text" id="new_username" name="new-username" maxlength="500">
+                              </br>
+                              <label for="new-password">password:</label>
+                              <input class = "col-sm-12 mb-2" type="password" id="new_password" name="new-password" maxlength="15">
+                              </br>
+                              <div id ="alert-message"></div>
+                              <button class="btn btn-outline-success badge-pill" type="submit" id="create-new-user">Create<i class="far fa-check-circle"></i></button>
                               <br>
                               <span id="cannot-create-error"></span>
                           </div>
@@ -50,6 +51,7 @@
                     </div>
                 </div>
             </div>
+            <div id = "alert-message-login"></div>
             <div class="col-sm-12 col-md-6 col-lg-6 mx-auto">
                 <button type="button" class="btn btn-success badge-pill col-md-12 col-lg-4" type="submit" id="take_user">Log In</button>
                 <div id="createUserBtn" class="col-lg-12">
