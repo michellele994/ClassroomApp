@@ -96,6 +96,7 @@ $(function() {
 	}
 	//POPULATE CLASSES AVAILABLE 
 	$("#seeAvailclassesBtn").on("click",function(event){
+
 		//console.log("see avail clicked");
 		$("#classesAvailableModalbody").empty();
 
