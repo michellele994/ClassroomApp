@@ -52,42 +52,6 @@ $(function() {
 
     }
 
-<<<<<<< HEAD
-	function whereStudentDoesNotExist(arrayOfStudent, arrayToCompare)
-	{
-		var enrolledClasses = [];
-		var classesNotStudent = [];
-		for (var i = 0; i<arrayOfStudent.length; i++)
-		{
-			enrolledClasses.push(arrayOfStudent[i]);
-		}
-		var exists = false;
-		for (var i = 0; i <arrayToCompare.length; i++)
-		{
-			for (var j = 0; j <enrolledClasses.length; j++)
-			{
-				if (arrayToCompare[i].id === enrolledClasses[j].id)
-				{
-					exists = true;
-				}
-			}
-			if (exists === false)
-			{
-				classesNotStudent.push(arrayToCompare[i]);
-			}
-			else
-			{
-				exists = false;
-			}
-		}
-		return classesNotStudent;
-	}
-	//POPULATE CLASSES AVAILABLE 
-	$("#seeAvailclassesBtn").on("click",function(event){
-
-		//console.log("see avail clicked");
-		$("#classesAvailableModalbody").empty();
-=======
     function whereStudentDoesNotExist(arrayOfStudent, arrayToCompare) {
         var enrolledClasses = [];
         var classesNotStudent = [];
@@ -113,7 +77,6 @@ $(function() {
     $("#seeAvailclassesBtn").on("click", function(event) {
         //console.log("see avail clicked");
         $("#classesAvailableModalbody").empty();
->>>>>>> 972bcae8841c47139a56ab1bd51d9273179c3990
 
         //If person is a teacher of their class, do not display that class
         $.get("/api/teachers/" + userName).then(function(teacherResponse) {

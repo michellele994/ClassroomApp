@@ -61,8 +61,8 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            {{#each classInfo.Homework}}
                             <div class="modal-body">
+                                {{#each classInfo.Homework}}
                                 {{!-- <div id="accordion" role="tablist" aria-multiselectable="true"> --}}
                                     <div class="card">
                                         <div class="card-header bg-white" role="tab" id="headingOne">
@@ -77,8 +77,9 @@
                                                 {{this.homeworkdesc}}
                                             </div>
                                     </div>
+                                {{/each}} 
                             </div>
-                            {{/each}}    
+                               
                             <div class="modal-footer">
                                 <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
                             </div>
