@@ -58,7 +58,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title" id="modal-title">Submitted Homeworks from:</h3>
+                                <h3 class="modal-title" id="modal-title">Homework Submitted by:</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -82,18 +82,20 @@
                 </div>
 
                 {{!-- hw assignments--}}
-                {{#each classInfo.Homework}}
-                    <div class="card">
-                        <div class="card-header bg-white" role="tab" id="headingOne">
-                            <h4>{{this.homeworkname}}:</h4>
-                                <h6>{{this.homeworkdesc}}</h6> 
-                        </div>
-                        <div class="card-block bg-white text-center text-capitalize">
-                            Due Date: {{this.hwdue}}
-                        </div>
-                            <button data-classid="{{classInfo.id}}" data-hwid="{{this.id}}" class="btn btn-outline-success badge-pill seeHwsubmissions" type="submit">See Submissions<i class="far fa-check-circle"></i></button>
-                    </div>
-                {{/each}} 
+                <div class="container-fluid hwSubCard">
+                        {{#each classInfo.Homework}}
+                            <div class="card col-lg-8 mx-auto hwCard">
+                                <div class="card-header bg-white" role="tab" id="headingOne">
+                                    <h4 class="hwName">{{this.homeworkname}}:</h4>
+                                    <h6 class="hwDesc">{{this.homeworkdesc}}</h6> 
+                                    <button data-classid="{{classInfo.id}}" data-hwid="{{this.id}}" class="btn btn-outline-success badge-pill seeHwsubmissions" type="submit">See Submissions<i class="far fa-check-circle"></i></button>
+                                </div>
+                                <div class="card-block bg-white text-center text-capitalize">
+                                    Due Date: {{this.hwdue}}
+                                </div>
+                            </div>
+                        {{/each}}
+                </div> 
             </div>
         </main>
     </div>
