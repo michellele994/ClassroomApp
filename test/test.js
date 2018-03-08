@@ -47,12 +47,13 @@ describe("Sch00led", function() {
         .click("#sClass1")
         .wait(5000)
         .click(".hwModalopen[data-hwid='1']")
-        .wait(1000)
+        .wait(2000)
         .type("#hwLink", "www.google.com")
         .type("#hwComment", "The quick fox jumped over the lazy dog")
         .click("#submitHw")
-        .wait(2000)
+        .wait(3000)
         .click(".lastHw[data-hwid='1']")
+        .wait(2000)
         .evaluate(function() {
             return document.querySelector("#linksubtest").innerText;
         }).then(function(text) {
@@ -86,7 +87,7 @@ describe("Sch00led", function() {
     this.timeout(30000);
     it("should be able to check homework submissions as a teacher", function(done) {
     new Nightmare({ show: true })
-        .goto("https://sch00led.herokuapp.com/classTeacherview/perlalala/1")
+        .goto("https://sch00led.herokuapp.com/welcome/perlalala/")
         .click("#tClass1")
         .wait(2000)
         .click(".seeHwsubmissions[data-hwid='1']")
