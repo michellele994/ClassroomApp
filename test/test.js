@@ -21,17 +21,16 @@ describe("Sch00led", function() {
         done();
       });
   });
-  this.timeout(30000);
   it("should go to correct class page in teacher view", function(done) {
     Nightmare({ show: true })
       .goto("https://sch00led.herokuapp.com/welcome/Test2")
-      .click("#take_user")
+      .click("#tClass5")
       .wait(5000)
       .evaluate(function() {
-        return document.querySelector("#mainHeading").innerText;
+        return document.querySelector("#teacherViewmainHeadings").innerText;
       })
       .then(function(text) {
-        expect(text).to.equal("Welcome Test2");
+        expect(text).to.equal("Class Taught By Test2");
         done();
       });
   });
