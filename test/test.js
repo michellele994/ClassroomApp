@@ -45,4 +45,17 @@ describe("Sch00led", function() {
           done();
         });
     });
+    it("should go to correct class page in student view", function(done) {
+    new Nightmare({ show: true })
+        .goto("https://sch00led.herokuapp.com/welcome/Test2/")
+        .click("#sClass1")
+        .wait(5000)
+        .click(".hwModalopen[data-hwid='1']")
+        .evaluate(function() {
+            return document.querySelector("#s-name-test").innerText;
+        }).then(function(text) {
+          expect(text).to.equal("Student: Test2");
+          done();
+        });
+    });
 });

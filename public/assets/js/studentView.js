@@ -29,41 +29,52 @@ $(function() {
                             comment: comment,
                             complete: true
                         }
-                    }).then(function(){
-                        $("#alert-message-submithwfailure").empty();
-                        $("#alert-message-submithwsuccess").text("You have submitted your homework!");
-                        location.reload();
                     });
+
+                    $("#alert-message-submithwfailure").empty();
+                    $("#alert-message-submithwsuccess").text("Your homework has been successfully submitted.");
+                    setTimeout(function(){
+                        location.reload();
+                    }, 1000);
                 }
-
-                // $.get("/api/homework/"+classid).then(function(thisClassHomework){
-
-                // })
-                // var dbLink = thisStudent.Homework
-                // var dbComment = thisHomework.comment;
-                // var dbComplete = thisHomework.complete;
             }
-        });
-        if(hwLink){
-            $("#alert-message-submithwfailure").empty();
-            $("#alert-message-submithwsuccess").text("Your homework has been successfully submitted");
-        }  
+        }); 
     })
     //see last hw submission
     $(".lastHw").on("click",function(event){
-        $("#lastHwSubmission").empty();
         //console.log("im here2");
         var hwid=$(this).attr("data-hwid");
         var studentid=$("#s-name-test").attr("data-studentid");
         console.log(studentid);
        $.get("/api/Studenthwinfo/"+studentid+"/"+hwid,function(lastSub){
-           console.log(lastSub);
-                var subLink="<div>Link: "+lastSub.Homework[0].AssignedHomework.submitlink+"</div>";
-                console.log(subLink);
-                var subcomment="<div>Comment: "+lastSub.Homework[0].AssignedHomework.comment+"</div>";
-                $("#lastHwSubmission").append(subLink+subcomment);
+            if (lastSub !== null)
+            {
+                if (lastSub.Homework.length !== 0 ||
+                lastSub.Homework[0].AssignedHomework !== null ||
+                lastSub.Homework[0].AssignedHomework.submitlink !== null)
+                {
+                    $("#lastHwSubmission").empty();
+                    var subLink="<div>Link: "+lastSub.Homework[0].AssignedHomework.submitlink+"</div>";
 
-            $("#lastHwModal").modal("show");
+                    if (lastSub.Homework[0].AssignedHomework.comment !== "")
+                    {
+                        var subcomment="<div>Comment: "+lastSub.Homework[0].AssignedHomework.comment+"</div>";
+                    }
+                    else
+                    {
+                        var subcomment = "<div>Comment: You did not leave a comment</div>"
+                    }
+                    $("#lastHwSubmission").append(subLink+subcomment);
+
+                    $("#lastHwModal").modal("show");
+                }
+            }
+            else
+            {
+                $("#error-message-lastsub").text("Looks like you did not submit anything yet!")
+                $("#lastHwModal").modal("show");
+
+            }
         });
     })
 });

@@ -5,7 +5,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="modal-title">Create a new class!</h3>
+                    <h3 class="modal-title" id="modal-title">Submit Homework</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -37,13 +37,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="modal-title">Your Submission: </h3>
+                    <h3 class="modal-title" id="modal-title">Your Previous Submission: </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div id="lastHwSubmission"class="modal-body mx-auto">
-                  
+                <div id="lastHwSubmission"class="modal-body">
+                    <div class="alert-message-failure" id="error-message-lastsub"></div>
                 </div>
                 <div class="modal-footer">
                     <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
@@ -70,46 +70,44 @@
 
 		<a href="#" data-target="#sidebar" data-toggle="collapse"><i class="fa fa-bars fa-2x py-2 p-1 m-2 ml-5"></i></a>
         <main class="col-md-12 col px-5 pl-md-3 pt-2 main">
-                <!--Main body of page-->
-                <div id="userInfo" class="text-capitalize container-fluid text-center">
-                    <h1 class = "text-white text-capitalize" >{{currentStudent.classname}}</h1>
-                    <h6 class = "text-white text-capitalize" >Instructor: {{currentStudent.Teacher.name}}</h6>
-                    <h6 id = "s-name-test" data-studentid= {{currentStudent.Students.[0].id}} class = "text-white text-capitalize" >Student: {{currentStudent.Students.[0].name}}</h6>
-                </div>
-                <div id="mainContainer"class="container-fluid text-center">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 wrapper classes">
-                            <div class="container-fluid" id="classesTeaching">
-                                <div class="card text-white border-white mb-3 mx-auto" style="max-width: 60rem; opacity: .80">
-                                    <div class="card-header">
-                                        <h3>Assignments</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        {{#each currentStudent.Homework}}
-                                        <hr>
-                                        <div class="row">
-                                            
-                                            <div class="col-lg-4 ">
-                                                <h6>{{this.homeworkname}}:</h6>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                 <p>{{this.homeworkdesc}}</p>  
-                                            </div>
-                                            <div class="col-lg-4">
-                                                {{!-- last hwsubbutton --}}
-                                                <button class="lastHw" type="button"  data-hwid="{{this.id}}">See Last Sub</button>
-                                                <button class="hwModalopen btn btn-outline-light badge-pill ass-button" type="button" data-toggle="modal"data-target="#submitHwModal" data-hwid="{{this.id}}">Submit</button> 
-                                            </div>
-                                            
-                                        </div>
-                                        {{/each}} 
+            <!--Main body of page-->
+            <div id="userInfo" class="text-capitalize container-fluid text-center">
+                <h1 class = "text-white text-capitalize" >{{currentStudent.classname}}</h1>
+                <h6 class = "text-white text-capitalize" >Instructor: {{currentStudent.Teacher.name}}</h6>
+                <h6 id = "s-name-test" data-studentid= {{currentStudent.Students.[0].id}} class = "text-white text-capitalize" >Student: {{currentStudent.Students.[0].name}}</h6>
+            </div>
+            <div id="mainContainer"class="container-fluid text-center">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 wrapper classes">
+                        <div class="container-fluid" id="classesTeaching">
+                            <div class="card text-white border-white mb-3 mx-auto" style="max-width: 60rem; opacity: .80">
+                                <div class="card-header">
+                                    <h3>Assignments</h3>
+                                </div>
+                                <div class="card-body">
+                                    {{#each currentStudent.Homework}}
+                                    <hr>
+                                    <div class="row">
                                         
+                                        <div class="col-lg-4 ">
+                                            <h6>{{this.homeworkname}}:</h6>
+                                        </div>
+                                        <div class="col-lg-4">
+                                             <p>{{this.homeworkdesc}}</p>  
+                                        </div>
+                                        <div class="col-lg-4">
+                                            {{!-- last hwsubbutton --}}
+                                            <button class="hwModalopen btn btn-outline-light badge-pill ass-button" type="button" data-toggle="modal"data-target="#submitHwModal" data-hwid="{{this.id}}">Submit</button> 
+                                            <button class="lastHw btn btn-outline-light badge-pill ass-button" type="button"  data-hwid="{{this.id}}">See Last Sub</button>
+                                        </div>
                                     </div>
+                                    {{/each}} 
                                 </div>
                             </div>
-                        </div> 
-                    </div>
+                        </div>
+                    </div> 
                 </div>
+            </div>
         </main>
     </div>
 </div>
