@@ -125,6 +125,23 @@ router.get("/api/Teacherclassinfo/:hwid",function(req,res){
        
     });
 });
+///get info for student submissions
+router.get("/api/Studenthwinfo/:studentid/:hwid",function(req,res){
+    db.Student.findOne({
+        where:{
+            id:req.params.studentid
+        },
+        include:[{
+            model:db.Homework,
+            where:{
+                id:req.params.hwid
+            }
+        }]
+    }).then(function(lastSub){
+        res.json(lastSub);
+
+    });
+});
 
 
 //Routing for APIs
