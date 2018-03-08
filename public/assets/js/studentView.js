@@ -58,11 +58,11 @@ $(function() {
 
                     if (lastSub.Homework[0].AssignedHomework.comment !== "")
                     {
-                        var subcomment="<div>Comment: "+lastSub.Homework[0].AssignedHomework.comment+"</div>";
+                        var subcomment="<div id='linksubtest'>Comment: "+lastSub.Homework[0].AssignedHomework.comment+"</div>";
                     }
                     else
                     {
-                        var subcomment = "<div>Comment: You did not leave a comment</div>"
+                        var subcomment = "<div id='commentsubtest'>Comment: You did not leave a comment</div>"
                     }
                     $("#lastHwSubmission").append(subLink+subcomment);
 

@@ -316,3 +316,8 @@ main {
 .hwSubCard {
     margin-bottom: 30px;
 }
+.availableClass
+{
+    position: relative;
+    top: 33%;
+}
