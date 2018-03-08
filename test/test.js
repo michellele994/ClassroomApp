@@ -81,6 +81,8 @@ describe("Sch00led", function() {
           done();
         });
     });
+
+    //Should be able to view homework submission done earlier by N3rd
     this.timeout(30000);
     it("should be able to check homework submissions as a teacher", function(done) {
     new Nightmare({ show: true })
