@@ -6,21 +6,32 @@ describe("Sch00led", function() {
   // Extending it to 30 seconds to have time to load the pages
 
   this.timeout(30000);
-  it("should display error message when no login input", function(done) {
-    // ID for the login button.
+  it("should login to the right home page, displaying correct name", function(done) {
     Nightmare({ show: true })
       .goto("https://sch00led.herokuapp.com/")
-      .type("#enter_username", "Testing")
+      .type("#enter_username", "Test2")
       .type("#enter_password", "111111")
-      // Evaluate the title
       .click("#take_user")
       .wait(5000)
       .evaluate(function() {
         return document.querySelector("#mainHeading").innerText;
       })
-      // Asset the title is as expected
       .then(function(text) {
-        expect(text).to.equal("Welcome Test");
+        expect(text).to.equal("Welcome Test2");
+        done();
+      });
+  });
+  this.timeout(30000);
+  it("should go to correct class page in teacher view", function(done) {
+    Nightmare({ show: true })
+      .goto("https://sch00led.herokuapp.com/welcome/Test2")
+      .click("#take_user")
+      .wait(5000)
+      .evaluate(function() {
+        return document.querySelector("#mainHeading").innerText;
+      })
+      .then(function(text) {
+        expect(text).to.equal("Welcome Test2");
         done();
       });
   });
