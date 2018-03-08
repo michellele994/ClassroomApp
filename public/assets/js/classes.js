@@ -118,7 +118,7 @@ $(function() {
         {
             if (!className ||
                 className.charCodeAt(i) < 32 ||
-                (className.charCodeAt(i) > 32 && className.charCodeAt(i) < 47) ||className.charCodeAt(i) < 47 ||
+                (className.charCodeAt(i) > 32 && className.charCodeAt(i) < 47) ||
                 (className.charCodeAt(i) >57 && className.charCodeAt(i) < 65) ||
                 (className.charCodeAt(i) > 90 && className.charCodeAt(i) < 97) ||
                 className.charCodeAt(i) > 122) {
