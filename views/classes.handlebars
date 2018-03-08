@@ -84,7 +84,7 @@
                                         {{#each classesTeaching}}
                                         <hr>
                                         <div class="text-capitalize">{{this.classname}}</div>
-                                        <button class="classPg btn btn-outline-light badge-pill" data-ClassID="{{this.id}}">Class Page</button>
+                                        <button class="classPg btn btn-outline-light badge-pill" id = "tClass{{this.id}}" data-ClassID="{{this.id}}">Class Page</button>
                                         {{/each}}
 
                                     </div>
@@ -101,7 +101,7 @@
                                         {{#each classesEnrolled}}
                                         <hr>
                                         <div class= "h4 text-capitalize">{{this.classname}}</div>
-                                        <button class="classPg btn btn-outline-light badge-pill" data-ClassID="{{this.id}}">Class Page</button>
+                                        <button class="classPg btn btn-outline-light badge-pill" id = "sClass{{this.id}}" data-ClassID="{{this.id}}">Class Page</button>
                                         {{/each}}
                                     </div>
                                 </div>
