@@ -113,7 +113,7 @@ $(function() {
             for(var i=0;i<studentsSubmitted.length;i++){
                 if(studentsSubmitted[i].hwlink.substr(0,6) === "http://")
                 {
-                    var studentSubmission="<div class='text-capitalize'>"+studentsSubmitted[i].name+": <a href='"+studentsSubmitted[i].hwlink+"' target='_blank'>View</a></div>";
+                    var studentSubmission="<div class='text-capitalize'">+studentsSubmitted[i].name+": <a href='"+studentsSubmitted[i].hwlink+"' id = 'sub"+studentsSubmitted[i].name+"' target='_blank'>View</a></div>";
                     $("#submittedBody").append(studentSubmission);
                 }
                 else
