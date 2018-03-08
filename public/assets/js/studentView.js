@@ -52,7 +52,7 @@ $(function() {
                 lastSub.Homework[0].AssignedHomework.submitlink !== null)
                 {
                     $("#lastHwSubmission").empty();
-                    var subLink="<divid='linksubtest'>Link: "+lastSub.Homework[0].AssignedHomework.submitlink+"</div>";
+                    var subLink="<div id='linksubtest'>Link: "+lastSub.Homework[0].AssignedHomework.submitlink+"</div>";
 
                     if (lastSub.Homework[0].AssignedHomework.comment !== "")
                     {
