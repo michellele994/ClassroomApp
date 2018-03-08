@@ -11,7 +11,7 @@ describe("Sch00led", function() {
     it("should login to the right home page, displaying correct name", function(done) {
     Nightmare({ show: true })
         .goto("https://sch00led.herokuapp.com/")
-        .type("#enter_username", "n3rd")
+        .type("#enter_username", "brandonn3rd")
         .type("#enter_password", "111111")
         .click("#take_user")
         .wait(5000)
@@ -19,7 +19,7 @@ describe("Sch00led", function() {
             return document.querySelector("#mainHeading").innerText;
         })
         .then(function(text) {
-            expect(text).to.equal("Welcome Nerd");
+            expect(text).to.equal("Welcome Brandon");
             done();
         });
     });
@@ -28,13 +28,13 @@ describe("Sch00led", function() {
     this.timeout(30000);
     it("should go to correct class page in student view", function(done) {
     new Nightmare({ show: true })
-        .goto("https://sch00led.herokuapp.com/welcome/n3rd/")
+        .goto("https://sch00led.herokuapp.com/welcome/brandonn3rd/")
         .click("#sClass1")
         .wait(5000)
         .evaluate(function() {
             return document.querySelector("#s-name-test").innerText;
         }).then(function(text) {
-          expect(text).to.equal("Student: Nerd");
+          expect(text).to.equal("Student: Brandon");
           done();
         });
     });
@@ -43,7 +43,7 @@ describe("Sch00led", function() {
     this.timeout(30000);
     it("should view the correct last homework submission after a homework is submitted", function(done) {
     new Nightmare({ show: true })
-        .goto("https://sch00led.herokuapp.com/welcome/Test2/")
+        .goto("https://sch00led.herokuapp.com/welcome/brandonn3rd/")
         .click("#sClass1")
         .wait(5000)
         .click(".hwModalopen[data-hwid='1']")
@@ -65,19 +65,19 @@ describe("Sch00led", function() {
     this.timeout(30000);
     it("should be able to sign in as a different user after signing out", function(done) {
     new Nightmare({ show: true })
-        .goto("https://sch00led.herokuapp.com/classStudentview/n3rd/")
+        .goto("https://sch00led.herokuapp.com/classStudentview/brandonn3rd/1")
         .click("#sidebartest")
         .wait(500)
         .click("#logouttest")
         .wait(1000)
-        .type("#enter_username", "t3acher")
+        .type("#enter_username", "perlalala")
         .type("#enter_password", "111111")
         .click("#take_user")
         .wait(2000)
         .evaluate(function() {
             return document.querySelector("#mainHeading").innerText;
         }).then(function(text) {
-          expect(text).to.equal("Welcome Teacher");
+          expect(text).to.equal("Welcome Perla");
           done();
         });
     });
@@ -86,12 +86,12 @@ describe("Sch00led", function() {
     this.timeout(30000);
     it("should be able to check homework submissions as a teacher", function(done) {
     new Nightmare({ show: true })
-        .goto("https://sch00led.herokuapp.com/classTeacherview/t3acher/")
+        .goto("https://sch00led.herokuapp.com/classTeacherview/perlalala/1")
         .click("#tClass1")
         .wait(2000)
         .click(".seeHwsubmissions[data-hwid='1']")
         .wait(1000)
-        .click("#subNerd")
+        .click("#subBrandon")
         .evaluate(function() {
             return window.location.href;
         }).then(function(text) {

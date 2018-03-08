@@ -52,11 +52,11 @@ $(function() {
                 lastSub.Homework[0].AssignedHomework.submitlink !== null)
                 {
                     $("#lastHwSubmission").empty();
-                    var subLink="<div>Link: "+lastSub.Homework[0].AssignedHomework.submitlink+"</div>";
+                    var subLink="<divid='linksubtest'>Link: "+lastSub.Homework[0].AssignedHomework.submitlink+"</div>";
 
                     if (lastSub.Homework[0].AssignedHomework.comment !== "")
                     {
-                        var subcomment="<div id='linksubtest'>Comment: "+lastSub.Homework[0].AssignedHomework.comment+"</div>";
+                        var subcomment="<div id='commentsubtest'>Comment: "+lastSub.Homework[0].AssignedHomework.comment+"</div>";
                     }
                     else
                     {
