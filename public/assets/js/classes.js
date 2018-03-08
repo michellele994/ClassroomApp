@@ -138,7 +138,9 @@ $(function() {
         var nameAppropriate = true;
         for (var i = 0; i < className.length; i++)
         {
-            if (className.charCodeAt(i) < 47 ||
+            if (!className ||
+                className.charCodeAt(i) < 32 ||
+                (className.charCodeAt(i) > 32 && className.charCodeAt(i) < 47) ||className.charCodeAt(i) < 47 ||
                 (className.charCodeAt(i) >57 && className.charCodeAt(i) < 65) ||
                 (className.charCodeAt(i) > 90 && className.charCodeAt(i) < 97) ||
                 className.charCodeAt(i) > 122 )
