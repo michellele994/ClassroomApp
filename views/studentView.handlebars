@@ -42,8 +42,8 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div id="lastHwSubmission"class="modal-body mx-auto">
-                  
+                <div id="lastHwSubmission"class="modal-body">
+                    <div class="alert-message-failure" id="error-message-lastsub"></div>
                 </div>
                 <div class="modal-footer">
                     <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
@@ -97,8 +97,8 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 {{!-- last hwsubbutton --}}
-                                                <button class="lastHw" type="button"  data-hwid="{{this.id}}">See Last Sub</button>
                                                 <button class="hwModalopen btn btn-outline-light badge-pill ass-button" type="button" data-toggle="modal"data-target="#submitHwModal" data-hwid="{{this.id}}">Submit</button> 
+                                                <button class="lastHw btn btn-outline-light badge-pill ass-button" type="button"  data-hwid="{{this.id}}">See Last Sub</button>
                                             </div>
                                             
                                         </div>
