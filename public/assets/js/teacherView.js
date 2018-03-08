@@ -20,8 +20,8 @@ $(function() {
             for (var i = 0; i < title.length; i++)
             {
                 if (!title ||
-                    title.charAt(i) === " " ||
-                    title.charCodeAt(i) < 47 ||
+                    title.charCodeAt(i) < 32 ||
+                    (title.charCodeAt(i) > 32 && title.charCodeAt(i) < 47) ||
                     (title.charCodeAt(i) >57 && title.charCodeAt(i) < 65) ||
                     (title.charCodeAt(i) > 90 && title.charCodeAt(i) < 97) ||
                     title.charCodeAt(i) > 122 )
