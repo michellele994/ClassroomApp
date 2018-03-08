@@ -297,3 +297,22 @@ main {
 .ass-button {
     margin: 0;
 }
+
+.seeHwsubmissions {
+    float: right;
+}
+.hwCard {
+    opacity: .78;
+    margin-bottom: 20px;
+    font-weight: bolder;
+    font-size: 140%;
+}
+
+.hwName, .hwDesc {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.hwSubCard {
+    margin-bottom: 30px;
+}
