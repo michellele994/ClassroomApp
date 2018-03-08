@@ -108,4 +108,21 @@ $(function() {
             }
         });
     });
+    $(".seeHwsubmissions").on("click",function(event){
+        $("#submittedBody").empty();
+        console.log("im here");
+        var hwid=$(this).attr("data-hwid");
+        console.log(hwid);
+       $.get("/api/Teacherclassinfo/"+hwid,function(studentsSubmitted){
+            
+            console.log(studentsSubmitted);
+            for(var i=0;i<studentsSubmitted.length;i++){
+                var studentSubmission="<div>"+studentsSubmitted[i]+"</div>";
+                $("#submittedBody").append(studentSubmission);
+
+            }
+            $("#showSubmissionsModal").modal("show");
+            $("#")
+        });
+    })
 });

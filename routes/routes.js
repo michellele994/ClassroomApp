@@ -103,6 +103,29 @@ router.get("/welcome/:username/",function(req,res){
         });
     });
 });
+//get one class for the javascript
+router.get("/api/Teacherclassinfo/:hwid",function(req,res){
+    db.Student.findAll({
+        include:[{
+            model:db.Homework,
+            where:{
+                id:req.params.hwid
+            }
+        }]
+    }).then(function(dbHwSubmissions){
+        var studentsCompleted =[];
+        for(var i = 0; i < dbHwSubmissions.length; i++)
+        {
+            if (dbHwSubmissions[i].Homework[0].AssignedHomework.completed){
+                studentsCompleted.push(dbHwSubmissions[i].name);
+            }
+        }
+        
+        res.json(studentsCompleted);
+       
+    });
+});
+
 
 //Routing for APIs
 //======================================================================
