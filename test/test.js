@@ -45,7 +45,7 @@ describe("Sch00led", function() {
           done();
         });
     });
-    it("should go to correct class page in student view", function(done) {
+    it("should view the correct last homework submission after a homework is submitted", function(done) {
     new Nightmare({ show: true })
         .goto("https://sch00led.herokuapp.com/welcome/Test2/")
         .click("#sClass1")

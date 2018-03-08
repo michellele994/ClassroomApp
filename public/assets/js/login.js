@@ -1,6 +1,8 @@
 
 $(function() {
-	//When a user presses the "Log in" button.
+
+
+	//WHEN LOGIN BUTTON IS PRESSED
 	$("#take_user").on("click", function(event)
 	{
 		event.preventDefault();
@@ -36,7 +38,7 @@ $(function() {
 		$("#enter_password").empty();
 	});
 
-	//When a user presses the "Sign up" button
+	//WHEN SIGN UP BUTTON IS PRESSED
 	$("#create-new-user").on("click", function(event)
 	{
 		event.preventDefault();

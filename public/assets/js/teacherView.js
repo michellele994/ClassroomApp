@@ -1,22 +1,22 @@
 $(function() {
-
+    //Obtaining user information from address bar
     var userInfo = window.location.pathname.substr(1,window.location.pathname.length);
         userInfo = userInfo.substr(userInfo.indexOf("/")+1, userInfo.length);
         userName = userInfo.substr(0, userInfo.indexOf("/"));
-	//postHw
+        if (userInfo.indexOf("/") !== -1) {
+            var userName = userInfo.substr(0, userInfo.indexOf("/"));
+        } else {
+            userName = userInfo;
+        }
+
+    //WHEN ADDING A NEW ASSIGNMENT
 	$("#postNewhw").on("click", function(event) {
-        
         var classid=$(this).attr("data-classid");
         event.preventDefault();
-
-        //Create class 
-        //alert("hw ass has been submitted");
-        //get homeworkid
         $.get("/api/classes/"+classid).then(function(thisClass){
             var title = $("#hw_title").val().trim();
 
             var titleAppropriate = true;
-
             for (var i = 0; i < title.length; i++)
             {
                 if (!title ||
@@ -33,7 +33,7 @@ $(function() {
 
             var duedate = $("#hw_dueDate").val().trim();
             var description = $("#hw_description").val().trim();
-            if(titleAppropriate && description) //&& duedate
+            if(titleAppropriate && description)
             {
                 var newHomework={
                     homeworkname:title,
@@ -70,13 +70,11 @@ $(function() {
                         else
                         {
                             $("#alert-message-hwpostsuccess").empty();
-                            //alert("Thishomework already existed!!!!");
                             $("#alert-message-hwpostfailure").text("This homework already exists");
                         }
                     });
                 }
                 else if (thisClass.Students.length === 0){
-                    //alert("You have posted homework, but you dont have any students. Future students will not be assigned this homework.")
                     $.get("/api/homework/"+classid+"/"+title).then(function(thisHomework){
                         if(thisHomework === null)
                         {
@@ -92,8 +90,6 @@ $(function() {
                         }
                         else
                         {
-                            //hw already exists
-                            //alert("Thishomework already existed!!!!");
                             $("#alert-message-hwpostsuccess").empty();
                             $("#alert-message-hwpostfailure").text("This homework already exists");
                         }
@@ -102,27 +98,32 @@ $(function() {
             }
             else
             {
-                //alert("the name of hw is not appropraite or check if you had written a description")
                 $("#alert-message-hwpostsuccess").empty();
                 $("#alert-message-hwpostfailure").text("The name of hw is not appropraite or check if you had written a description");
             }
         });
     });
+
+    //WHEN VIEWING HOMEWORK SUBMISSIONS
     $(".seeHwsubmissions").on("click",function(event){
         $("#submittedBody").empty();
-        console.log("im here");
         var hwid=$(this).attr("data-hwid");
         console.log(hwid);
        $.get("/api/Teacherclassinfo/"+hwid,function(studentsSubmitted){
-            
-            console.log(studentsSubmitted);
             for(var i=0;i<studentsSubmitted.length;i++){
-                var studentSubmission="<div>"+studentsSubmitted[i]+"</div>";
-                $("#submittedBody").append(studentSubmission);
+                if(studentsSubmitted[i].hwlink.substr(0,6) === "http://")
+                {
+                    var studentSubmission="<div class='text-capitalize'>"+studentsSubmitted[i].name+": <a href='"+studentsSubmitted[i].hwlink+"' target='_blank'>View</a></div>";
+                    $("#submittedBody").append(studentSubmission);
+                }
+                else
+                {
+                    var studentSubmission="<div class='text-capitalize'>"+studentsSubmitted[i].name+": <a href='http://"+studentsSubmitted[i].hwlink+"' target='_blank'>View</a></div>";
+                    $("#submittedBody").append(studentSubmission);
+                }
 
             }
             $("#showSubmissionsModal").modal("show");
-            $("#")
         });
     })
     

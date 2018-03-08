@@ -1,11 +1,11 @@
 $(function() {
-    //global so submit modal has access
     var hwid;
-
-    //logic for supmiting hw
+    //OPENING MODAL TO SUBMIT HOMEWORK
     $(".hwModalopen").on("click",function(event){
         hwid=$(this).attr("data-hwid");
     });
+
+    //WHEN SUBMITTING HOMEWORK
     $("#submitHw").on("click",function(event){
         var studentUsername=$(this).attr("data-student-username")
         var classid = $(this).attr("data-classid");
@@ -40,12 +40,10 @@ $(function() {
             }
         }); 
     })
-    //see last hw submission
+    //WHEN CLICKING TO SEE LAST HOMEWORK SUBMISSION
     $(".lastHw").on("click",function(event){
-        //console.log("im here2");
         var hwid=$(this).attr("data-hwid");
         var studentid=$("#s-name-test").attr("data-studentid");
-        console.log(studentid);
        $.get("/api/Studenthwinfo/"+studentid+"/"+hwid,function(lastSub){
             if (lastSub !== null)
             {

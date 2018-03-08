@@ -24,12 +24,10 @@ app.engine("handlebars", exphbs({ defaultLayout: 'layout' }));
 app.set("view engine", "handlebars");
 
 // Routes
-var routes = require("./routes/routes.js");
-app.use(routes);
 // =============================================================
-//require("./routes/html-routes.js")(app);
-//require("./routes/user-api-routes.js")(app);
-// require("./routes/post-api-routes.js")(app);
+require("./routes/handlebars-rendering-routes.js")(app);
+require("./routes/api-routes.js")(app);
+require("./routes/posts-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
