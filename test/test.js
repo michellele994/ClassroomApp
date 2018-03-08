@@ -10,15 +10,17 @@ describe("Sch00led", function() {
     // ID for the login button.
     Nightmare({ show: true })
       .goto("https://sch00led.herokuapp.com/")
-      // Click the catalog link
-      .click("#take_user")
+      .type("#enter_username", "Testing")
+      .type("#enter_password", "111111")
       // Evaluate the title
+      .click("#take_user")
+      .wait(5000)
       .evaluate(function() {
-        return document.querySelector("#alert-message-login").innerText;
+        return document.querySelector("#mainHeading").innerText;
       })
       // Asset the title is as expected
-      .then(function(errorMessage) {
-        expect(errorMessage).to.equal("string");
+      .then(function(text) {
+        expect(text).to.equal("Welcome Test");
         done();
       });
   });
