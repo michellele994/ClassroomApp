@@ -30,9 +30,7 @@ input {
 }
 
 #loginContainer {
-    /*background-size: 100%;*/
     color: #fff;
-    /*height: 100%;*/
 }
 
 .card,
@@ -75,10 +73,6 @@ input {
 
 .card {
     width: auto;
-}
-
-.badge-pill {
-    height: 25%;
 }
 
 hr:first-child {
@@ -277,19 +271,29 @@ main {
     border: none;
 }
 
-#alert-message, #alert-message-login, #cannot-create-error {
+#alert-message,
+#alert-message-login,
+#cannot-create-error {
     color: red;
     font-size: 85%;
     font-weight: bolder;
 }
+
+
 /* teacher/student view msgs */
-.alert-message-failure{
+
+.alert-message-failure {
     color: red;
     font-size: 85%;
     font-weight: bolder;
 }
-.alert-message-success{
+
+.alert-message-success {
     color: #195627;
     font-size: 85%;
     font-weight: bolder;
+}
+
+.ass-button {
+    margin: 0;
 }

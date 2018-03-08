@@ -8,17 +8,17 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body mx-auto">
                    <div class="form-group">
                        <div id ="alert-message-hwpost">
                             <div class="alert-message-failure" id ="alert-message-submithwfailure"></div>
                             <div class="alert-message-success" id ="alert-message-submithwsuccess"></div>
                         </div>
                         <label for="link">Submit Link:</label>
-                        <input class="col-md-8" type="text" id="hwLink" name="hwLink" maxlength="30">
+                        <input class="col-sm-12 mb-2" type="text" id="hwLink" name="hwLink" maxlength="30">
                         <br>
                         <label for="comment">Comment:</label>
-                        <textarea class="form-control col-md-10 mx-auto" id="hwComment" name="hwComment" rows="3" maxlength="500"></textarea>
+                        <textarea class="form-control col-sm-12" id="hwComment" name="hwComment" rows="3" maxlength="500"></textarea>
                         </br>
                         <button data-student-username="{{currentStudent.Students.[0].username}}" data-classid="{{currentStudent.id}}"class="btn btn-outline-success badge-pill" type="submit" id="submitHw">Submit<i class="far fa-check-circle"></i></button>
                         <br>
@@ -34,7 +34,6 @@
         <div class="col-md-3 sidebarWidth float-left col-1 pl-0 pr-0 collapse width" id="sidebar">
             <div class="list-group border-0 card text-center text-md-left">
                 <a href="/welcome/{{currentStudent.Students.[0].username}}" class="list-group-item d-inline-block collapsed homeBtn" data-parent="#sidebar"><i class="fa fa-home"></i> <span class="d-none d-md-inline sidebarNames">Home</span> </a>
-                <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-film"></i> <span class="d-none d-md-inline sidebarNames">Item 2</span></a>
 				<a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline sidebarNames">Resources</span></a>
                 <div class="collapse" id="menu3">
                     <a href="https://github.com/" target="_blank" class="list-group-item" data-parent="#menu3">GitHub</a>
@@ -44,7 +43,7 @@
                     <a href="https://youtube.com/" target="_blank" class="list-group-item" data-parent="#menu3">Youtube</a>
                     <a href="https://www.wikipedia.org/" target="_blank" class="list-group-item" data-parent="#menu3">Wiki</a>
                 </div>
-                <a href="/" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-sign-out"></i> <span class="d-none d-md-inline sidebarNames">Logout</span></a>
+                <a href="/" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-sign-out-alt"></i> <span class="d-none d-md-inline sidebarNames">Logout</span></a>
             </div>
         </div>
 
@@ -54,7 +53,7 @@
                 <div id="userInfo" class="text-capitalize container-fluid text-center">
                     <h1 class = "text-white text-capitalize" >{{currentStudent.classname}}</h1>
                     <h6 class = "text-white text-capitalize" >Instructor: {{currentStudent.Teacher.name}}</h6>
-                    <h6 class = "text-white text-capitalize" >Student: {{currentStudent.Students.[0].name}}</h6>
+                    <h6 id = "s-name-test" class = "text-white text-capitalize" >Student: {{currentStudent.Students.[0].name}}</h6>
                 </div>
                 <div id="mainContainer"class="container-fluid text-center">
                     <div class="row">
@@ -64,22 +63,29 @@
                                     <div class="card-header">
                                         <h3>Assignments</h3>
                                     </div>
-                                    <div class="card-body ">
+                                    <div class="card-body">
                                         {{#each currentStudent.Homework}}
+                                        <hr>
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-3 ">
+                                                
                                                 <h6>{{this.homeworkname}}:</h6>
+                                                
                                             </div>
                                             <div class="col-lg-4">
                                                  <p>{{this.homeworkdesc}}</p>  
                                             </div>
-                                            <div class="col-lg-1 ">
-                                                <button class="hwModalopen" type="button" data-toggle="modal"data-target="#submitHwModal" data-hwid="{{this.id}}">Submit</button> 
+                                            <div class="col-lg-1">
+                                                <button class="hwModalopen btn btn-outline-light badge-pill ass-button" type="button" data-toggle="modal"data-target="#submitHwModal" data-hwid="{{this.id}}">Submit</button> 
+                                               
                                             </div>
+                                            
                                             <div class="col-lg-2"></div>
+                                            
                                         </div>
                                         {{/each}} 
+                                        
                                     </div>
                                 </div>
                             </div>

@@ -21,8 +21,8 @@ $(function() {
             {
                 if (!title ||
                     title.charCodeAt(i) < 32 ||
-                    (title.charCodeAt(i) > 32 && title.charCodeAt(i) < 47) ||
-                    (title.charCodeAt(i) >57 && title.charCodeAt(i) < 65) ||
+                    (title.charCodeAt(i) > 32 && title.charCodeAt(i) < 48) ||
+                    (title.charCodeAt(i) > 57 && title.charCodeAt(i) < 65) ||
                     (title.charCodeAt(i) > 90 && title.charCodeAt(i) < 97) ||
                     title.charCodeAt(i) > 122 )
                 {
