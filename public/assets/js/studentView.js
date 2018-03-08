@@ -49,4 +49,21 @@ $(function() {
             $("#alert-message-submithwsuccess").text("Your homework has been successfully submitted");
         }  
     })
+    //see last hw submission
+    $(".lastHw").on("click",function(event){
+        $("#lastHwSubmission").empty();
+        //console.log("im here2");
+        var hwid=$(this).attr("data-hwid");
+        var studentid=$("#s-name-test").attr("data-studentid");
+        console.log(studentid);
+       $.get("/api/Studenthwinfo/"+studentid+"/"+hwid,function(lastSub){
+           console.log(lastSub);
+                var subLink="<div>Link: "+lastSub.Homework[0].AssignedHomework.submitlink+"</div>";
+                console.log(subLink);
+                var subcomment="<div>Comment: "+lastSub.Homework[0].AssignedHomework.comment+"</div>";
+                $("#lastHwSubmission").append(subLink+subcomment);
+
+            $("#lastHwModal").modal("show");
+        });
+    })
 });
