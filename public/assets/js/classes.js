@@ -10,7 +10,6 @@ $(function() {
 
     //POPULATE CLASSES AVAILABLE 
     $("#seeAvailclassesBtn").on("click", function(event) {
-        //console.log("see avail clicked");
         $("#classesAvailableModalbody").empty();
         //If person is a teacher of their class, do not display that class
         $.get("/api/teachers/" + userName).then(function(teacherResponse) {
@@ -38,7 +37,7 @@ $(function() {
         });
     });
 
-    //enrolling in class button
+    //ENROLLING IN A CLASS
     //we need to use event delegation since our buttons do not exist when our document loads
     $("#classesAvailableModalbody").on("click", ".Enroll", function(event) {
         var classid = $(this).attr("data-classid");
@@ -92,7 +91,7 @@ $(function() {
         });
     });
 
-    //When user presses on "View Class", direct them.
+    //WHEN CLICKING ON A CLASS
     $(".classPg").on("click", function(event) {
         var classid = $(this).attr("data-classid");
         //Determine whether the user is a teacher or student and direct them as appropriate
@@ -106,7 +105,7 @@ $(function() {
         })
     })
 
-    //When a user presses to create a new class.
+    //WHEN CREATING A NEW CLASS
     $("#create-new-class").on("click", function(event) {
         event.preventDefault();
         var className = $("#new-class-name").val().trim();
@@ -194,6 +193,10 @@ $(function() {
         }
     });
 
+
+
+//FUNCTIONS
+//========================================================================================================================
     //To render the available classes (Used by whereTeacherDoesNotExist and by whereStudentDoesNotExist)
     function populateModal(AvailableClasses) {
         for (var i = 0; i < AvailableClasses.length; i++) {
@@ -226,7 +229,6 @@ $(function() {
                     exists = false;
                 }
             }
-            console.log(classesAvailable)
 
             if (activateModal) {
                 populateModal(classesAvailable);
