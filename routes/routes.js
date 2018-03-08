@@ -117,7 +117,10 @@ router.get("/api/Teacherclassinfo/:hwid",function(req,res){
         for(var i = 0; i < dbHwSubmissions.length; i++)
         {
             if (dbHwSubmissions[i].Homework[0].AssignedHomework.completed){
-                studentsCompleted.push(dbHwSubmissions[i].name);
+                studentsCompleted.push({
+                    name: dbHwSubmissions[i].name,
+                    hwlink: dbHwSubmissions[i].Homework[0].AssignedHomework.submitlink
+                });
             }
         }
         
