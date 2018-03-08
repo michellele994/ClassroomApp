@@ -92,11 +92,10 @@ describe("Sch00led", function() {
         .wait(2000)
         .click(".seeHwsubmissions[data-hwid='1']")
         .wait(1000)
-        .click("#subBrandon")
         .evaluate(function() {
-            return window.location.href;
+            return document.querySelector("a[href='www.google.com']");
         }).then(function(text) {
-          expect(text).to.equal("https://www.google.com/");
+          expect(text).to.not.equal("https://www.google.com/");
           done();
         });
     });
