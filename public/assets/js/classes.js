@@ -200,9 +200,9 @@ $(function() {
             var classid = AvailableClasses[i].id;
             var classname = AvailableClasses[i].classname;
             var datas = "data-classid=" + classid;
-            var classDisplay = "<div class='text-capitalize availableClass'data-classID=" + classid + ">" + classname + "<div>"
-            var enrollebtn = "<button " + datas + " class='Enroll btn btn-success badge-pill'>Enroll</button>"
-            $("#classesAvailableModalbody").append(classDisplay + enrollebtn);
+            var classDisplay = "<div class= 'col-8 text-center'><div class='text-capitalize availableClass'data-classID=" + classid + ">" + classname + "</div></div>"
+            var enrollebtn = "<div class = 'col-4'><button " + datas + " class='btn btn-success badge-pill Enroll'>Enroll</button></div>"
+            $("#classesAvailableModalbody").append("<div class='row'>"+classDisplay + enrollebtn+"</div>");
         }
     };
 
