@@ -32,9 +32,7 @@ $(function() {
                     }).then(function(){
                         $("#alert-message-submithwfailure").empty();
                         $("#alert-message-submithwsuccess").text("You have submitted your homework!");
-                        setTimeout(function() {
-                            location.reload();
-                        }, 500);
+                        location.reload();
                     });
                 }
 
