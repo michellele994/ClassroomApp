@@ -42,7 +42,7 @@ module.exports = function(router) {
                     currentClass.addStudent(currentStudent);
                     allHomeworkForThisClass.forEach(function(homework){
                         currentStudent.addHomework(homework)
-                        console.log("Thisis wirking")
+                        // console.log("Thisis wirking")
                     })
                 })
             })
