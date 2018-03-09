@@ -12,6 +12,13 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
 		},
+		grade: {
+			type: DataTypes.STRING,
+			allowNull: true,
+			validate: {
+				len: [1, 1]
+			}
+		}
 	});
 	return AssignedHomework;
 }

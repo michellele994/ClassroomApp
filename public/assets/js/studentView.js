@@ -47,9 +47,7 @@ $(function() {
        $.get("/api/Studenthwinfo/"+studentid+"/"+hwid,function(lastSub){
             if (lastSub !== null)
             {
-                if (lastSub.Homework.length !== 0 ||
-                lastSub.Homework[0].AssignedHomework !== null ||
-                lastSub.Homework[0].AssignedHomework.submitlink !== null)
+                if (lastSub.Homework[0].AssignedHomework.submitlink !== null)
                 {
                     $("#lastHwSubmission").empty();
                     var subLink="<div id='linksubtest'>Link: "+lastSub.Homework[0].AssignedHomework.submitlink+"</div>";
@@ -66,12 +64,12 @@ $(function() {
 
                     $("#lastHwModal").modal("show");
                 }
-            }
-            else
-            {
-                $("#error-message-lastsub").text("Looks like you did not submit anything yet!")
-                $("#lastHwModal").modal("show");
+                else if (lastSub.Homework[0].AssignedHomework.submitlink === null)
+                {
+                    $("#error-message-lastsub").text("Looks like you did not submit anything yet!")
+                    $("#lastHwModal").modal("show");
 
+                }
             }
         });
     })

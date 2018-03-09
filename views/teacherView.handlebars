@@ -53,25 +53,6 @@
                         </div>
                     </div> 
                 </div>
-                {{!-- show submissions modal--}}
-                <div class="modal fade" id="showSubmissionsModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title" id="modal-title">Homework Submitted</h3>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div id="submittedBody" class="modal-body mx-auto">
-                                
-                            </div>
-                            <div class="modal-footer">
-                                <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
-                            </div>
-                        </div>
-                    </div> 
-                </div>            
                 <!--Main body of page-->
                 <div class="container-fluid text-center">
                     <h1 id="teacherViewmainHeadings" class="text-capitalize text-white">{{classInfo.classname}}</h1>
@@ -79,16 +60,17 @@
                 </div>
                 <div id="mainContainer"class="container-fluid text-center">
                     <button class="btn btn-success badge-pill crteClass col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#postHwModal">Add Assignment</button>
+                    <br>
+                    <button class="btn btn-success badge-pill crteClass col-sm-12 col-md-6 col-lg-4" type="button" data-classid="{{classInfo.id}}" id = "see-submission-next-page">See Submissions</button>
                 </div>
 
                 {{!-- hw assignments--}}
                 <div class="container-fluid hwSubCard">
                         {{#each classInfo.Homework}}
-                            <div class="card col-lg-8 mx-auto hwCard">
+                            <div class="border border-light card col-lg-8 mx-auto hwCard">
                                 <div class="card-header text-white" role="tab" id="headingOne">
                                     <h4 class="hwName">{{this.homeworkname}}:</h4>
-                                    <h6 class="hwDesc">{{this.homeworkdesc}}</h6> 
-                                    <button data-classid="{{classInfo.id}}" data-hwid="{{this.id}}" class="btn btn-outline-light badge-pill seeHwsubmissions" type="submit">See Submissions <i class="far fa-check-circle"></i></button>
+                                    <h6 class="hwDesc">{{this.homeworkdesc}}</h6>
                                 </div>
                                 <div class="card-block text-white text-center text-capitalize">
                                     Due Date: {{this.hwdue}}
