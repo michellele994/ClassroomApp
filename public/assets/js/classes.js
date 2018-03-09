@@ -96,7 +96,7 @@ $(function() {
         var classid = $(this).attr("data-classid");
         //Determine whether the user is a teacher or student and direct them as appropriate
         $.get("/api/classes/" + classid).then(function(response) {
-            var teachername = response.Teacher.username;
+            var teachername = (response.Teacher.username).toLowerCase();
             if (userName === teachername) {
                 window.location = "/classTeacherview/" + userName + "/" + classid;
             } else {
