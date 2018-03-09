@@ -82,5 +82,21 @@ module.exports = function(router) {
                 }})
             });
         })
+    });
+    router.post("/api/grading", function(req,res){
+        db.Student.findOne({
+            where:{
+                id: req.body.stuId
+            },
+            include:[{
+                model: db.Homework,
+                where:{
+                    id: req.body.hwId
+                }
+            }]
+        }).then(function(thisStudent) {
+                thisStudent.Homework[0].AssignedHomework.updateAttributes({grade: req.body.grade}).then(function(){
+                })
+        });
     })
 }
