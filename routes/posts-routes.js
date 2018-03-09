@@ -34,7 +34,17 @@ module.exports = function(router) {
                     username: req.body.username
                 }
             }).then(function(currentStudent){
-                currentClass.addStudent(currentStudent);
+                db.Homework.findAll({
+                    where:{
+                        ExistingClassId: req.body.classid
+                    }
+                }).then(function(allHomeworkForThisClass){
+                    currentClass.addStudent(currentStudent);
+                    allHomeworkForThisClass.forEach(function(homework){
+                        currentStudent.addHomework(homework)
+                        console.log("Thisis wirking")
+                    })
+                })
             })
         });
     });
