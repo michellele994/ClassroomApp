@@ -90,12 +90,50 @@ describe("Sch00led", function() {
         .goto("https://sch00led.herokuapp.com/welcome/perlalala/")
         .click("#tClass1")
         .wait(2000)
-        .click(".seeHwsubmissions[data-hwid='1']")
+        .click("#see-submission-next-page")
+        .wait(1000)
+        .click("#button-for-collapse-1")
         .wait(1000)
         .evaluate(function() {
-            return document.querySelector("a[href='www.google.com']");
+            return document.querySelector("#student-1-sublink-1");
         }).then(function(text) {
-          expect(text).to.not.equal("https://www.google.com/");
+          expect(text).to.equal("www.google.com");
+          done();
+        });
+    });
+    //Should be able to grade homework submission
+    this.timeout(30000);
+    it("should be able to submit a grade", function(done) {
+    new Nightmare({ show: true })
+        .goto("https://sch00led.herokuapp.com/classTeacherview/grading/perlalala/1")
+        .click("#button-for-collapse-1")
+        .wait(1000)
+        .click("#grade-1-grade-1")
+        .wait(1000)
+        .click("#select-class")
+        .wait(500)
+        .type("B")
+        .click("#select-class")
+        .click("#postGrade")
+        .wait(2000)
+        .click("#button-for-collapse-1")
+        .evaluate(function() {
+            return document.querySelector("#student-1-grade-1");
+        }).then(function(text) {
+          expect(text).to.equal("B");
+          done();
+        });
+    });
+
+    //Student should be able to view their grade given by teacher
+    this.timeout(30000);
+    it("should be able to view grade", function(done) {
+    new Nightmare({ show: true })
+        .goto("https://sch00led.herokuapp.com/classStudentview/brandonn3rd/1")
+        .evaluate(function() {
+            return document.querySelector("#your-grade-1").innerText;
+        }).then(function(text) {
+          expect(text).to.equal("B");
           done();
         });
     });
