@@ -61,7 +61,7 @@ $(function() {
                                     }
                                 });
                                 $("#alert-message-hwpostfailure").empty();
-                                $("#alert-message-hwpostsuccess").text("Hw has been posted");
+                                $("#alert-message-hwpostsuccess").text("Homework has been posted");
                                 setTimeout(function() {
                                     location.reload();
                                 }, 500);
@@ -83,7 +83,7 @@ $(function() {
                                 data: newHomework
                             });
                             $("#alert-message-hwpostfailure").empty();
-                            $("#alert-message-hwpostsuccess").text("Hw has been posted");
+                            $("#alert-message-hwpostsuccess").text("Homework has been posted");
                             setTimeout(function() {
                                 location.reload();
                             }, 500);
@@ -99,32 +99,15 @@ $(function() {
             else
             {
                 $("#alert-message-hwpostsuccess").empty();
-                $("#alert-message-hwpostfailure").text("The name of hw is not appropraite or check if you had written a description");
+                $("#alert-message-hwpostfailure").text("Homework name cannot contain inappropriate characters. Be sure to add a description.");
             }
         });
     });
 
-    //WHEN VIEWING HOMEWORK SUBMISSIONS
-    $(".seeHwsubmissions").on("click",function(event){
-        $("#submittedBody").empty();
-        var hwid=$(this).attr("data-hwid");
-        console.log(hwid);
-       $.get("/api/Teacherclassinfo/"+hwid,function(studentsSubmitted){
-            for(var i=0;i<studentsSubmitted.length;i++){
-                if(studentsSubmitted[i].hwlink.substr(0,6) === "http://")
-                {
-                    var studentSubmission="<div class='text-capitalize'">+studentsSubmitted[i].name+": <a href='"+studentsSubmitted[i].hwlink+"' id = 'sub"+studentsSubmitted[i].name+"' target='_blank'>View</a></div>";
-                    $("#submittedBody").append(studentSubmission);
-                }
-                else
-                {
-                    var studentSubmission="<div class='text-capitalize'>"+studentsSubmitted[i].name+": <a href='http://"+studentsSubmitted[i].hwlink+"' id = 'sub"+studentsSubmitted[i].name+"' target='_blank'>View</a></div>";
-                    $("#submittedBody").append(studentSubmission);
-                }
-
-            }
-            $("#showSubmissionsModal").modal("show");
-        });
+    // //WHEN VIEWING HOMEWORK SUBMISSIONS
+    $("#see-submission-next-page").on("click", function(event){
+        var classid=$(this).attr("data-classid");
+        window.location = "/classTeacherview/grading/" + userName + "/" + classid;
     })
     
 });

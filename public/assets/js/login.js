@@ -7,8 +7,8 @@ $(function() {
 	{
 		event.preventDefault();
 		//getting information from the form inputs
-		const username = $("#enter_username").val().trim();
-		const password = $("#enter_password").val().trim();
+		var username = $("#enter_username").val().trim();
+		var password = $("#enter_password").val().trim();
 		if (username && password)
 		{
 			$.get("/api/users/"+username+"/").then(function(response)
@@ -42,9 +42,9 @@ $(function() {
 	$("#create-new-user").on("click", function(event)
 	{
 		event.preventDefault();
-		const username = $("#new_username").val().trim();
-		const name = $("#new_name").val().trim();
-		const password=$("#new_password").val().trim();
+		var username = $("#new_username").val().trim().toLowerCase();
+		var name = $("#new_name").val().trim();
+		var password=$("#new_password").val().trim();
 
 		//Determine if username is appropriate.
 		var nameAppropriate = true;

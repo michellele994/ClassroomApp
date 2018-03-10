@@ -58,15 +58,18 @@ module.exports = function(router) {
 
     //RENDERING FOR STUDENT VIEW
     router.get("/classStudentview/:username/:classid",function(req,res){
-        db.ExistingClass.findOne({
+        db.Student.findOne({
             where:{
-                id:req.params.classid
-            },include:[db.Homework, db.Teacher,{
-                model:db.Student,
-                where:{
-                    username:req.params.username
-                }
-        }]
+                username:req.params.username
+            },
+            include:[db.Homework, 
+            {
+                model: db.ExistingClass,
+                where: {
+                    id: req.params.classid
+                },
+                include: [db.Teacher]
+            }]
         }).then(function(dbstudentInfo){
             var studentInfo={
                 currentStudent:dbstudentInfo
@@ -91,4 +94,29 @@ module.exports = function(router) {
             res.render("teacherView",classInfo);
         });
     });
+
+    //RENDERING FOR TEACHER VIEW FOR GRADING
+    router.get("/classTeacherview/grading/:username/:classid", function(req,res){
+        db.Teacher.findOne({
+            where:{
+                username: req.params.username
+            },
+            include:[db.ExistingClass]
+        }).then(function(dbTeacher) {
+            db.ExistingClass.findOne({
+                where: {
+                    id: req.params.classid
+                },
+                include: [db.Teacher, db.Student,{
+                    model: db.Homework,
+                    include:[db.Student]
+                }]
+            }).then(function(dbclass) {
+                var classInfo={
+                    classInfo: dbclass
+                }
+                res.render("teacherViewGrading", classInfo);
+            });
+        });
+    })
 }

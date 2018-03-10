@@ -1,0 +1,109 @@
+<div class="container-fluid">
+    <div class="row d-flex d-md-block flex-nowrap wrapper">
+        <div class="col-md-3 sidebarWidth float-left col-1 pl-0 pr-0 collapse width" id="sidebar">
+            <div class="list-group border-0 card text-center text-md-left">
+                <a href="/welcome/{{classInfo.Teacher.username}}" class="list-group-item d-inline-block collapsed homeBtn" data-parent="#sidebar"><i class="fa fa-home"></i> <span class="d-none d-md-inline sidebarNames">Home</span> </a>
+				<a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline sidebarNames">Resources</span></a>
+                <div class="collapse" id="menu3">
+                    <a href="https://github.com/" target="_blank" class="list-group-item" data-parent="#menu3">GitHub</a>
+                    <a href="https://stackoverflow.com/" target="_blank" class="list-group-item" data-parent="#menu3">Stack Overflow</a>
+                    <a href="https://google.com/" target="_blank" class="list-group-item" data-parent="#menu3">Google</a>
+					<a href="https://slack.com/" target="_blank" class="list-group-item" data-parent="#menu3">Slack</a>
+                    <a href="https://youtube.com/" target="_blank" class="list-group-item" data-parent="#menu3">Youtube</a>
+                    <a href="https://www.wikipedia.org/" target="_blank" class="list-group-item" data-parent="#menu3">Wiki</a>
+                </div>
+                <a href="/" class="list-group-item d-inline-block collapsed" data-parent="#sidebar" id="logouttest"><i class="fa fa-sign-out-alt"></i> <span class="d-none d-md-inline sidebarNames">Logout</span></a>
+            </div>
+        </div>
+		<a href="#" data-target="#sidebar" data-toggle="collapse" id="sidebartest"><i class="fa fa-bars fa-2x py-2 p-1 m-2 ml-5"></i></a>
+        <main class="col-md-12 col px-5 pl-md-3 pt-2 main text-white">
+            {{!-- Modal for grading --}}
+            <div class="modal fade text-dark" id="postGradeModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="modal-title">Grading</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-auto">
+                            <label for="select-grade">Enter a grade:</label>
+                            <select class="form-control" id="select-grade">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="F">F</option>
+                            </select>
+                            <button class="btn btn-outline-dark badge-pill" type="submit" id="postGrade">Post Grade<i class="far fa-check-circle"></i></button>
+                        </div>
+                        <div class="modal-footer">
+                            <a id = "close" class="btn btn-md" role="button" data-dismiss="modal">Close</a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                <!--Main body of page-->
+                <div class="container-fluid text-center">
+                    <h1 id="teacherViewmainHeadings" class="text-capitalize text-white">Homework Submitted</h1>
+                    <h3 id="teacherViewmainHeadings" class="text-capitalize text-white">{{classInfo.classname}}</h3>
+                    <h6 class = "text-capitalize text-white">Instructor: {{classInfo.Teacher.username}}</h6>
+                </div>
+                <div id="mainContainer"class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 wrapper classes">
+                            <div class="container-fluid" style="max-width: 60rem; opacity: .80">
+
+
+                                <div id="accordion2">
+                                    {{#each classInfo.Homework}}
+                                        <div class="border border-light card">
+                                            <div class="card-header" id="homework-teaching-{{this.id}}">
+                                                <h5 class="mb-0">
+                                                    <button id="button-for-collapse-{{this.id}}" class="btn btn-link clicking-collapse-homework text-white text-left" data-toggle="collapse" data-target="#{{this.id}}-homework-collapse" aria-expanded="true" aria-controls="{{this.id}}-homework-collapse" data-classid="{{this.id}}">
+                                                        <h3>{{this.homeworkname}}</h3>
+                                                    </button>
+                                                </h5>
+                                                <div id="{{this.id}}-homework-collapse" class="collapse hide" aria-labelledby="homework-teaching-{{this.id}}" data-parent="#accordion2">
+                                                    <div class="card-body text-center">
+                                                        <hr>
+                                                        <div class="alert-message-failure" id="no-students-submit" style="font-size: 17px"></div>
+                                                        {{#each this.Students}}
+                                                            <div class="row" id ="student-in-class-{{this.id}}" data-studentid="{{this.id}}">
+                                                                <div class="col-sm-3">
+                                                                    <div class="text-capitalize"><h4>{{this.name}}</h4></div>
+                                                                    Username: {{this.username}}
+                                                                </div>
+                                                                <div class="col-sm-6" id ="student-submission-{{this.id}}">
+                                                                    <div id="student-{{this.id}}-sublink-{{../this.id}}"></div>
+                                                                    <br>
+                                                                    <div id="student-{{this.id}}-comment-{{../this.id}}"></div>
+                                                                    <div class="alert-message-failure" id="error-submission-message-{{this.id}}-{{../this.id}}" style="font-size:17px"></div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <h3 style="margin-bottom: 0px, padding-bottom: 0px">Grade</h3>
+                                                                    <h2 style="margin-top: 0px"><div id="student-{{this.id}}-grade-{{../this.id}}"></div></h2>
+                                                                    Current Grade
+                                                                    <br><a href="#{{this.id}}+{{../this.id}}"><button id="grade-{{this.id}}-grade-{{../this.id}}" class="btn btn-success badge-pill addGrade col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#postGradeModal">Grade</button></a>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                        {{/each}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    {{/each}}
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

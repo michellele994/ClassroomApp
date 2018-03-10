@@ -23,7 +23,7 @@ module.exports = function(router) {
     });
     //API route for all the classes. CLasses are made purely by teachers. This shows associated homework, teacher, and students
     router.get("/api/classes", function(req, res) {
-        db.ExistingClass.findAll({ include: [db.Teacher, db.Student, db.Homework]}).then(function(dbclass) {
+        db.ExistingClass.findAll({ include: [db.Teacher, {model: db.Student,include:[db.Homework]}, db.Homework]}).then(function(dbclass) {
             res.json(dbclass);
         });
     });
@@ -61,7 +61,7 @@ module.exports = function(router) {
             where: {
                 id: req.params.classid
             },
-            include: [db.Teacher, db.Student, db.Homework]
+            include: [db.Teacher, db.Student, {model: db.Homework, include:[db.Student]}]
         }).then(function(dbclass) {
             res.json(dbclass);
         });
@@ -139,4 +139,26 @@ module.exports = function(router) {
 
         });
     });
+
+    //API Route for Grading purposes
+    router.get("/api/classTeacherview/grading/:username/:classid", function(req,res){
+        db.Teacher.findOne({
+            where:{
+                username: req.params.username
+            },
+            include:[db.ExistingClass]
+        }).then(function(dbTeacher) {
+            db.ExistingClass.findOne({
+                where: {
+                    id: req.params.classid
+                },
+                include: [db.Teacher, db.Student,{
+                    model: db.Homework,
+                    include:[db.Student]
+                }]
+            }).then(function(dbclass) {
+                res.json(dbclass);
+            });
+        });
+    })
 }
