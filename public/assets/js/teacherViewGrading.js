@@ -16,6 +16,15 @@ $(function() {
         var classid = urlInfo;
     }
 
+    //If there are no classes, populate message
+    $.get("/api/classTeacherview/grading/"+userName+"/"+classid).then(function(classGrading)
+    {
+        if (classGrading.Homework.length === 0 || classGrading.Homework.length === null)
+        {
+            $("#no-assignment-message").text("You did not assign any homework, yet. Go back and add some!");
+        }
+    });
+
     $(".clicking-collapse-homework").on("click", function(event){
     	$.get("/api/classTeacherview/grading/"+userName+"/"+classid).then(function(classGrading)
     	{
