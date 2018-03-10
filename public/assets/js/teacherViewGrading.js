@@ -19,50 +19,52 @@ $(function() {
     $(".clicking-collapse-homework").on("click", function(event){
     	$.get("/api/classTeacherview/grading/"+userName+"/"+classid).then(function(classGrading)
     	{
-            if(classGrading.Students.length === 0)
-            {
-                $("#no-students-submit").text("You currently have no students.")
-            }
     		for (var i = 0; i < classGrading.Homework.length; i++)
     		{
-    			for(var j = 0; j < classGrading.Homework[i].Students.length; j++)
-    			{
-    				var assignedHw = classGrading.Homework[i].Students[j].AssignedHomework;
-    				if(assignedHw.submitlink !== null)
-    				{
-    					$("#student-"+classGrading.Homework[i].Students[j].id+"-sublink-"+classGrading.Homework[i].id).text("Link: "+assignedHw.submitlink);
-    					if(assignedHw.comment !== null)
-	    				{
-	    					if(assignedHw.comment.trim() === "")
-	    					{
-	    						$("#student-"+classGrading.Homework[i].Students[j].id+"-comment-"+classGrading.Homework[i].id).text("Comment: No comment");
-	    					}
-	    					else
-	    					{
-	    						$("#student-"+classGrading.Homework[i].Students[j].id+"-comment-"+classGrading.Homework[i].id).text("Comment: "+assignedHw.comment);
-	    					}
-	    				}
-	    				else if (assignedHw.comment === null || assignedHw.comment === "")
-	    				{
-	    					$("#student-"+classGrading.Homework[i].Students[j].id+"-comment-"+classGrading.Homework[i].id).text("Comment: No comment");
-	    				}
-    				}
-    				else if(assignedHw.submitlink === null || assignedHw.submitlink === "")
-    				{
-    					$("#error-submission-message-"+classGrading.Homework[i].Students[j].id+"-"+classGrading.Homework[i].id).text("This person did not submit this homework");
-    					
-    				}
+                if(classGrading.Students.length === 0)
+                {
+                    $("#no-students-submit-"+classGrading.Homework[i].id).text("You currently have no students.")
+                }
+                else
+                {
+                    for(var j = 0; j < classGrading.Homework[i].Students.length; j++)
+                    {
+                        var assignedHw = classGrading.Homework[i].Students[j].AssignedHomework;
+                        if(assignedHw.submitlink !== null)
+                        {
+                            $("#student-"+classGrading.Homework[i].Students[j].id+"-sublink-"+classGrading.Homework[i].id).text("Link: "+assignedHw.submitlink);
+                            if(assignedHw.comment !== null)
+                            {
+                                if(assignedHw.comment.trim() === "")
+                                {
+                                    $("#student-"+classGrading.Homework[i].Students[j].id+"-comment-"+classGrading.Homework[i].id).text("Comment: No comment");
+                                }
+                                else
+                                {
+                                    $("#student-"+classGrading.Homework[i].Students[j].id+"-comment-"+classGrading.Homework[i].id).text("Comment: "+assignedHw.comment);
+                                }
+                            }
+                            else if (assignedHw.comment === null || assignedHw.comment === "")
+                            {
+                                $("#student-"+classGrading.Homework[i].Students[j].id+"-comment-"+classGrading.Homework[i].id).text("Comment: No comment");
+                            }
+                        }
+                        else if(assignedHw.submitlink === null || assignedHw.submitlink === "")
+                        {
+                            $("#error-submission-message-"+classGrading.Homework[i].Students[j].id+"-"+classGrading.Homework[i].id).text("This person did not submit this homework");
+                            
+                        }
 
-    				if(assignedHw.grade !== null && assignedHw.grade !== "")
-    				{
-    					$("#student-"+classGrading.Homework[i].Students[j].id+"-grade-"+classGrading.Homework[i].id).text(assignedHw.grade)
-    					$("#grade-"+classGrading.Homework[i].Students[j].id+"-grade-"+classGrading.Homework[i].id).text("Regrade");
-    				}
-    				else if(assignedHw.grade === null || assignedHw.grade === "")
-    				{
-    					$("#student-"+classGrading.Homework[i].Students[j].id+"-grade-"+classGrading.Homework[i].id).text("N/A");
-    				}
-    			}
+                        if(assignedHw.grade !== null && assignedHw.grade !== "")
+                        {
+                            $("#student-"+classGrading.Homework[i].Students[j].id+"-grade-"+classGrading.Homework[i].id).text(assignedHw.grade)
+                        }
+                        else if(assignedHw.grade === null || assignedHw.grade === "")
+                        {
+                            $("#student-"+classGrading.Homework[i].Students[j].id+"-grade-"+classGrading.Homework[i].id).text("N/A");
+                        }
+                    }
+                }
     		}
     	});
     });

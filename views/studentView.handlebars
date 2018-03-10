@@ -85,22 +85,7 @@
                                     <h3>Assignments</h3>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3 d-none d-md-block">
-                                            <h4>Name</h4>
-                                        </div>
-                                        <div class="col-md-3 d-none d-md-block">
-                                             <h4>Description</h4>  
-                                        </div>
-                                        <div class="col-md-4 d-none d-md-block">
-                                            <h4>Submissions</h4>
-                                        </div>
-                                        <div class="col-md-2 d-none d-md-block">
-                                            <h4>Grade</h4>
-                                        </div>
-                                    </div>
                                     {{#each currentStudent.Homework}}
-                                    <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
                                             {{this.homeworkname}}
@@ -118,6 +103,7 @@
                                             <h2 id="your-grade-{{this.id}}">{{this.AssignedHomework.grade}}</h2>
                                         </div>
                                     </div>
+                                    <hr>
                                     {{/each}} 
                                 </div>
                             </div>
