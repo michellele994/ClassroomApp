@@ -77,7 +77,7 @@ $(function() {
 					//go through the api and check if the username and name are taken
 					if (response)
 					{
-						alert("The username already exists!");
+						$("#alert-message").text("That username already exists!");
 					}
 					else
 					{

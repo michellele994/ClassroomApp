@@ -95,9 +95,9 @@ describe("Sch00led", function() {
         .click("#button-for-collapse-1")
         .wait(1000)
         .evaluate(function() {
-            return document.querySelector("#student-1-sublink-1");
+            return document.querySelector("#student-1-sublink-1").innerText;
         }).then(function(text) {
-          expect(text).to.equal("www.google.com");
+          expect(text).to.equal("Link: www.google.com");
           done();
         });
     });
@@ -110,15 +110,13 @@ describe("Sch00led", function() {
         .wait(1000)
         .click("#grade-1-grade-1")
         .wait(1000)
-        .click("#select-class")
-        .wait(500)
-        .type("B")
-        .click("#select-class")
+        .select("#select-grade", [value="B"])
         .click("#postGrade")
         .wait(2000)
         .click("#button-for-collapse-1")
+        .wait(1000)
         .evaluate(function() {
-            return document.querySelector("#student-1-grade-1");
+            return document.querySelector("#student-1-grade-1").innerText;
         }).then(function(text) {
           expect(text).to.equal("B");
           done();
