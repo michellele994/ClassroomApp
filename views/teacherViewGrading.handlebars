@@ -51,50 +51,57 @@
                     <h6 class = "text-capitalize text-white">Instructor: {{classInfo.Teacher.username}}</h6>
                 </div>
                 <div id="mainContainer"class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 wrapper classes">
+                            <div class="container-fluid" style="max-width: 60rem; opacity: .80">
 
 
-                    <div id="accordion2">
-                        {{#each classInfo.Homework}}
-                            <div class="border border-light card">
-                                <div class="card-header" id="homework-teaching-{{this.id}}">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link clicking-collapse-homework text-white" data-toggle="collapse" data-target="#{{this.id}}-homework-collapse" aria-expanded="true" aria-controls="{{this.id}}-homework-collapse" data-classid="{{this.id}}">
-                                            <h3>{{this.homeworkname}}</h3>
-                                        </button>
-                                    </h5>
-                                    <hr>
-                                    <div id="{{this.id}}-homework-collapse" class="collapse hide" aria-labelledby="homework-teaching-{{this.id}}" data-parent="#accordion2">
-                                        <div class="card-body text-center">
-                                            {{#each this.Students}}
-                                                <div class="row" id ="student-in-class-{{this.id}}" data-studentid="{{this.id}}">
-                                                    <div class="col-sm-3">
-                                                        <div class="text-capitalize"><h4>{{this.name}}</h4></div>
-                                                        Username: {{this.username}}
-                                                    </div>
-                                                    <div class="col-sm-6" id ="student-submission-{{this.id}}">
-                                                        <div id="student-{{this.id}}-sublink-{{../this.id}}"></div>
-                                                        <br>
-                                                        <div id="student-{{this.id}}-comment-{{../this.id}}"></div>
-                                                        <div class="alert-message-failure" id="error-submission-message-{{this.id}}-{{../this.id}}" style="font-size:17px"></div>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <h3 style="margin-bottom: 0px, padding-bottom: 0px">Grade</h3>
-                                                        <h2 style="margin-top: 0px"><div id="student-{{this.id}}-grade-{{../this.id}}"></div></h2>
-                                                        Current Grade
-                                                        <br><a href="#{{this.id}}+{{../this.id}}"><button id="grade-{{this.id}}-grade-{{../this.id}}" class="btn btn-success badge-pill addGrade col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#postGradeModal">Grade</button></a>
+                                <div id="accordion2">
+                                    {{#each classInfo.Homework}}
+                                        <div class="border border-light card">
+                                            <div class="card-header" id="homework-teaching-{{this.id}}">
+                                                <h5 class="mb-0">
+                                                    <button id="button-for-collapse-{{this.id}}" class="btn btn-link clicking-collapse-homework text-white text-left" data-toggle="collapse" data-target="#{{this.id}}-homework-collapse" aria-expanded="true" aria-controls="{{this.id}}-homework-collapse" data-classid="{{this.id}}">
+                                                        <h3>{{this.homeworkname}}</h3>
+                                                    </button>
+                                                </h5>
+                                                <div id="{{this.id}}-homework-collapse" class="collapse hide" aria-labelledby="homework-teaching-{{this.id}}" data-parent="#accordion2">
+                                                    <div class="card-body text-center">
+                                                        <hr>
+                                                        <div class="alert-message-failure" id="no-students-submit" style="font-size: 17px"></div>
+                                                        {{#each this.Students}}
+                                                            <div class="row" id ="student-in-class-{{this.id}}" data-studentid="{{this.id}}">
+                                                                <div class="col-sm-3">
+                                                                    <div class="text-capitalize"><h4>{{this.name}}</h4></div>
+                                                                    Username: {{this.username}}
+                                                                </div>
+                                                                <div class="col-sm-6" id ="student-submission-{{this.id}}">
+                                                                    <div id="student-{{this.id}}-sublink-{{../this.id}}"></div>
+                                                                    <br>
+                                                                    <div id="student-{{this.id}}-comment-{{../this.id}}"></div>
+                                                                    <div class="alert-message-failure" id="error-submission-message-{{this.id}}-{{../this.id}}" style="font-size:17px"></div>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <h3 style="margin-bottom: 0px, padding-bottom: 0px">Grade</h3>
+                                                                    <h2 style="margin-top: 0px"><div id="student-{{this.id}}-grade-{{../this.id}}"></div></h2>
+                                                                    Current Grade
+                                                                    <br><a href="#{{this.id}}+{{../this.id}}"><button id="grade-{{this.id}}-grade-{{../this.id}}" class="btn btn-success badge-pill addGrade col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#postGradeModal">Grade</button></a>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                        {{/each}}
                                                     </div>
                                                 </div>
-                                                <hr>
-                                            {{/each}}
+                                            </div>
                                         </div>
-                                    </div>
+                                        <br>
+                                    {{/each}}
                                 </div>
+
+
                             </div>
-                            <br>
-                        {{/each}}
+                        </div>
                     </div>
-
-
                 </div>
             </div>
         </main>

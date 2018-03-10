@@ -86,35 +86,35 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-lg-3 ">
+                                        <div class="col-md-3 d-none d-md-block">
                                             <h4>Name</h4>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-md-3 d-none d-md-block">
                                              <h4>Description</h4>  
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-md-4 d-none d-md-block">
                                             <h4>Submissions</h4>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-md-2 d-none d-md-block">
                                             <h4>Grade</h4>
                                         </div>
                                     </div>
                                     {{#each currentStudent.Homework}}
                                     <hr>
                                     <div class="row">
-                                        <div class="col-lg-3 ">
+                                        <div class="col-sm-3">
                                             {{this.homeworkname}}
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-sm-3">
                                              <p>{{this.homeworkdesc}}</p>  
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-sm-4">
                                             {{!-- last hwsubbutton --}}
                                             <button class="hwModalopen btn btn-outline-light badge-pill ass-button" type="button" data-toggle="modal"data-target="#submitHwModal" data-hwid="{{this.id}}">Submit</button> 
                                             <br><button class="lastHw btn btn-outline-light badge-pill ass-button" type="button"  data-hwid="{{this.id}}">See Last Sub</button>
                                         </div>
-                                        <div class="col-lg-2">
-                                            <h2>{{this.AssignedHomework.grade}}</h2>
+                                        <div class="col-sm-2">
+                                            <h2 id="your-grade-{{this.id}}">{{this.AssignedHomework.grade}}</h2>
                                         </div>
                                     </div>
                                     {{/each}} 

@@ -19,6 +19,10 @@ $(function() {
     $(".clicking-collapse-homework").on("click", function(event){
     	$.get("/api/classTeacherview/grading/"+userName+"/"+classid).then(function(classGrading)
     	{
+            if(classGrading.Students.length === 0)
+            {
+                $("#no-students-submit").text("You currently have no students.")
+            }
     		for (var i = 0; i < classGrading.Homework.length; i++)
     		{
     			for(var j = 0; j < classGrading.Homework[i].Students.length; j++)
