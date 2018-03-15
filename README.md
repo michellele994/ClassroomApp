@@ -1,6 +1,7 @@
 # Sch00led App
 One Paragraph of project description goes here
 ==============delete this and above======================
+
 Sch00l App is a class management app. Sch00led allows users to create classes or join classes created by other users. As class instructors, users can post assignments and see all previous assignment submissions along with the students who have submitted the assignement. As class students, users can submit a link and a comment for their assignments and can see their last submission for that specific assignment. Sch00l aims to solve the need for a simpler/concise classroom management system where everything needed can be accessed in one platform.
 
 ## Getting Started
@@ -12,6 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 Give examples
 ```
 ==============delete this and above======================
+
 1. Install Node.js
     -- https://nodejs.org/en/download/
 2. Install MySQL 
@@ -34,6 +36,7 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 ==============delete this and above======================
+
 1. Clone the github repo using command line:
 ```
 git clone https://github.com/michellele994/ClassroomApp.git
@@ -43,7 +46,7 @@ git clone https://github.com/michellele994/ClassroomApp.git
 cd ClassroomApp
 ```
 3. Reset Database: Copy the schema,in the db folder,paste it into your desired mysql interface/command line.
-4. Once in the ClassroomApp directory intall the package.json
+4. Once in the ClassroomApp directory install the package.json
 ```
 npm install
 ```
@@ -90,18 +93,22 @@ Add additional notes about how to deploy this on a live system
 
 
 ## Contributing
+Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+==============delete this and above======================
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
+Before any changes are made please contact any of the authors, with your suggestions.
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Michelle Lee** - *Team Lead* - [GitHub](https://github.com/michellele994)
+* **Brando Haines** - *Team:Front-end* - [GitHub](https://github.com/bhaines3)
+* **Ernesto Samaniego** - *Team:Front-end* - [GitHub](https://github.com/ernesto13)
+* **Perla Ballesteros** - *Team:Front-end/Back-end* - [GitHub](https://github.com/perlaballesteros)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
 
 ## License
 
