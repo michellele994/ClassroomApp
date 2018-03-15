@@ -42,7 +42,7 @@ git clone https://github.com/michellele994/ClassroomApp.git
 ```
 cd ClassroomApp
 ```
-3. Reset Database: Copy the schema for the database into your desired mysql interface/command line
+3. Reset Database: Copy the schema,in the db folder,paste it into your desired mysql interface/command line.
 4. Once in the ClassroomApp directory intall the package.json
 ```
 npm install
