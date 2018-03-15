@@ -1,6 +1,6 @@
 # Sch00led App
 One Paragraph of project description goes here
-==============delete this and above======================
+==============delete above======================
 
 Sch00l App is a class management app. Sch00led allows users to create classes or join classes created by other users. As class instructors, users can post assignments and see all previous assignment submissions along with the students who have submitted the assignement. As class students, users can submit a link and a comment for their assignments and can see their last submission for that specific assignment. Sch00l aims to solve the need for a simpler/concise classroom management system where everything needed can be accessed in one platform.
 
@@ -14,7 +14,7 @@ These instructions will get you a copy of the project up and running on your loc
 ```
 Give examples
 ```
-==============delete this and above======================
+==============delete above======================
 
 1. Install Node.js
     -- https://nodejs.org/en/download/
@@ -37,7 +37,7 @@ until finished
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
-==============delete this and above======================
+==============delete above======================
 
 1. Clone the github repo using command line:
 ```
@@ -96,7 +96,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
-==============delete this and above======================
+==============delete above======================
 
 Before any changes are made please contact any of the authors, with your suggestions.
 ## Versioning
