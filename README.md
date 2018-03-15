@@ -3,7 +3,8 @@ One Paragraph of project description goes here
 ==============delete above======================
 
 Sch00l App is a class management app. Sch00led allows users to create classes or join classes created by other users. As class instructors, users can post assignments and see all previous assignment submissions along with the students who have submitted the assignement. As class students, users can submit a link and a comment for their assignments and can see their last submission for that specific assignment. Sch00l aims to solve the need for a simpler/concise classroom management system where everything needed can be accessed in one platform.
-![Demo gif](./public/assets/img/schooledappgif.gif)
+
+![Demo gif](./public/assets/imgs/schooledappgif.gif)
 * [Live Demo](https://sch00led.herokuapp.com/)
 * [Video Demo](https://youtu.be/scpvt3I9q3I)
 
