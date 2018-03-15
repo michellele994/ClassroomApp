@@ -35,15 +35,26 @@ until finished
 End with an example of getting some data out of the system or using it for a little demo
 ==============delete this and above======================
 1. Clone the github repo using command line:
-    -- git clone https://github.com/michellele994/ClassroomApp.git 
+```
+git clone https://github.com/michellele994/ClassroomApp.git
+``` 
 2. Using command line go to the ClassroomApp directory
-    -- cd ClassroomApp
+```
+cd ClassroomApp
+```
 3. Reset Database: Copy the schema for the database into your desired mysql interface/command line
 4. Once in the ClassroomApp directory intall the package.json
-    -- npm install
+```
+npm install
+```
 5. Run the application
-    -- node server.js
-6. If successfull you should see the following message on you command line, "App listening on PORT 8080."
+```
+node server.js
+```
+6. If successfull you should see the following message on you command line, 
+```
+App listening on PORT 8080
+```
 
 ## Running the tests
 
