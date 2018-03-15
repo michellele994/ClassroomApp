@@ -84,7 +84,7 @@ Give an example
 ## Deployment
 Follow Heroku's deployment instructions
 * https://devcenter.heroku.com/articles/git
-* JawsDB MySQL add-on
+* Add JawsDB MySQL add-on
 
 ## Built With
 * [Handlebars](http://handlebarsjs.com/) -Templating language used
