@@ -53,7 +53,7 @@
                 </div>
                 <div id="mainContainer"class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12 wrapper classes">
+                        <div class="wrapper classes text-center">
                             <div class="container-fluid" style="max-width: 60rem; opacity: .80">
                                 <div id="no-assignment-message" class="alert-message-failure text-center" style="font-size: 28px"></div>
                                 <div id="accordion2">
@@ -61,8 +61,8 @@
                                         <div class="border border-light card">
                                             <div class="card-header text-center" id="homework-teaching-{{this.id}}">
                                                 <h5 class="mb-0">
-                                                    <button id="button-for-collapse-{{this.id}}" class="btn btn-link clicking-collapse-homework text-white" data-toggle="collapse" data-target="#{{this.id}}-homework-collapse" aria-expanded="true" aria-controls="{{this.id}}-homework-collapse" data-classid="{{this.id}}">
-                                                        <h3>{{this.homeworkname}}</h3>
+                                                    <button id="button-for-collapse-{{this.id}}" class="btn btn-link clicking-collapse-homework text-white text-left" data-toggle="collapse" data-target="#{{this.id}}-homework-collapse" aria-expanded="true" aria-controls="{{this.id}}-homework-collapse" data-classid="{{this.id}}">
+                                                        <div id= "hw-name" class= "text-center">{{this.homeworkname}}</div>
                                                     </button>
                                                     <hr>
                                                 </h5>
@@ -86,7 +86,7 @@
                                                                     <h3 style="margin-bottom: 0px, padding-bottom: 0px">Grade</h3>
                                                                     <h2 style="margin-top: 0px"><div id="student-{{this.id}}-grade-{{../this.id}}"></div></h2>
                                                                     Current Grade
-                                                                    <br><a href="#{{this.id}}+{{../this.id}}"><button id="grade-{{this.id}}-grade-{{../this.id}}" class="btn btn-success badge-pill addGrade col-sm-12 col-md-6 col-lg-4" type="button" data-toggle="modal" data-target="#postGradeModal">Grade</button></a>
+                                                                    <br><a href="#{{this.id}}+{{../this.id}}"><button id="grade-{{this.id}}-grade-{{../this.id}}" class="btn btn-success badge-pill addGrade col-sm-12 col-md-12 col-lg-6" type="button" data-toggle="modal" data-target="#postGradeModal">Grade</button></a>
                                                                 </div>
                                                             </div>
                                                             <hr>
