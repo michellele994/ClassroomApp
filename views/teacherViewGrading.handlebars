@@ -48,27 +48,28 @@
                 <div class="container-fluid text-center">
                     <h1 id="teacherViewmainHeadings" class="text-capitalize text-white">Homework Submitted</h1>
                     <h3 id="teacherViewmainHeadings" class="text-capitalize text-white">{{classInfo.classname}}</h3>
-                    <h6 class = "text-capitalize text-white">Instructor: {{classInfo.Teacher.username}}</h6>
+                    <h5 class = "text-capitalize text-white">Instructor: {{classInfo.Teacher.username}}</h5>
+                    <p style="font-size:15px">*Click on a homework to see more information*</p>
                 </div>
                 <div id="mainContainer"class="container-fluid">
                     <div class="row">
                         <div class="wrapper classes text-center">
                             <div class="container-fluid" style="max-width: 60rem; opacity: .80">
-
-
+                                <div id="no-assignment-message" class="alert-message-failure text-center" style="font-size: 28px"></div>
                                 <div id="accordion2">
                                     {{#each classInfo.Homework}}
                                         <div class="border border-light card">
-                                            <div class="card-header" id="homework-teaching-{{this.id}}">
+                                            <div class="card-header text-center" id="homework-teaching-{{this.id}}">
                                                 <h5 class="mb-0">
                                                     <button id="button-for-collapse-{{this.id}}" class="btn btn-link clicking-collapse-homework text-white text-left" data-toggle="collapse" data-target="#{{this.id}}-homework-collapse" aria-expanded="true" aria-controls="{{this.id}}-homework-collapse" data-classid="{{this.id}}">
                                                         <div id= "hw-name" class= "text-center">{{this.homeworkname}}</div>
                                                     </button>
+                                                    <hr>
                                                 </h5>
                                                 <div id="{{this.id}}-homework-collapse" class="collapse hide" aria-labelledby="homework-teaching-{{this.id}}" data-parent="#accordion2">
                                                     <div class="card-body text-center">
                                                         <hr>
-                                                        <div class="alert-message-failure" id="no-students-submit" style="font-size: 17px"></div>
+                                                        <div class="alert-message-failure" id="no-students-submit-{{this.id}}" style="font-size: 17px"></div>
                                                         {{#each this.Students}}
                                                             <div class="row" id ="student-in-class-{{this.id}}" data-studentid="{{this.id}}">
                                                                 <div class="col-sm-3">
