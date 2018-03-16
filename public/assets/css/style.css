@@ -301,6 +301,7 @@ main {
 .seeHwsubmissions {
     float: right;
 }
+
 .hwCard {
     opacity: .78;
     margin-bottom: 20px;
@@ -308,7 +309,8 @@ main {
     font-size: 140%;
 }
 
-.hwName, .hwDesc {
+.hwName,
+.hwDesc {
     margin-top: 15px;
     margin-left: 15px;
 }
@@ -316,8 +318,12 @@ main {
 .hwSubCard {
     margin-bottom: 30px;
 }
-.availableClass
-{
+
+.availableClass {
     position: relative;
     top: 33%;
+}
+
+#hw-name {
+    font-size: 20px;
 }
