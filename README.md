@@ -94,7 +94,7 @@ For example, an association we have between model Teacher and model ExistingClas
 	};
 	```
 
- ** Documentation on making belongsTo is adequately explained here http://docs.sequelizejs.com/manual/tutorial/associations.html#one-to-many-associations-hasmany-.
+ 	* Documentation on making belongsTo is adequately explained here http://docs.sequelizejs.com/manual/tutorial/associations.html#one-to-many-associations-hasmany-.
 
 The difference between using belongsTo and belongsToMany is the use of  **"through"**. This is to declare the name of the join table! For the version of sequelize (4.33.4), defining this is required or else it will not run properly.
 
